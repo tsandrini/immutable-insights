@@ -5,16 +5,15 @@ import { i18n } from '../../i18n/translation'
 import ButtonLink from '../control/ButtonLink.astro'
 import WidgetLayout from './WidgetLayout.astro'
 
-const toc: MarkdownHeading[] = Astro.props.toc || [];
+const toc: MarkdownHeading[] = Astro.props.toc || []
 
 toc.forEach(item => {
-    if (item.text[item.text.length - 1] === '#') {
-        item.text = item.text.slice(0, -1);
-    }
-});
+  if (item.text[item.text.length - 1] === '#') {
+    item.text = item.text.slice(0, -1)
+  }
+})
 
-const headingLevel = ['pl-0', 'pl-2', 'pl-4', 'pl-6', 'pl-8', 'pl-10'];
-
+const headingLevel = ['pl-0', 'pl-2', 'pl-4', 'pl-6', 'pl-8', 'pl-10']
 ---
 
 <WidgetLayout name={i18n(I18nKey.contents)} id="toc-widget">

@@ -1,9 +1,9 @@
 ---
+import { UNCATEGORIZED } from '@constants/constants'
+import I18nKey from '../i18n/i18nKey'
+import { i18n } from '../i18n/translation'
 import { getSortedPosts } from '../utils/content-utils'
 import { getPostUrlBySlug } from '../utils/url-utils'
-import { i18n } from '../i18n/translation'
-import I18nKey from '../i18n/i18nKey'
-import { UNCATEGORIZED } from '@constants/constants'
 
 interface Props {
   keyword: string
@@ -30,7 +30,7 @@ if (Array.isArray(categories) && categories.length > 0) {
   )
 }
 
-const groups = (function () {
+const groups = (() => {
   const groupedPosts = posts.reduce((grouped, post) => {
     const year = post.data.published.getFullYear()
     if (!grouped[year]) {

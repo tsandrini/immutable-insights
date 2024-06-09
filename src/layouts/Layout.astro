@@ -1,21 +1,21 @@
 ---
 import GlobalStyles from '@components/GlobalStyles.astro'
+import ImageWrapper from '@components/misc/ImageWrapper.astro'
 import '@fontsource/roboto/400.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/roboto/700.css'
-import ImageWrapper from '@components/misc/ImageWrapper.astro'
 
-import { pathsEqual } from '@utils/url-utils'
-import ConfigCarrier from '@components/ConfigCarrier.astro'
 import { profileConfig, siteConfig } from '@/config'
-import { Favicon } from '../types/config'
-import { defaultFavicons } from '../constants/icon'
+import ConfigCarrier from '@components/ConfigCarrier.astro'
+import { pathsEqual } from '@utils/url-utils'
 import {
-  LIGHT_MODE,
-  DARK_MODE,
   AUTO_MODE,
+  DARK_MODE,
   DEFAULT_THEME,
+  LIGHT_MODE,
 } from '../constants/constants'
+import { defaultFavicons } from '../constants/icon'
+import type { Favicon } from '../types/config'
 import { url } from '../utils/url-utils'
 
 interface Props {
@@ -64,7 +64,7 @@ banner = siteConfig.banner.src
 
 const enableBanner = siteConfig.banner.enable
 
-let pageTitle
+let pageTitle: string
 if (title) {
   pageTitle = `${title} - ${siteConfig.title}`
 } else {

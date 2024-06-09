@@ -23,8 +23,8 @@
     # alejandra.enable = true; # The Uncompromising Nix Code Formatter
 
     prettier.enable = true; # Prettier is an opinionated code formatter
-    mdformat.enable = true; # CommonMark compliant Markdown formatter
     yamlfmt.enable = true; # An extensible command line tool or library to format yaml files.
+    # mdformat.enable = true; # CommonMark compliant Markdown formatter
     # jsonfmt.enable = true; # Formatter for JSON files
   };
 }

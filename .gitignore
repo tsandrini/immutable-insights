@@ -21,6 +21,7 @@ pnpm-debug.log*
 .DS_Store
 
 .vercel
+bun.lockb
 
 
 # OS generated files #

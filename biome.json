@@ -1,7 +1,9 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.4.1/schema.json",
   "extends": [],
-  "files": { "ignoreUnknown": true },
+  "files": {
+    "ignoreUnknown": true
+  },
   "organizeImports": {
     "enabled": true
   },
@@ -26,7 +28,9 @@
     }
   },
   "json": {
-    "parser": { "allowComments": true },
+    "parser": {
+      "allowComments": true
+    },
     "formatter": {
       "enabled": true,
       "indentStyle": "space",

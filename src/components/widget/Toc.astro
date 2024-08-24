@@ -8,9 +8,9 @@ import WidgetLayout from './WidgetLayout.astro'
 const toc: MarkdownHeading[] = Astro.props.toc || []
 
 for (const item of toc) {
-    if (item.text[item.text.length - 1] === '#') {
-        item.text = item.text.slice(0, -1)
-    }
+  if (item.text[item.text.length - 1] === '#') {
+    item.text = item.text.slice(0, -1)
+  }
 }
 
 const headingLevel = ['pl-0', 'pl-2', 'pl-4', 'pl-6', 'pl-8', 'pl-10']

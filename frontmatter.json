@@ -13,7 +13,7 @@
     {
       "name": "default",
       "pageBundle": true,
-      "previewPath": "'immutable-insights'",
+      "previewPath": "'blog'",
       "filePrefix": null,
       "clearEmpty": true,
       "fields": [

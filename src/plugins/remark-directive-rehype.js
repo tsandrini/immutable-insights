@@ -1,18 +1,16 @@
+// biome-ignore lint/suspicious/noShadowRestrictedNames: <explanation>
 import { h } from 'hastscript'
 import { visit } from 'unist-util-visit'
 
 export function parseDirectiveNode() {
   return (tree, { data }) => {
-    visit(tree, node => {
+    visit(tree, function (node) {
       if (
         node.type === 'containerDirective' ||
         node.type === 'leafDirective' ||
         node.type === 'textDirective'
       ) {
-        if (!node.data) {
-          node.data = {}
-        }
-        const data = node.data
+        const data = node.data || (node.data = {})
         node.attributes = node.attributes || {}
         if (
           node.children.length > 0 &&

@@ -32,7 +32,7 @@ export function GithubCardComponent(properties, children) {
     'Waiting...',
   )
 
-  const nTitle = h('div', { class: 'gc-titlebar' }, [
+  const nTitle = h(`div`, { class: 'gc-titlebar' }, [
     h('div', { class: 'gc-titlebar-left' }, [
       h('div', { class: 'gc-owner' }, [
         nAvatar,
@@ -59,8 +59,11 @@ export function GithubCardComponent(properties, children) {
     { type: 'text/javascript', defer: true },
     `
       fetch('https://api.github.com/repos/${repo}', { referrerPolicy: "no-referrer" }).then(response => response.json()).then(data => {
-        document.getElementById('${cardUuid}-card').href = data.html_url;
-        document.getElementById('${cardUuid}-description').innerText = data.description.replace(/:[a-zA-Z0-9_]+:/g, '');
+        if (data.description) {
+          document.getElementById('${cardUuid}-description').innerText = data.description.replace(/:[a-zA-Z0-9_]+:/g, '');
+        } else {
+          document.getElementById('${cardUuid}-description').innerText = "Description not set"
+        }
         document.getElementById('${cardUuid}-language').innerText = data.language;
         document.getElementById('${cardUuid}-forks').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.forks).replaceAll("\u202f", '');
         document.getElementById('${cardUuid}-stars').innerText = Intl.NumberFormat('en-us', { notation: "compact", maximumFractionDigits: 1 }).format(data.stargazers_count).replaceAll("\u202f", '');

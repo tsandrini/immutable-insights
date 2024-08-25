@@ -1,4 +1,4 @@
-import type { AUTO_MODE, DARK_MODE, LIGHT_MODE } from '@constants/constants'
+import type { LIGHT_MODE, DARK_MODE, AUTO_MODE } from '@constants/constants'
 
 export type SiteConfig = {
   title: string
@@ -13,6 +13,12 @@ export type SiteConfig = {
   banner: {
     enable: boolean
     src: string
+    position?: string
+    credit: {
+      enable: boolean
+      text: string
+      url?: string
+    }
   }
 
   favicon: Favicon[]
@@ -49,12 +55,6 @@ export type ProfileConfig = {
     url: string
     icon: string
   }[]
-}
-
-export type headingPairInterface = {
-  tocHeading: HTMLElement
-  mdHeading: HTMLElement
-  prevToc: HTMLElement | null
 }
 
 export type LicenseConfig = {

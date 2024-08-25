@@ -20,4 +20,3 @@ tags: [Markdown, Blogging, Demo]
 category: Examples
 draft: false
 ---
-```

@@ -2,11 +2,11 @@ enum I18nKey {
   home = 'home',
   about = 'about',
   archive = 'archive',
+  search = 'search',
 
   tags = 'tags',
   categories = 'categories',
   recentPosts = 'recentPosts',
-  contents = 'contents',
 
   comments = 'comments',
 

@@ -19,15 +19,14 @@ export function AdmonitionComponent(properties, children, type) {
     )
 
   let label = null
-  let childrenNew = children
-  if (properties?.['has-directive-label']) {
+  if (properties && properties['has-directive-label']) {
     label = children[0] // The first child is the label
-    childrenNew = childrenNew.slice(1)
+    children = children.slice(1)
     label.tagName = 'div' // Change the tag <p> to <div>
   }
 
-  return h('blockquote', { class: `admonition bdm-${type}` }, [
-    h('span', { class: 'bdm-title' }, label ? label : type.toUpperCase()),
-    ...childrenNew,
+  return h(`blockquote`, { class: `admonition bdm-${type}` }, [
+    h('span', { class: `bdm-title` }, label ? label : type.toUpperCase()),
+    ...children,
   ])
 }

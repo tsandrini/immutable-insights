@@ -1,8 +1,8 @@
 ---
-import { Icon } from 'astro-icon/components'
-import I18nKey from '../i18n/i18nKey'
-import { i18n } from '../i18n/translation'
 import { formatDateToYYYYMMDD } from '../utils/date-utils'
+import { Icon } from 'astro-icon/components'
+import { i18n } from '../i18n/translation'
+import I18nKey from '../i18n/i18nKey'
 import { url } from '../utils/url-utils'
 
 interface Props {
@@ -10,9 +10,9 @@ interface Props {
   published: Date
   tags: string[]
   category: string
-  hideTagsForMobile: boolean
+  hideTagsForMobile?: boolean
 }
-const { published, tags, category, hideTagsForMobile } = Astro.props
+const { published, tags, category, hideTagsForMobile = false } = Astro.props
 const className = Astro.props.class
 ---
 
@@ -30,7 +30,7 @@ const className = Astro.props.class
     <div class="flex items-center">
         <div class="meta-icon"
         >
-            <Icon name="material-symbols:menu-rounded" class="text-xl"></Icon>
+            <Icon name="material-symbols:book-2-outline-rounded" class="text-xl"></Icon>
         </div>
         <div class="flex flex-row flex-nowrap items-center">
             <a href={url(`/archive/category/${category || 'uncategorized'}/`)} aria-label=`View all posts in the ${category} category`

@@ -33,6 +33,7 @@ export default defineConfig({
   site: "https://tsandrini.sh/",
   base: "/",
   trailingSlash: "always",
+  cacheDir: ".cache/astro",
   integrations: [
     tailwind(),
     swup({
@@ -108,6 +109,7 @@ export default defineConfig({
     ],
   },
   vite: {
+    cacheDir: ".cache/vite",
     build: {
       rollupOptions: {
         onwarn(warning, warn) {

@@ -2,6 +2,7 @@
 # NodeJS/astro
 # ---------
 .astro/
+.cache/
 node_modules/
 dist/
 *.tsbuildinfo

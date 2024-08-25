@@ -35,7 +35,7 @@
           statix.enable = true; # Lints and suggestions for the nix programming language
           nixfmt.enable = true; # An opinionated formatter for Nix
 
-          prettier.enable = true; # Prettier is an opinionated code formatter
+          # prettier.enable = true; # Prettier is an opinionated code formatter
           yamlfmt.enable = true; # An extensible command line tool or library to format yaml files.
           jsonfmt.enable = true; # Formatter for JSON files
           # mdformat.enable = true; # CommonMark compliant Markdown formatter

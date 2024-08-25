@@ -8,41 +8,49 @@
   nodejs-slim_latest,
 }:
 let
-  projectSrc = gitignoreSource flake-root;
+  src = gitignoreSource flake-root;
+
+  packageJson = lib.importJSON "${src}/package.json";
+  inherit (packageJson) version;
+  pname = packageJson.name;
 
   node_modules = stdenv.mkDerivation {
-    pname = "immutable-insights_node-modules";
-    version = "0.1.0";
-    impureEnvVars = lib.fetchers.proxyImpureEnvVars ++ [
-      "GIT_PROXY_COMMAND"
-      "SOCKS_SERVER"
-    ];
-    src = projectSrc;
+    pname = "${pname}_node-modules";
+    inherit src version;
+
     nativeBuildInputs = [ bun ];
     buildInputs = [ nodejs-slim_latest ];
-    dontConfigure = true;
 
-    dontFixup = true; # skip shebangs patching
+    dontConfigure = true;
+    dontFixup = true; # patchShebangs produces illegal path references in FODs
 
     buildPhase = ''
+      runHook preBuild
+
+      export HOME=$TMPDIR
+
       bun install --no-progress --frozen-lockfile
+      bun pm trust --all
+
+      runHook postBuild
     '';
 
     installPhase = ''
+      runHook preInstall
+
       mkdir -p $out/node_modules
-      cp -R ./node_modules $out
+      mv node_modules $out/
+
+      runHook postInstall
     '';
 
-    # Strategy is a fixed output derivation
-    outputHash = if stdenv.isLinux then "sha256-Oyck0UYSI8l5VN/f7u8/VDAJFFEhnJFqPxQzTyzXRYk=" else "";
+    outputHash = if stdenv.isLinux then "sha256-FeMcqojV6pQiQm9ovARrNxwi3ZcLq/WwvfBzVdr8ktY=" else "";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
 in
 stdenv.mkDerivation {
-  pname = "immutable-insights";
-  version = "0.1.0";
-  src = projectSrc;
+  inherit pname version src;
 
   nativeBuildInputs = [
     node_modules
@@ -50,12 +58,25 @@ stdenv.mkDerivation {
     bun
   ];
 
-  # dontFixup = true;
+  configurePhase = ''
+    runHook preConfigure
+
+    cp -a ${node_modules}/node_modules ./node_modules
+    chmod -R u+rw node_modules
+    chmod -R u+x node_modules/.bin
+    patchShebangs node_modules
+
+    export HOME=$TMPDIR
+    export PATH="$PWD/node_modules/.bin:$PATH"
+
+    bun astro telemetry disable
+
+    runHook postConfigure
+  '';
 
   buildPhase = ''
     runHook preBuild
 
-    ln -s ${node_modules}/node_modules ./node_modules
     bun build-prod
 
     runHook postBuild
@@ -65,7 +86,7 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out/var/www
-    cp -R ./dist/* $out/var/www
+    mv ./dist/* $out/var/www
 
     runHook postInstall
   '';

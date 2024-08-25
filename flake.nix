@@ -11,6 +11,7 @@
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
     systems.url = "github:nix-systems/default";
     treefmt-nix.url = "github:numtide/treefmt-nix";
+    gitignore-nix.url = "github:hercules-ci/gitignore.nix";
   };
 
   # NOTE Here you can add additional binary cache substituers that you trust.

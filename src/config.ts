@@ -47,11 +47,23 @@ export const profileConfig: ProfileConfig = {
   bio: "I like thinking about stuff.",
   links: [
     {
+      name: "Email",
+      icon: "fa6-solid:at", // Visit https://icones.js.org/ for icon codes
+      // You will need to install the corresponding icon set if it's not already included
+      // `pnpm add @iconify-json/<icon-set-name>`
+      url: "mailto:t@tsandrini.sh",
+    },
+    {
+      name: "GitHub",
+      icon: "fa6-brands:github",
+      url: "https://github.com/tsandrini",
+    },
+    {
       name: "Twitter",
       icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
       // You will need to install the corresponding icon set if it's not already included
       // `pnpm add @iconify-json/<icon-set-name>`
-      url: "https://twitter.com/tomas_sandrini",
+      url: "https://twitter.com/tsandrini_",
     },
     {
       name: "LinkedIn",
@@ -59,9 +71,9 @@ export const profileConfig: ProfileConfig = {
       url: "https://www.linkedin.com/in/tsandrini",
     },
     {
-      name: "GitHub",
-      icon: "fa6-brands:github",
-      url: "https://github.com/tsandrini",
+      name: "Instagram",
+      icon: "fa6-brands:instagram",
+      url: "https://www.instagram.com/tsandrini_/",
     },
   ],
 };

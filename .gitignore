@@ -1,7 +1,7 @@
 # ---------
 # NodeJS/astro
 # ---------
-bun.lockb
+.astro/
 node_modules/
 dist/
 *.tsbuildinfo

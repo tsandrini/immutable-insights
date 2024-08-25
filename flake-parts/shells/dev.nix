@@ -7,13 +7,14 @@
   deadnix,
   biome,
   bun,
-  nodejs-slim,
+  corepack,
   commitizen,
   cz-cli,
   gh,
   nix-output-monitor,
   nixfmt-rfc-style,
   markdownlint-cli,
+  astro-language-server,
   writeShellScriptBin,
   treefmt-wrapper ? null,
   dev-process ? null,
@@ -60,7 +61,9 @@ mkShell {
       # -- (YOUR) EXTRA PKGS --
       biome # Toolchain of the web
       bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
-      nodejs-slim
+      # nodejs-slim
+      astro-language-server # The Astro language server
+      corepack # Wrappers for npm, pnpm and Yarn via Node.js Corepack
     ];
 
   shellHook = ''

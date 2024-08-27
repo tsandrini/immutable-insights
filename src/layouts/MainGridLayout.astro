@@ -11,9 +11,10 @@ interface Props {
   title?: string
   banner?: string
   description?: string
+  toc?: import('astro').MarkdownHeading
 }
 
-const { title, banner, description } = Astro.props
+const { title, banner, description, toc } = Astro.props
 const hasBannerCredit =
   siteConfig.banner.enable && siteConfig.banner.credit.enable
 const hasBannerLink = !!siteConfig.banner.credit.url
@@ -41,7 +42,7 @@ const hasBannerLink = !!siteConfig.banner.credit.url
         </a>}
 
     </div>
-    <SideBar class="row-start-3 row-end-4 col-span-2 lg:row-start-2 lg:row-end-3 lg:col-span-1 lg:max-w-[17.5rem] onload-animation"></SideBar>
+    <SideBar class="row-start-3 row-end-4 col-span-2 lg:row-start-2 lg:row-end-3 lg:col-span-1 lg:max-w-[17.5rem] onload-animation" toc={toc}></SideBar>
 
     <div id="content-wrapper" class="row-start-2 row-end-3 col-span-2 lg:col-span-1 overflow-hidden onload-animation">
         <!-- the overflow-hidden here prevent long text break the layout-->

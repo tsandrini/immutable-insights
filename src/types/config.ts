@@ -57,6 +57,12 @@ export type ProfileConfig = {
   }[]
 }
 
+export type HeadingPairInterface = {
+  tocHeading: HTMLElement
+  mdHeading: HTMLElement
+  prevToc: HTMLElement | null
+}
+
 export type LicenseConfig = {
   enable: boolean
   name: string

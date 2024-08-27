@@ -16,12 +16,12 @@ export const siteConfig: SiteConfig = {
   },
   banner: {
     enable: true,
-    src: 'assets/images/demo-banner.png',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+    src: 'assets/images/banner.jpg',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
     position: 'center', // Equivalent to object-position, defaults center
     credit: {
       enable: true,         // Display the credit text of the banner image
-      text: 'test',              // Credit text to be displayed
-      url: ''                // (Optional) URL link to the original artwork or artist's page
+      text: 'Divadýlko - tsandrini',              // Credit text to be displayed
+      url: 'https://www.horosvaz.cz/skaly-skala-17686/'                // (Optional) URL link to the original artwork or artist's page
     }
   },
   favicon: [    // Leave this array empty to use the default favicon
@@ -47,7 +47,7 @@ export const navBarConfig: NavBarConfig = {
 }
 
 export const profileConfig: ProfileConfig = {
-  avatar: 'assets/images/avatar.png',  // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+  avatar: 'assets/images/avatar.jpg',  // Relative to the /src directory. Relative to the /public directory if it starts with '/'
   name: 'tsandrini',
   bio: 'I enjoy thinking about random stuff',
   links: [
@@ -79,6 +79,11 @@ export const profileConfig: ProfileConfig = {
       name: 'Instagram',
       icon: 'fa6-brands:instagram',
       url: 'https://www.instagram.com/tsandrini_/',
+    },
+    {
+      name: 'RSS',
+      icon: 'fa6-solid:rss',
+      url: 'https://tsandrini.sh/rss.xml',
     },
   ],
 }

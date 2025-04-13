@@ -7,7 +7,8 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-  title: "Immutable Insights",
+  // title: "Immutable Insights",
+  title: "/immutable-insights/",
   subtitle: "tsandrini",
   lang: "en", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko'
   themeColor: {
@@ -16,7 +17,7 @@ export const siteConfig: SiteConfig = {
   },
   banner: {
     enable: true,
-    src: "assets/images/banner.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+    src: "/images/banner.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
     position: "center", // Equivalent to object-position, defaults center
     credit: {
       enable: true, // Display the credit text of the banner image
@@ -37,10 +38,11 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
   links: [
     LinkPreset.Home,
-    LinkPreset.Archive,
     LinkPreset.About,
+    LinkPreset.Projects,
+    LinkPreset.Archive,
     {
-      name: "GitHub",
+      name: "github",
       url: "https://github.com/tsandrini/", // Internal links should not include the base path, as it is automatically added
       external: true, // Show an external link icon and will open in a new tab
     },
@@ -48,9 +50,9 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-  avatar: "assets/images/avatar.jpg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+  avatar: "/images/cute_duck.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
   name: "tsandrini",
-  bio: "I enjoy doing random stuff. Welcome.",
+  bio: "hi there fellow wanderer :3",
   links: [
     {
       name: "Email",

@@ -217,8 +217,8 @@ And if you are into this kind of thing, here are my current times at home:
   with occasional [Roux](https://www.speedsolving.com/wiki/index.php?title=Roux_method)
   /[ZZ](https://www.speedsolving.com/wiki/index.php?title=ZZ_method). Dual CN.
 - **3x3 OH**: (One-handed) 16.62s PB 
-  (`D' R2 D R2 B2 R2 D R2 U2 F2 L F' U B D2 U F' D' R' B'`), 24.17s ao5, 
-  26.43s ao12. CFOP with occasional Roux. 
+  (`D' R2 D R2 B2 R2 D R2 U2 F2 L F' U B D2 U F' D' R' B'`), 22.18s ao5, 
+  23.96s ao12. CFOP with occasional Roux. 
 - **2x2**: 1.43s PB (`R' U2 F' U' F2 R' F' R2 U'`), 4.01s ao5, 4.43s ao12
 
   Still using 

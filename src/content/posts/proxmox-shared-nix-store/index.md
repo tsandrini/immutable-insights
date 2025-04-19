@@ -1,0 +1,11 @@
+---
+title: What exactly is Nix anyway?
+published: 2025-03-25
+description: Lorem ipsum dolor sit atmet.
+image: "./cover.png"
+tags: [Programming, Nix]
+category: Nix
+draft: true
+---
+
+# An h1 header

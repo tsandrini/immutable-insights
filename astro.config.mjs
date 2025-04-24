@@ -21,15 +21,14 @@ import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://fuwari.vercel.app/",
+  site: "https://tsandrini.sh/",
   base: "/",
   trailingSlash: "always",
+  cacheDir: ".cache/astro",
   integrations: [
-    tailwind(
-        {
-          nesting: true,
-        }
-    ),
+    tailwind({
+      nesting: true,
+    }),
     swup({
       theme: false,
       animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
@@ -114,6 +113,7 @@ export default defineConfig({
     ],
   },
   vite: {
+    cacheDir: ".cache/vite",
     build: {
       rollupOptions: {
         onwarn(warning, warn) {

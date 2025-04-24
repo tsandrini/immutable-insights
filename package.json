@@ -1,5 +1,5 @@
 {
-  "name": "fuwari",
+  "name": "immutable-insights",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -12,7 +12,7 @@
     "new-post": "node scripts/new-post.js",
     "format": "biome format --write ./src",
     "lint": "biome check --write ./src",
-    "preinstall": "npx only-allow pnpm"
+    "preinstall": "npx only-allow bun"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -67,5 +67,6 @@
     "postcss-import": "^16.1.0",
     "postcss-nesting": "^13.0.1"
   },
-  "packageManager": "pnpm@9.14.4"
+  "packageManager": "bun@1.1.20",
+  "trustedDependencies": ["@biomejs/biome", "esbuild", "sharp", "swup"]
 }

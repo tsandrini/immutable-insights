@@ -11,15 +11,15 @@ import { i18n } from "../i18n/translation";
 const projectsPost = await getEntry("spec", "projects");
 
 if (!projectsPost) {
-	throw new Error("About page content not found");
+	throw new Error("Projects page content not found");
 }
 
 const { Content, headings } = await render(projectsPost);
 ---
-<MainGridLayout title={i18n(I18nKey.projects)} description={i18n(I18nKey.about)} headings={headings}>
+<MainGridLayout title={i18n(I18nKey.projects)} description={i18n(I18nKey.projects)} headings={headings}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <Markdown class="mt-2">
+            <Markdown class="mb-6 markdown-content onload-animation">
                 <Content />
             </Markdown>
         </div>

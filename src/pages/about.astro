@@ -16,10 +16,10 @@ if (!aboutPost) {
 
 const { Content, headings } = await render(aboutPost);
 ---
-<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} setOGTypeArticle={true} lang="en" headings={headings}>
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)} headings={headings}>
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
         <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <Markdown class="mt-2">
+            <Markdown class="mb-6 markdown-content onload-animation">
                 <Content />
             </Markdown>
         </div>

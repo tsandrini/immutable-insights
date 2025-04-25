@@ -11,7 +11,7 @@ export const siteConfig: SiteConfig = {
 	subtitle: "tsandrini",
 	lang: "en", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
 	themeColor: {
-		hue: 150, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+		hue: 325, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
 	},
 	banner: {
@@ -71,16 +71,12 @@ export const profileConfig: ProfileConfig = {
 		// },
 		{
 			name: "Twitter",
-			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
+			icon: "fa6-brands:twitter",
 			url: "https://twitter.com/tsandrini_",
 		},
 		{
 			name: "Mastodon",
-			icon: "fa6-brands:mastodon", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
+			icon: "fa6-brands:mastodon",
 			url: "https://mastodon.social/@tsandrini",
 		},
 		{

@@ -1,5 +1,4 @@
 # 1. About
-test
 
 Hi, I'm Tomáš Sandrini (=> **tsandrini**), a freelance Software Engineer & Data
 Scientist located in Prague, and this is a personal space of mine on the 
@@ -18,24 +17,37 @@ you can find at the bottom of the posts.
 
 # Pubkeys
 
+## SSH 
+
 My primary ssh-ed25519 pubkey is
 
 ```txt
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrK27cm+rAVKuwDjlJgCuy8Rftg2YOALwtnu7z3Ox1 tsandrini
 ```
 
+You can append it to your machine via
+
+```bash
+wget https://tsandrini.sh/tsandrini.keys -O- >> ~/.ssh/authorized_keys
+```
+
+## GPG
+
 All my commits, communication and some of my files are signed by a
-GnuPG key with an ascii pubkey counterpart [/pgp-pubkey.asc](/pgp-pubkey.asc),
+GnuPG key with an ascii pubkey counterpart [tsandrini.gpg](/tsandrini.gpg),
 if a different key is being used then it's probably not me.
 
-# Background
+```gpg
+1926 AF50 F0B9 96F2 BDD1  6827 3E83 AD69 0FA4 F657
+```
 
-This blog is purposefully made personal for my random interests, hobbies and whatever
-I feel like writing about, if you'd like a more detailed educational and 
-professional background, please refer to either my 
-[LinkedIn](https://www.linkedin.com/in/tsandrini), 
-[GitHub](https://github.com/tsandrini/)
-or you can even request my CV.
+You can append it to your machine via
+
+```bash
+wget https://tsandrini.sh/tsandrini.gpg -O- | gpg --import
+```
+
+# Background
 
 I have a super chaotic history of studying computer science, physics and 
 math at university. I somehow wanted to pursue all of those fields and none
@@ -46,13 +58,27 @@ nature and my mental health. Overall I value and try to achieve more of a
 I ultimately enjoy way more learning these on my own where I have
 the freedom to focus on stuff that particularly interests me.
 
+## CV/Resume
+
+I have a short/poster style version of my CV publicly available at (**TODO**),
+for any potential business inquiries or jobs offers you can send me a message at
+[business@tsandrini.sh](mailto:business@tsandrini.sh) or
+[t@tsandrini.sh](mailto:t@tsandrini.sh) to request a longer version.
+
 # Values
 
+By living on a [Kähler manifold](https://en.wikipedia.org/wiki/K%C3%A4hler_manifold),
+each one of us perceives a local version of reality, sometimes unfortunately
+with a disregard to its global topological structure. These are some fundamental
+laws, ie. values, that I specifically perceive and hold to be true around me
+and hopefully one day, they can cover even a larger subspace, ie. broader
+society
 
 - [Mettā](https://en.wikipedia.org/wiki/Maitr%C4%AB) -- ie. loving kindness to oneself, to others and to your environment
 - [Kalokagathia](https://en.wikipedia.org/wiki/Kalos_kagathos) -- harmony between psysical and mental wellbeing
-- open source/open hardware and sometimes also [Free Software](https://www.gnu.org/philosophy/free-sw.html)
-
+- *Equality*, both in a [metaphysical](https://en.wikipedia.org/wiki/Metaphysics)
+  and material way
+- Open Source/Open Hardware and sometimes also [Free Software](https://www.gnu.org/philosophy/free-sw.html)
 
 # Interests
 
@@ -170,27 +196,36 @@ database, probably a database explorer, some in-memory cache db
 
 And these are some of the reasons why the 
 [nix package manager](https://github.com/NixOS/nix), 
-[nixpkgs](https://github.com/NixOS/nixpkgs) and
-[NixOS](https://nixos.org/) exists. It fixes the fundamental issue of impure
+exists. It fixes the fundamental issue of impure
 package management by sandboxing the builds into a pure reproducible process,
 yielding packages (derivations), that are uniquely identifiable by a hash
 produced from all of the pure inputs, outputs and metadata that produced said 
 packages. Given the resulting package manager we can then build on top of this
+by creating
 
-- by creating a community package repository
-- creating a **safe** binary cache, since all derivations are uniquely identified
+- **nixpkgs** -- community package repository
+- **cache.nixos.org** -- a **safe** binary cache, since all derivations are uniquely identified
   by their store paths (which is a hash of all its inputs)
- 
+- **NixOS** -- an (*almost*) stateless GNU/Linux distribution, which is basically
+  yet another derivation managed by the nix language
+- **NixOps** -- (or other 
+  [deployment tools](https://github.com/nix-community/awesome-nix#deployment-tools)
+  and [devops tools](https://github.com/nix-community/awesome-nix?tab=readme-ov-file#devops))
+  a pure stateless (depends on the 
+  tool) reproducible alternative to status-quo ansible, docker-compose, 
+  docker-swarm, k8s, terraform and others.
+- **nix containers** -- an alternative OCI implementation and/or a management
+  tool for other OCIs via toolsets such as `pkgs.dockerTools`
+- **devshells** -- lightweight developer environments either via `pkgs.mkShell`,
+  [devenv](https://devenv.sh/) or [numtide/devshell](https://github.com/numtide/devshell)
 
 ---
 
-This should motivate the reason behind the existence of the nix package 
-manager, the nix language and the NixOS system, and hopefully also intriguied
-you, the reader, a bit to get involved with the nix ecosystem and try to
-solve software deployment issues more efficiently and hopefully more
-*Elegantly*.
+I hope this shows a tiny bit why nix is important to me and should also be 
+important to you as well and potentially also sparked some curiosity in
+you.
 
-### Result
+### Present time
 
 ::github{repo="tsandrini/tensorfiles"}
 
@@ -257,12 +292,4 @@ And here is a random pic of cubes:
 
 ![Mandarinka 🟠](/images/mandarinka.jpg)
 
-# CV/Resume
-
-I have a short/poster style version of my CV publicly available at (**TODO**),
-for any potential business inquiries or jobs offers you can send me a message at
-[business@tsandrini.sh](mailto:business@tsandrini.sh) or
-[t@tsandrini.sh](mailto:t@tsandrini.sh) to request a longer version.
-
-# Contact
 

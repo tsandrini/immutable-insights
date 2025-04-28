@@ -87,3 +87,11 @@ export type BlogPostData = {
 	nextTitle?: string;
 	nextSlug?: string;
 };
+
+export type GiscusConfig = {
+	enable: boolean;
+	repo: string;
+	repoId: string;
+	category: string;
+	categoryId: string;
+};

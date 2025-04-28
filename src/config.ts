@@ -1,4 +1,5 @@
 import type {
+	GiscusConfig,
 	LicenseConfig,
 	NavBarConfig,
 	ProfileConfig,
@@ -55,7 +56,7 @@ export const navBarConfig: NavBarConfig = {
 export const profileConfig: ProfileConfig = {
 	avatar: "/images/cute_duck.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
 	name: "tsandrini",
-	bio: "hi there fellow wanderer :3",
+	bio: "hi there fellow internet wanderer :3 (he/him)",
 	links: [
 		{
 			name: "Email",
@@ -79,6 +80,11 @@ export const profileConfig: ProfileConfig = {
 			icon: "fa6-brands:mastodon",
 			url: "https://mastodon.social/@tsandrini",
 		},
+		// {
+		//   name: "Matrix",
+		//   icon: "ph:matrix-logo",
+		//   url: "@tsandrini:matrix.org",
+		// },
 		{
 			name: "LinkedIn",
 			icon: "fa6-brands:linkedin",
@@ -101,4 +107,12 @@ export const licenseConfig: LicenseConfig = {
 	enable: true,
 	name: "CC BY-NC-SA 4.0",
 	url: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+};
+
+export const giscusConfig: GiscusConfig = {
+	enable: true,
+	repo: "tsandrini/immutable-insights",
+	repoId: "R_kgDOMGyNVw",
+	category: "Announcements",
+	categoryId: "DIC_kwDOMGyNV84CpdJT",
 };

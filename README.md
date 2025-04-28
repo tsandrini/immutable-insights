@@ -1,6 +1,6 @@
 # immutable-insights
 
-## Description 
+## Description
 
 personal blog ig.
 

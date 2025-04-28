@@ -11,6 +11,7 @@
   commitizen,
   cz-cli,
   gh,
+  typos,
   nix-output-monitor,
   nixfmt-rfc-style,
   markdownlint-cli,
@@ -56,7 +57,7 @@ mkShell {
       # -- BASE LANG UTILS --
       markdownlint-cli # Command line interface for MarkdownLint
       # nodePackages.prettier # Prettier is an opinionated code formatter
-      # typos # Source code spell checker
+      typos # Source code spell checker
 
       # -- (YOUR) EXTRA PKGS --
       biome # Toolchain of the web

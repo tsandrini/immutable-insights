@@ -1,10 +1,6 @@
----
-name: 🪲 Bug Report
-about: Create a bug report to help us resolve the bug
-title: "🪲[Bug]: "
-labels: "bug"
-assignees: ""
----
+______________________________________________________________________
+
+## name: 🪲 Bug Report about: Create a bug report to help us resolve the bug title: "🪲\[Bug\]: " labels: "bug" assignees: ""
 
 ## Describe the bug
 
@@ -46,6 +42,6 @@ Please run `nix-shell -p nix-info --run "nix-info -m"` and paste the result.
 output here
 ```
 
----
+______________________________________________________________________
 
 Add a :+1: \[reaction\] to \[issues you find important\].

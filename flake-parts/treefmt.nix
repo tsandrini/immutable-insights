@@ -20,9 +20,6 @@
         projectRootFile = "flake.nix";
 
         settings = {
-          global.excludes = [
-            "*.age" # Age encrypted files
-          ];
           shellcheck.includes = [
             "*.sh"
             ".envrc"
@@ -36,14 +33,15 @@
           nixfmt.enable = true; # An opinionated formatter for Nix
 
           # prettier.enable = true; # Prettier is an opinionated code formatter
-          yamlfmt.enable = true; # An extensible command line tool or library to format yaml files.
-          jsonfmt.enable = true; # Formatter for JSON files
+          # yamlfmt.enable = true; # An extensible command line tool or library to format yaml files.
+          # jsonfmt.enable = true; # Formatter for JSON files
           # mdformat.enable = true; # CommonMark compliant Markdown formatter
+          # TODO: add mdformat-frontmatter somehow
 
           # shellcheck.enable = true; # Shell script analysis tool
           # shfmt.enable = true; # Shell parser and formatter
 
-          # actionlint.enable = true; # Static checker for GitHub Actions workflow files
+          actionlint.enable = true; # Static checker for GitHub Actions workflow files
           # mdsh.enable = true; # Markdown shell pre-processor
           # biome.enable = true; # Toolchain of the web
         };

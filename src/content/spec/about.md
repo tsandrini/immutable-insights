@@ -14,9 +14,9 @@ the individual posts have their own appropriate licenses attached to them that
 you can find at the bottom of the posts.
 :::
 
-# Pubkeys
+# 2. Pubkeys
 
-## SSH
+## 2.1. SSH
 
 My primary ssh-ed25519 pubkey is
 
@@ -30,7 +30,7 @@ You can append it to your machine via
 wget https://tsandrini.sh/tsandrini.keys -O- >> ~/.ssh/authorized_keys
 ```
 
-## GPG
+## 2.2. GPG
 
 All my commits, communication and some of my files are signed by a
 GnuPG key with an ascii pubkey counterpart [tsandrini.gpg](/tsandrini.gpg),
@@ -46,7 +46,7 @@ You can append it to your machine via
 wget https://tsandrini.sh/tsandrini.gpg -O- | gpg --import
 ```
 
-# Background
+# 3. Background
 
 I have a super chaotic history of studying computer science, physics and
 math at university. I somehow wanted to pursue all of those fields 
@@ -58,14 +58,14 @@ nature and my mental health. Overall I value and try to achieve more of a
 I ultimately enjoy way more learning these on my own where I have
 the freedom to focus on stuff that particularly interests me.
 
-## CV/Resume
+## 3.1. CV/Resume
 
 I have a short/poster style version of my CV publicly available at (**TODO**),
 for any potential business inquiries or jobs offers you can send me a message at
 [business@tsandrini.sh](mailto:business@tsandrini.sh) or
 [t@tsandrini.sh](mailto:t@tsandrini.sh) to request a longer version.
 
-# Values
+# 4. Values
 
 By living on a [Kähler manifold](https://en.wikipedia.org/wiki/K%C3%A4hler_manifold),
 each one of us perceives a local version of reality, sometimes unfortunately
@@ -80,9 +80,9 @@ society
   and material way
 - Open Source/Open Hardware and sometimes also [Free Software](https://www.gnu.org/philosophy/free-sw.html)
 
-# Interests
+# 5. Interests
 
-## Sports
+## 5.1. Sports
 
 Aside from stuff related to my profession, sports represent one of the main
 things that bring me joy & peace in my spare time. I am open to doing/trying
@@ -128,7 +128,7 @@ As of right now, these are my main focus:
   low effort instant noodles and spending the whole day walking
   while clearing my mind from everyday worries.
 
-## Tech, Science
+## 5.2. Tech, Science
 
 - Rust, Nix, OCaml, Haskell
 - reproducible systems, server side management, deployment and general DevOps
@@ -137,7 +137,7 @@ As of right now, these are my main focus:
   and differential geometry
 - relativistic physics (really, really, just recreational)
 
-## Nix/NixOS
+## 5.3. Nix/NixOS
 
 I've been using [GNU/Linux](https://www.gnu.org/gnu/linux-and-gnu.html)
 practically since I got my first laptop and I've been
@@ -152,7 +152,7 @@ proprietary market products to function, simply
 >
 > -- by Someone, Somewhere, Sometime?
 
-### Motivation
+### 5.3.1. Motivation
 
 Despite that, one thing that has persistently bugged me since then was the
 impurity of its
@@ -201,7 +201,7 @@ for the client, HTTP server,
 database, probably a database explorer, some in-memory cache db
 (memcached, redis), and optionally stuff like a task scheduler, crons, etc...
 
-### Nix ecosystem
+### 5.3.2. Nix ecosystem
 
 And these are some of the reasons why the
 [nix package manager](https://github.com/NixOS/nix),
@@ -239,7 +239,7 @@ by creating
 
 and much, much more...
 
-### Present time
+### 5.3.3. Present time
 
 I hope this shows a tiny bit why nix is important to me and should also be
 important to you as well and potentially also sparked some curiosity in
@@ -251,7 +251,7 @@ in some way or another and have everything store in a public monorepo.
 
 ::github{repo="tsandrini/tensorfiles"}
 
-## Speedcubing
+## 5.4. Speedcubing
 
 I recently returned to cubing after an unfortunate 10 years long pause. I was a
 super active cuber back in 2013-2015 with respectable averages back then
@@ -316,14 +316,14 @@ And here is a random pic of cubes:
 
 ![Cubes 🧊](/images/cubes_new.jpg)
 
-## Other
+## 5.5 Other
 
-### Languages & Linguistics
+### 5.5.1. Languages & Linguistics
 
 
 TBD - LLSPI, Athenaze, Vietnamese, etc...
 
-### Buddhism and Meditations
+### 5.5.2. Buddhism and Meditations
 
 I was heavily invested in the teachings of dharma and Buddhist practice,
 not so much anymore but I'd still argue it strongly influenced my viewpoints on
@@ -348,7 +348,7 @@ only resource that yielded any measurable results whatsoever.
 
 ![The Mind Illuminated - Conscious Mind](/images/TMI_diagram.png)
 
-### Houseplants?
+### 5.5.3. Houseplants?
 
 I love plants!!! Plants everywhere, there is no such thing as "*enough plants*"
 😌

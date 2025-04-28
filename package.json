@@ -11,8 +11,7 @@
 		"type-check": "tsc --noEmit --isolatedDeclarations",
 		"new-post": "node scripts/new-post.js",
 		"format": "biome format --write ./src",
-		"lint": "biome check --write ./src",
-		"preinstall": "bun x only-allow bun"
+		"lint": "biome check --write ./src"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",

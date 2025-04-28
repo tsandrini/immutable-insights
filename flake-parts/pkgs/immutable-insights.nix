@@ -29,8 +29,7 @@ let
 
       export HOME=$TMPDIR
 
-      bun install --no-progress --frozen-lockfile
-      bun pm trust --all
+      bun install 
 
       runHook postBuild
     '';
@@ -44,7 +43,7 @@ let
       runHook postInstall
     '';
 
-    outputHash = if stdenv.isLinux then "sha256-FeMcqojV6pQiQm9ovARrNxwi3ZcLq/WwvfBzVdr8ktY=" else "";
+    outputHash = if stdenv.isLinux then "sha256-VybtHFPysHk5YB2Ie+V4sCwv9sCYCvratyXbs7GJr38=" else "";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };
@@ -77,7 +76,7 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    bun build-prod
+    bun run build
 
     runHook postBuild
   '';

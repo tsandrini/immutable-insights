@@ -53,7 +53,7 @@ ergonomic potential.
 :::important
 You should treat the fingertricks as a part of the algorithm, that is a 
 different execution of the same sequence will most of the time require
-the equal relearning time as it would to learn a different alg.
+an equal relearning time as it would to learn a different alg.
 :::
 
 ### 2.1.1. PLL & OLL Resources
@@ -160,7 +160,7 @@ if you really focus this should take only 1-5mins. First put the decoupled
 sequence onto some big screen that you can directly look at. After that
 stretch your hands and perform the alg on your cube directly infront 
 of the screen, this way you should be able to both follow the alg and also
-peripherally seeing what is roughly happening on the cube. 
+peripherally see what is roughly happening on the cube. 
 Here is a rough pic of what that could look like (only one hand available though,
 ignore that)
 

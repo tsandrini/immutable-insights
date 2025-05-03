@@ -36,7 +36,7 @@ All my commits, communication and some of my files are signed by a
 GnuPG key with an ascii pubkey counterpart [tsandrini.gpg](/tsandrini.gpg),
 if a different key is being used then it's probably not me.
 
-```gpg
+```
 1926 AF50 F0B9 96F2 BDD1  6827 3E83 AD69 0FA4 F657
 ```
 

@@ -49,7 +49,7 @@ wget https://tsandrini.sh/tsandrini.gpg -O- | gpg --import
 # 3. Background
 
 I have a super chaotic history of studying computer science, physics and
-math at university. I somehow wanted to pursue all of those fields 
+math at university. I somehow wanted to pursue all of those fields
 simultaneously while struggling to commit to any single one.
 After spending multiple years between them I ultimately
 decided to not pursue a career in academia due to its overly bureaucratic
@@ -98,12 +98,17 @@ As of right now, these are my main focus:
 
 - **Running**: Running was my primary sport for a long time, but the huge volumes
   at such an early age completely destroyed my right knee so now I do only
-  sporadic recreational running.
+  sporadic recreational running. Recently I've been trying more to get back into
+  my older shape, which is basically impossible, but I'm trying nonetheless,
+  if you want to check up on my endeavours, you can follow me on
+  [Strava](https://www.strava.com/athletes/tsandrini_) or also
+  [Garmin connect](https://connect.garmin.com/modern/profile/108ef28c-c508-45e8-8b59-43c301d48f9e).
 
   Here are some random ancient results that are still available on the internet
   if you are interested:
 
   - 2019-2020? Horský půlmaraton na Šumavě -- I can't find the results but a great run though
+  - 5.08.2018: 5k PB attempt in 16:50 with overall 3:22 pace
   - [01.05.2018 Decathlon Run: duo team 2x5.7km in 53:27 min](https://www.stopnito.cz/vysledky-zavodu/225)
   - [21.04.2018 Krajský půlmaraton Plzeňského kraje: 21km in 2:05:33](https://www.behej.com/bezecke-tabulky/zavody/25386-krajsky-pulmaraton-plzenskeho-kraje)
     - insane heat waves during this day and I was sick practically the whole
@@ -266,9 +271,9 @@ you are interested you can also check out my algsheet on
 
 And if you are into this kind of thing, here are my current times at home:
 
-- **3x3**: all time PB 8.21s, my current local PB is 8.99s
-  (`R2 B R2 L' U' F2 U' L U2 D2 L2 D2 R2 B L2 D2 F D2 F' B'`), 11.47s ao5, 12.38s
-  ao12 
+- **3x3**: all time PB 8.21s, my current local PB is 8.77s
+  (`R B' R U B L2 F R' D' L2 U2 F2 D' F2 D2 B2 U' B2 L2`), 11.10s ao5, 12.25s
+  ao12
 
   Almost exclusively
   [CFOP](https://www.speedsolving.com/wiki/index.php/CFOP_method)
@@ -277,7 +282,7 @@ And if you are into this kind of thing, here are my current times at home:
 
 - **3x3 OH**: (One-handed) 16.62s PB
   (`D' R2 D R2 B2 R2 D R2 U2 F2 L F' U B D2 U F' D' R' B'`), 22.18s ao5,
-  23.96s ao12. 
+  23.96s ao12.
 
   CFOP with occasional Roux. Can do both with/without table abuse >.<
 
@@ -300,7 +305,7 @@ And if you are into this kind of thing, here are my current times at home:
   better times.
 
 - **pyraminx**: 2.75s PB (`B R' U' B U' B' U R u`), 6.01s ao5, 6.93s ao12
-  
+
   I know [Intuitive L4E](https://cubing.mikeg.me.uk/cubing-algs/html/l4e.html)
   but I still use mostly a mix of LBL and some algs for specific cases since
   I don't do that much pyra but I might dedicate a bit more time into this event
@@ -327,7 +332,7 @@ TBD - LLSPI, Athenaze, Vietnamese, etc...
 
 I was heavily invested in the teachings of dharma and Buddhist practice,
 not so much anymore but I'd still argue it strongly influenced my viewpoints on
-life, nature of day to day suffering and especially *Love*. I still practice 
+life, nature of day to day suffering and especially *Love*. I still practice
 meditations but it's more casual and definitely not as serious as it was
 before for me, basically I'm more invested in *non-monastic Layman* life
 currently, which could be argued is in a certain sense more in line with
@@ -339,10 +344,10 @@ Anyway, some great resources regarding dharma:
 2. Walpola Rāhula. What the Buddha Taught. 2nd and enl. ed ed. Evergreen, E-641. New York: Grove Press, 1974.
 3. Batchelor, Stephen. Buddhism without Beliefs: A Contemporary Guide to Awakening. New York: Riverhead Books, 1997.
 
-And regarding meditations? Only one correct answer! (a small hyperbole okay, 
-definitely use whatever suits your individual needs, for example, if you 
+And regarding meditations? Only one correct answer! (a small hyperbole okay,
+definitely use whatever suits your individual needs, for example, if you
 require more meditative joy)
-[TMI](https://www.goodreads.com/book/show/25942786-the-mind-illuminated)!!! 
+[TMI](https://www.goodreads.com/book/show/25942786-the-mind-illuminated)!!!
 For me personally and for my unfortunately analytic dumb brain, this is the
 only resource that yielded any measurable results whatsoever.
 

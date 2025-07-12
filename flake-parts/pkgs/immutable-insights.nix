@@ -29,7 +29,7 @@ let
 
       export HOME=$TMPDIR
 
-      bun install 
+      bun install
 
       runHook postBuild
     '';

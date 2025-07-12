@@ -16,7 +16,7 @@ I've been recently wondering how feasible would be setting up a
 shared `/nix/store` across all of them and what kind of pros/cons
 would that bring. The usual approach to this is creating a central
 store cache that would then be served to the other containers on the same
-LAN, however, such approach stil created a nontrivial amount of duplicate
+LAN, however, such approach still created a nontrivial amount of duplicate
 data, how big and what price would we pay for setting up a central
 volume for a shared store? Let's find out 😎
 
@@ -38,7 +38,7 @@ podařilo se mi jinak setupnout ten shared `/nix/store` napric kontejnerama, ale
 musim rict, ze je to velice not worth nakonec :monkaS: :aPES_SadRain: anyway, já
  tam mám dva storage,
 
-a) **local** - Directory, linux FHS, cca 100GB, tady zije samotnej proxmox syste
+a) **local** - Directory, linux FHS, cca 100GB, tady zije samotnej proxmox system
 m
 b) **local-lvm** - LVM, samotnej base tensor pro drives na všechny VMs a CTs, to
 hle ma tak 5tera :monkaS:

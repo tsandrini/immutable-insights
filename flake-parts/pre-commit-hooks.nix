@@ -1,37 +1,46 @@
 # --- flake-parts/pre-commit-hooks.nix
-{ inputs, lib, ... }:
+{ inputs, ... }:
 {
   imports = with inputs; [ pre-commit-hooks.flakeModule ];
 
-  perSystem =
-    { config, pkgs, ... }:
-    {
-      pre-commit.settings =
-        let
-          treefmt-wrapper = if (lib.hasAttr "treefmt" config) then config.treefmt.build.wrapper else null;
-        in
-        {
-          excludes = [ "flake.lock" ];
+  perSystem = _: {
+    pre-commit.settings = {
+      excludes = [
+        "flake.lock" # NOTE: prettier thinks this is json >.< prettier baka!!!
+        "src/content/posts/shared-nix-store-in-proxmox-ve/index.md"
+      ];
 
-          hooks = {
-            treefmt.enable = if (treefmt-wrapper != null) then true else false;
-            treefmt.package = if (treefmt-wrapper != null) then treefmt-wrapper else pkgs.treefmt;
+      hooks = {
+        # --- Nix ---
+        deadnix.enable = true; # Find and remove unused code in .nix source files
+        nil.enable = true; # Nix Language server, an incremental analysis assistant for writing in Nix.
+        nixfmt-rfc-style.enable = true; # An opinionated formatter for Nix
+        statix.enable = true; # Lints and suggestions for the nix programming language
 
-            nil.enable = true; # Nix Language server, an incremental analysis assistant for writing in Nix.
-            # markdownlint.enable = true; # Markdown lint tool
+        # --- Shell ---
+        shellcheck.enable = true; # Shell script analysis tool
+        shfmt.enable = true; # Shell parser and formatter
 
-            commitizen.enable = true; # Commitizen is release management tool designed for teams.
-            editorconfig-checker.enable = true; # A tool to verify that your files are in harmony with your .editorconfig
-            # actionlint.enable = true; # GitHub workflows linting
-            # typos.enable = true; # Source code spell checker
+        # --- Misc ---
+        # markdownlint.enable = true; # Markdown lint tool
+        editorconfig-checker.enable = true; # .editorconfig file checker
+        typos.enable = true; # Source code spell checker
+        # prettier.enable = true; # Prettier is an opinionated code formatter
+        # jsonfmt.enable = true; # Formatter for JSON files
+        # biome.enable = true;
 
-            gitleaks = {
-              enable = true;
-              name = "gitleaks";
-              entry = "${pkgs.gitleaks}/bin/gitleaks protect --verbose --redact --staged";
-              pass_filenames = false;
-            };
-          };
-        };
+        # --- fs utils ---
+        check-added-large-files.enable = true;
+        check-executables-have-shebangs.enable = true;
+        end-of-file-fixer.enable = true;
+        mixed-line-endings.enable = true;
+        trim-trailing-whitespace.enable = true;
+
+        # --- VCS ---
+        # actionlint.enable = true; # GitHub workflows linting
+        commitizen.enable = true; # Commitizen is release management tool designed for teams.
+        ripsecrets.enable = true; # A tool to prevent committing secret keys into your source code
+      };
     };
+  };
 }

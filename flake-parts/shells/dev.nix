@@ -17,7 +17,6 @@
   markdownlint-cli,
   astro-language-server,
   writeShellScriptBin,
-  treefmt-wrapper ? null,
   dev-process ? null,
   pre-commit ? null,
 }:
@@ -37,7 +36,6 @@ mkShell {
 
   packages =
     (lib.attrValues scripts)
-    ++ (lib.optional (treefmt-wrapper != null) treefmt-wrapper)
     ++ (lib.optional (dev-process != null) dev-process)
     ++ [
       # -- NIX UTILS --

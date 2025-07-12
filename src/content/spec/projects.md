@@ -23,6 +23,14 @@ Overengineered personal infra as a code
 
 ::github{repo="tsandrini/tensorfiles"}
 
+## 2.4. vrmapi-async
+
+::github{repo="tsandrini/vrmapi-async"}
+
+## 2.5. rust-tinynix
+
+::github{repo="tsandrini/rust-tinynix"}
+
 # 3. Unmaintained
 
 ## 3.1. DoSU

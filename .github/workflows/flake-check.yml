@@ -25,9 +25,6 @@ jobs:
       - name: "Checking out repository..."
         uses: actions/checkout@v4
 
-      - name: "Entering developer environment..."
-        uses: HatsuneMiku3939/direnv-action@v1
-
       - name: "Installing and configuring the nix package manager..."
         uses: cachix/install-nix-action@v31
         with:
@@ -38,8 +35,10 @@ jobs:
         uses: cachix/cachix-action@v16
         with:
           name: tsandrini
-          # If you chose API tokens for write access OR if you have a private cache
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: "Entering developer environment..."
+        uses: HatsuneMiku3939/direnv-action@v1
 
       - name: "Building `.#checks` attribute..."
         run: nix-fast-build ${BUILD_OPTS} --flake '.#checks'

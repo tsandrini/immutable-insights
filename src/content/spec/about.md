@@ -125,7 +125,7 @@ As of right now, these are my main focus:
 - **Hatha yoga & general stretching**: I have always liked being above flexible
   and yoga has been a good outlet for this as well as being a great contrastic
   force to the more demanding sports + Hatha yoga also hugely helps with
-  meditations. Also appearantly I've been told that I am partly hypermobile,
+  meditations. Also apparently I've been told that I am partly hypermobile,
   not really sure but I do indeed enjoy stretching.
 
 - **Hiking**: This is a mostly seasonal hobby, but I do enjoy bivouacking
@@ -290,7 +290,7 @@ And if you are into this kind of thing, here are my current times at home:
 
   Still using
   [Ortega](https://www.speedsolving.com/wiki/index.php?title=Ortega_Method)
-  with a few simple CLLs :( haven't really commited to 2x2
+  with a few simple CLLs :( haven't really committed to 2x2
   algsets yet. Fully CN.
 
 - **4x4**: 46.72s PB (`B U' D F2 U2 L' F R' B' R2 B2 L2 D2 B R2 F' U2 F U Rw2 Fw2 U Fw2 R' D B2 R U Fw2 U Fw' D' Rw2 F' D' Fw' Rw2 Uw' Fw Rw2 D2 F2 D'`),

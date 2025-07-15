@@ -17,6 +17,7 @@
   markdownlint-cli,
   astro-language-server,
   writeShellScriptBin,
+  nix-fast-build,
   dev-process ? null,
   pre-commit ? null,
 }:
@@ -44,6 +45,7 @@ mkShell {
       deadnix # Find and remove unused code in .nix source files
       nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
       nixfmt-rfc-style # An opinionated formatter for Nix
+      nix-fast-build
 
       # -- GIT RELATED UTILS --
       commitizen # Tool to create committing rules for projects, auto bump versions, and generate changelogs

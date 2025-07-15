@@ -3,7 +3,7 @@
 These are my hobby/open-source and public projects, for my private projects and
 work experience please refer to either my LinkedIn or CV.
 
-TODO - finish this section, im tooo lazyyyy >.<
+TODO - finish this section, im too lazyyyy >.<
 
 # 2. Active & Maintained
 

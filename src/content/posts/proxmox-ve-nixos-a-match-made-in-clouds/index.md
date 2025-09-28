@@ -4,7 +4,7 @@ published: 2025-07-19
 image: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
-draft: false
+draft: true
 description: |
     Managing servers and services deployed on said servers in 2025 can range
     from anything completely banal to needing multiple PhDs in orchestrations.

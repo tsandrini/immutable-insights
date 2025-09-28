@@ -1,6 +1,6 @@
 # 1. About
 
-Hi, I'm Tomáš Sandrini (=> **tsandrini**), a freelance Software Engineer & Data
+Hi, I'm **tsandrini**, a freelance Software Engineer & Data
 Scientist located in Prague, and this is a personal space of mine on the
 internet, for my  unorganized scattered thoughts and ideas.
 
@@ -103,10 +103,12 @@ As of right now, these are my main focus:
   if you want to check up on my endeavours, you can follow me on
   [Strava](https://www.strava.com/athletes/tsandrini_) or also
   [Garmin connect](https://connect.garmin.com/modern/profile/108ef28c-c508-45e8-8b59-43c301d48f9e).
-
+  <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/30711285/activity-summary/0640a92a310dfc34b81f58430cf84e61ae17aabe'></iframe>
   Here are some random ancient results that are still available on the internet
   if you are interested:
 
+  - [30.07.2025: 5 a 10 km VAŠÍ LIGY 2025 (8) - červencový](https://www.vaseliga.cz/udalost/5-a-10-km-vasi-ligy-2025-8/vysledky):
+    47:22 min official, 46:56 watch time
   - 2019-2020? Horský půlmaraton na Šumavě -- I can't find the results but a great run though
   - 5.08.2018: 5k PB attempt in 16:50 with overall 3:22 pace
   - [01.05.2018 Decathlon Run: duo team 2x5.7km in 53:27 min](https://www.stopnito.cz/vysledky-zavodu/225)
@@ -271,8 +273,9 @@ you are interested you can also check out my algsheet on
 
 And if you are into this kind of thing, here are my current times at home:
 
-- **3x3**: all time PB 8.21s, my current local PB is 8.77s
-  (`R B' R U B L2 F R' D' L2 U2 F2 D' F2 D2 B2 U' B2 L2`), 11.10s ao5, 12.25s
+- **3x3**: all time PB 8.21s, my current local PB is 8.43s
+  (`D B2 R2 D' B2 D' R2 U' R2 U' R2 D2 B F U2 R' B D2 L B2 R'` + PB solve reconstruction
+  available at [youtube.com/shorts/QiV1wH-6Q6M](https://www.youtube.com/shorts/QiV1wH-6Q6M)), 11.10s ao5, 12.04s
   ao12
 
   Almost exclusively
@@ -293,8 +296,8 @@ And if you are into this kind of thing, here are my current times at home:
   with a few simple CLLs :( haven't really committed to 2x2
   algsets yet. Fully CN.
 
-- **4x4**: 46.72s PB (`B U' D F2 U2 L' F R' B' R2 B2 L2 D2 B R2 F' U2 F U Rw2 Fw2 U Fw2 R' D B2 R U Fw2 U Fw' D' Rw2 F' D' Fw' Rw2 Uw' Fw Rw2 D2 F2 D'`),
-  54.06s ao5, 55.52s ao12
+- **4x4**: 45.46s PB (`R2 F' U2 F R2 B2 R2 D2 B R2 B L F D' R' B' U' D F2 D2 R Rw2 Fw2 D2 F' Rw2 B' Fw2 D2 Uw2 R L2 Rw2 F2 D R Uw F' R Rw D2 Rw Uw2 Fw R Uw2 Fw`),
+  50.70s ao5, 54.33s ao12
 
   I never really enjoyed big cubes, mostly because the hardware in 2014 was
   insanely bad and would frequently simply explode mid-solve
@@ -304,7 +307,8 @@ And if you are into this kind of thing, here are my current times at home:
   completely changed my enjoyment of big cubes and I'll hopefully return soon with
   better times.
 
-- **pyraminx**: 2.75s PB (`B R' U' B U' B' U R u`), 6.01s ao5, 6.93s ao12
+- **pyraminx**: 2.35s PB (`R' U L U B U' L' U' r' u'` + PB solve reconstruction
+  available at [youtube.com/shorts/GkFA4n-n94g](https://www.youtube.com/shorts/GkFA4n-n94g)), 6.01s ao5, 6.93s ao12
 
   I know [Intuitive L4E](https://cubing.mikeg.me.uk/cubing-algs/html/l4e.html)
   but I still use mostly a mix of LBL and some algs for specific cases since
@@ -324,7 +328,6 @@ And here is a random pic of cubes:
 ## 5.5 Other
 
 ### 5.5.1. Languages & Linguistics
-
 
 TBD - LLSPI, Athenaze, Vietnamese, etc...
 
@@ -359,3 +362,14 @@ I love plants!!! Plants everywhere, there is no such thing as "*enough plants*"
 😌
 
 ![Mandarinka 🟠](/images/mandarinka.jpg)
+
+### 5.5.4. Ergo Keyboards
+
+TBD
+
+![Cantor ergo keyboard](/images/keeb.jpg)
+
+### 5.5.5 Games
+
+Plus I very occasionally also do some more typical nerdy stuff like tabletop
+games or pc ones -- mostly soulslikes and osu! (~680k) or some random indies.

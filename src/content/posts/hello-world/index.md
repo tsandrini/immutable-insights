@@ -1,9 +1,9 @@
 ---
 title: Hello, World...?
 published: 1970-01-01
-description: A simple example of a Markdown blog post.
+description: hi ( • ̀ω•́ )
 image: "./cover.jpg"
-tags: [Markdown, Blogging, Demo]
+tags: []
 category: Misc
 draft: false
 ---

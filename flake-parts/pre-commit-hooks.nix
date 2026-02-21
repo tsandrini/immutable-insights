@@ -9,6 +9,7 @@
         "flake.lock" # NOTE: prettier thinks this is json >.< prettier baka!!!
         "src/content/posts/shared-nix-store-in-proxmox-ve/index.md"
         "src/content/posts/speedcubing-scrambles/index.md"
+        "public/keybase.txt"
         # "**/*.ts"
         # "**/*.js"
         # "**/*.astro"

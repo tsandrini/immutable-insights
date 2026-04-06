@@ -372,4 +372,8 @@ TBD
 ### 5.5.5 Games
 
 Plus I very occasionally also do some more typical nerdy stuff like tabletop
-games or pc ones -- mostly soulslikes and osu! (~680k) or some random indies.
+games or pc ones -- mostly soulslikes
+([youtube.com/watch?v=yzN51gyKIfA](https://www.youtube.com/watch?v=yzN51gyKIfA) hehe)
+and osu! (trash 6digit TwT [osu.ppy.sh/users/30684398](https://osu.ppy.sh/users/30684398) )
+
+https://ordr.issou.best/watch/HtnHLA

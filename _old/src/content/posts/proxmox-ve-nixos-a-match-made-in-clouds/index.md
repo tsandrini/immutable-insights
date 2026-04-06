@@ -122,7 +122,7 @@ to a few different things depending on the context
 Technically there are a few different compilers and evaluators for nixlang, but the one
 that started it all by [Eelco Dolstra](https://edolstra.github.io/) back in 2003
 is `github:NixOS/nix` which
-is also referred to as **cppnix** to prevent confusion from other implementatons.
+is also referred to as **cppnix** to prevent confusion from other implementations.
 
 ::github{repo="NixOS/nix"}
 :::
@@ -387,92 +387,32 @@ rather unscalable fixed simple systems to modular scalable complex ones and
 that this is a natural evolution directly stemming from the requirements,
 however, is this really the case? Let's analyze it more closely.
 
-## 4.1. Server management evolution
+## 4.1. 3-axis model of server management
 
-Deployment solutions can get really complicated nowadays hence
-we will try to set a basic categorization using our servers evolution
-in time as a guidance.
-The first deployment dimension (axis, component, disjunct type) that we will look at is
-what I am going to call the **self-host dimension**.
+### Axis A (Location)
 
-The calculations will be done
-from the viewpoint of owning and working with **1 physical machine** and
-what can we do with that.
+1. **Self-hosted**:
+2. **Cloud (provider based)**:
 
-1. **Dedicated hardware**: The origin for all modern deployment were plain old OS images, basically
-directly slapping a prepared `.iso` onto some host. This might seem like an
-ancient obsolete idea, but that couldn't be further from the truth! Because
-in this exact same way we still deploy **embedded** software. Creating
-specialized small images using tools such as [buildroot](https://buildroot.org/)
-with just a few services and then either burning them directly into ROM
-or onto some storage device (SD card or external disk, etc...).
-The base building block here is **one physical machine**.
-=> `N services on 1 physical machine**`
-2. **VMs**: A direct upgrade to the previous model is virtualization!
-This decouples one physical machine into multiple hosts.
-This is an older approach that still some companies use. In practice I'd say
-most of them use multiple services per host, but a single purpose per host
-(for example, it runs [nextcloud](https://nextcloud.com/), so it runs php-fpm,
-an http server, potentially memcached/redis and maybe even a database =>
-multiple services, single purpose).
-The base building block here is **one virtual machine**.
-=> `(N services in L VMs) on 1 physical machine`
-3. **Containerization**: Building upon the previous model, we use VMs as a baseline,
-but we can now also isolate concerns into their separate OCI compliant containers.
-For example
-only one VM for an eshop product, but a separate container for a database,
-another one for nginx, then for client and backend and so on.
-The base building block here is **one virtualized container**.
-=> `((N services in M containers) in L VMs) on 1 physical machine`
+### Axis B (Isolation unit)
 
+This axis describes the level of abstraction and separation,
 
-And it naturally follows that the next dimension for us to analyze is the
-**cloud computing axis**, we replace **physical machine** with a **cloud machine**,
-i.e. a physical server that *runs somewhere else* and is managed by *someone else*.
-Crucially, this implies that most of the time it is someone elses problem as well,
-which is the entire reason behind cloud computing, yay!
+1. **Physical**:
+2. **VM/VPS**:
+3. **Container**:
+4. **Service**:
+5. **Function**:
 
-The calculations here,
-on the other hand, will be done from the viewpoint of a customer trying to buy
-different products in the cloud, that means not necessarily looking at one
-physical machine.
+### Axis C (Control-plane ownership)
 
-1. **Cloud hardware**: In my experience this is a more specialized niche use
-case, but you can actually rent **one** physical machine, no virtualization
-and hypervisor, in the industry we call this
-[Bare-Metal-as-a-Service](https://en.wikipedia.org/wiki/Bare-metal_server)
-(BMaaS). For example [Canonical](https://canonical.com/maas) seems to be
-providing certain BMaaS services. Another interesting example that is more
-targeted to gamers is Windows machines as a service, but these are also often
-virtualized. The base building block here is **one cloud machine**. =>
-`N services on 1 cloud machine`
-2. **VPSs**: Now, the natural and logical evolution of self-hosting was to
-provide users with a rented virtual machine, a **virtual private server**.
-Actually renting bare metal is a bit more hassle to manage and also have
-a bussinnes built around, VPSs are an optimal way to do cloud VMs, shared
-machine with virtualized resources, easy to setup and spawn for new
-users, automatic backups, virtual consoles, you can provide your customers
-even some predefined OSs templates, for example with already populated
-ssh keys and such.
-The base building block here is **one cloud VPS**. =>
-`N services in 1 VPS`
-3. **Cloud containers**: The next level that we arrive when we start to
-scale OCI, for example orchestration with [k8s](https://kubernetes.io/)
-and [Terraform](https://developer.hashicorp.com/terraform) and others.
-We stop caring about individual servers, we want to scale our services
-onto potentially hundreds of individual servers and different locations.
-The base building block here is **one cloud container**. =>
-`(N services in M containers) in L cloud servers`
-4. **Serverless (cloud services)**:  This is one of the more recent interesting
-developments and is where we transcdended the notion of machines
-altogether and we started seeking dedicated
-cloud services as products. Typical examples are AWS services such as S3,
-Lambda, RDS, DynamoDB, ECS or Cloudflare DNS. Basically we stop caring about
-individual machines, servers and containers, we are paying for individual services.
-And in some cases you can achieve a completely **serverless** (a very ironic
-name indeed) deployment pipeline -- in the sense that you aren't managing
-and interacting with server instances anymore.
-The base building block here is **one cloud service** => `1 service in something somewhere`
+This axis represents who manages the given object, meaning that
+**location != control-plane ownership**
+
+1. **Self-managed**:
+2. **Provider-managed**:
+
+### Examples
 
 ---
 
@@ -497,13 +437,13 @@ as a combination of both, meaning that you can use for example cloud
 containers for your apps, a self-hosted local machine for some employee
 related admin panels, AWS DBs or elastic search and so on...
 
-## Deployment styles
+## Deployment conventions
 
 - push & pull
 - imperative & reproducible
 - DSLs
 
-## Comparisons
+## Deployment ecosystems
 
 # 5. `PVE . NixOS $ service`
 # 5. Combining PVE and NixOS

@@ -15,7 +15,26 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const width = post.data.width;
+
+/**
+ * Parse the `columns` frontmatter field.
+ * - "50vw"       → single column, 50vw wide
+ * - "50vw-30vw"  → two columns: main 50vw, aside 30vw
+ * - undefined    → default single column (50vw)
+ */
+function parseColumns(columns?: string) {
+  if (!columns) return { single: true, style: "" };
+  const parts = columns.split("-");
+  if (parts.length === 1) {
+    return { single: true, style: `--page-width: ${parts[0]};` };
+  }
+  return {
+    single: false,
+    style: `--col-left: ${parts[0]}; --col-right: ${parts[1]};`,
+  };
+}
+
+const col = parseColumns(post.data.columns);
 
 function formatDate(date: Date): string {
   return date.toLocaleDateString("en-US", {
@@ -27,7 +46,11 @@ function formatDate(date: Date): string {
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
-	<article class="post-page" style={width ? `--page-width: ${width}` : undefined}>
+	<article
+		class="post-page"
+		data-columns={col.single ? undefined : "dual"}
+		style={col.style || undefined}
+	>
 		<header class="post-header">
 			<h1>{post.data.title}</h1>
 			<div class="post-meta">
@@ -79,6 +102,25 @@ function formatDate(date: Date): string {
 		padding-top: var(--space-3xl);
 		padding-bottom: var(--space-4xl);
 		padding-inline: var(--space-lg);
+	}
+
+	/*
+	 * On mobile, dual-column pages behave like single column — full width,
+	 * centered. The aside float + margin shift only kicks in on wide screens.
+	 */
+	.post-page[data-columns="dual"] {
+		max-width: 100%;
+	}
+
+	@media (min-width: 72rem) {
+		.post-page[data-columns="dual"] {
+			max-width: var(--col-left);
+			margin-left: calc(
+				(100vw - var(--col-left) - var(--col-right) - var(--layout-gap)) / 2
+			);
+			margin-right: auto;
+			overflow: visible;
+		}
 	}
 
 	.post-header {

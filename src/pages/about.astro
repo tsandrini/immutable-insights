@@ -10,15 +10,26 @@ if (!page) {
 
 const { Content } = await render(page);
 
-const layout = page.data.columns;
-const width = page.data.width;
+function parseColumns(columns?: string) {
+  if (!columns) return { single: true, style: "" };
+  const parts = columns.split("-");
+  if (parts.length === 1) {
+    return { single: true, style: `--page-width: ${parts[0]};` };
+  }
+  return {
+    single: false,
+    style: `--col-left: ${parts[0]}; --col-right: ${parts[1]};`,
+  };
+}
+
+const col = parseColumns(page.data.columns);
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description}>
 	<article
 		class="about-page"
-		data-layout={layout}
-		style={width ? `--page-width: ${width}` : undefined}
+		data-columns={col.single ? undefined : "dual"}
+		style={col.style || undefined}
 	>
 		<div class="about-content prose">
 			<Content />

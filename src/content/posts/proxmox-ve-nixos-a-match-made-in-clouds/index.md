@@ -5,6 +5,7 @@ image: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
 draft: true
+columns: "50vw-25vw"
 description: |
     Managing servers and services deployed on said servers in 2025 can range
     from anything completely banal to needing multiple PhDs in orchestrations.
@@ -16,9 +17,15 @@ description: |
 
 When it comes to virtualisation of linux images there aren't currently that
 many Type 1 or Type 2
+:::aside
+A **Type 1 hypervisor** runs directly on bare metal, while a **Type 2** runs
+on top of an existing OS. Proxmox is Type 1 (KVM-based).
+:::
 [hypervisors](https://en.wikipedia.org/wiki/Hypervisor), especially even
 less when it comes to production grade virtualisation platforms (ie not just
 backends but suites with mature ecosystems + community + support and GUIs).
+
+
 If we ignore
 [Hyper-V](https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-overview?pivots=windows-server)
 and [whatever Oracle is doing](https://www.oracle.com/virtualization/) the only
@@ -29,6 +36,8 @@ real options we end up with are
 3. [Xen based -- Citrix, XenSErver, XCP-ng](https://xenproject.org/)
 4. And lastly one might also use some more vendor specific stuff like
    [Red Hat's virtualization platform](https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization)
+
+::aside[See the [Proxmox wiki](https://pve.proxmox.com/wiki/Main_Page) for official docs.]
 
 In my limited czech experience I've perceived VMware and Proxmox to be roughly
 equal in terms of popularity/use and community support up until very recently
@@ -79,6 +88,7 @@ fledged VMs, they share the kernel of the base host (thanks to the fact that
 we are running this on Linux to begin with) and directly access all of the
 system resources without the need of a complete OS emulation.
 
+::::aside
 :::note
 In this aspect, they
 are similar to [OCI containers](https://opencontainers.org/)
@@ -87,7 +97,7 @@ difference is that they **are not** application containers, instead they are
 OS containers (sometimes also called **system containers**) directly running
 on the same level as the VMs, scheduled and
 managed alongside the base system as we've already talked about.
-:::
+::::
 
 To create/modify/manage them Proxmox has built the
 [Proxmox Container Toolkit](https://pve.proxmox.com/pve-docs/pve-admin-guide.html#chapter_pct)
@@ -118,14 +128,6 @@ to a few different things depending on the context
 3. and lastly people also sometimes shorten **NixOS**, the pure declarative
    GNU/Linux distribution based on Nix (hehe), to "nix" as well.
 
-:::note
-Technically there are a few different compilers and evaluators for nixlang, but the one
-that started it all by [Eelco Dolstra](https://edolstra.github.io/) back in 2003
-is `github:NixOS/nix` which
-is also referred to as **cppnix** to prevent confusion from other implementations.
-
-::github{repo="NixOS/nix"}
-:::
 
 ## 3.1. Nix
 

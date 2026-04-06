@@ -6,8 +6,7 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string().optional(),
-    columns: z.enum(["single", "dual"]).default("single"),
-    width: z.string().optional(),
+    columns: z.string().optional(),
   }),
 });
 
@@ -22,7 +21,7 @@ const posts = defineCollection({
     tags: z.array(z.string()).default([]),
     category: z.string().optional(),
     draft: z.boolean().default(false),
-    width: z.string().optional(),
+    columns: z.string().optional(),
   }),
 });
 

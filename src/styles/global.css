@@ -278,26 +278,48 @@ pre {
   line-height: 1.78;
 }
 
-/* Dual-column layout: activated by data-layout="dual" on a parent */
+/*
+ * Two-column layout: activated by data-columns="dual" on a parent.
+ * Column widths driven by --col-left / --col-right CSS vars from
+ * the `columns` frontmatter field (e.g. "50vw-25vw").
+ *
+ * Strategy: main content flows normally in a constrained width.
+ * Asides are floated into the right margin via negative margin,
+ * preserving document flow, text selection, and reading order.
+ */
 @media (min-width: 72rem) {
-  [data-layout="dual"] .prose {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 var(--layout-gap);
+  [data-columns="dual"] .prose > .margin-note {
+    float: right;
+    clear: right;
+    width: var(--col-right, 20vw);
+    margin-right: calc(-1 * (var(--col-right, 20vw) + var(--layout-gap)));
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-sm);
+    line-height: 1.6;
   }
 
-  [data-layout="dual"] .prose > * {
-    grid-column: 1;
-  }
-
-  [data-layout="dual"] .prose > .margin-note {
-    grid-column: 2;
-    align-self: start;
+  /* Leaf variant is even more compact */
+  [data-columns="dual"] .prose > .margin-note-leaf {
+    font-size: var(--text-xs);
   }
 }
 
 .prose > * + * {
   margin-top: var(--space-lg);
+}
+
+/* Mid-paragraph split: aside broke a paragraph in two, remove the gap */
+.prose > .continues {
+  margin-top: 0;
+}
+
+/* Asides themselves shouldn't add vertical gaps in the main flow */
+.prose > .margin-note + * {
+  margin-top: 0;
+}
+
+.prose > * + .margin-note {
+  margin-top: 0;
 }
 
 /* On narrow viewports, margin notes appear inline with subtle styling */
@@ -308,6 +330,13 @@ pre {
     border-left: 2px solid var(--color-border);
     padding-left: var(--space-lg);
     margin-block: var(--space-lg);
+  }
+
+  /* When an aside wraps an admonition, drop the aside's own border/padding
+     so the admonition styling isn't doubled */
+  .prose > .margin-note:has(> .admonition) {
+    border-left: none;
+    padding-left: 0;
   }
 }
 

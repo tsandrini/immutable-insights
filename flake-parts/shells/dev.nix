@@ -13,7 +13,7 @@
   gh,
   typos,
   nix-output-monitor,
-  nixfmt-rfc-style,
+  nixfmt,
   markdownlint-cli,
   astro-language-server,
   writeShellScriptBin,
@@ -43,7 +43,7 @@ mkShell {
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
       nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
-      nixfmt-rfc-style # An opinionated formatter for Nix
+      nixfmt # An opinionated formatter for Nix
       nix-fast-build
 
       # -- GIT RELATED UTILS --

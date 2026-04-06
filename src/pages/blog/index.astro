@@ -3,19 +3,19 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("posts", ({ data }) => {
-	return import.meta.env.PROD ? !data.draft : true;
+  return import.meta.env.PROD ? !data.draft : true;
 });
 
 const posts = allPosts.sort(
-	(a, b) => b.data.published.getTime() - a.data.published.getTime(),
+  (a, b) => b.data.published.getTime() - a.data.published.getTime(),
 );
 
 function formatDate(date: Date): string {
-	return date.toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	});
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }
 ---
 

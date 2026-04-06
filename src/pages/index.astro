@@ -4,19 +4,19 @@ import { SITE } from "../consts";
 import { getCollection } from "astro:content";
 
 const allPosts = await getCollection("posts", ({ data }) => {
-	return import.meta.env.PROD ? !data.draft : true;
+  return import.meta.env.PROD ? !data.draft : true;
 });
 
 const latestPosts = allPosts
-	.sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
-	.slice(0, 5);
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
+  .slice(0, 5);
 
 function formatDate(date: Date): string {
-	return date.toLocaleDateString("en-US", {
-		year: "numeric",
-		month: "short",
-		day: "numeric",
-	});
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }
 ---
 

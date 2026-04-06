@@ -5,14 +5,11 @@ import "../styles/global.css";
 import { SITE } from "../consts";
 
 interface Props {
-	title?: string;
-	description?: string;
+  title?: string;
+  description?: string;
 }
 
-const {
-	title = SITE.title,
-	description = SITE.description,
-} = Astro.props;
+const { title = SITE.title, description = SITE.description } = Astro.props;
 
 const pageTitle = title === SITE.title ? title : `${title} — ${SITE.subtitle}`;
 ---

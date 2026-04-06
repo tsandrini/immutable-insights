@@ -1,14 +1,168 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE } from "../consts";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>immutable-insights</title>
-	</head>
-	<body>
-		<h1>immutable-insights</h1>
-	</body>
-</html>
+<BaseLayout>
+	<section class="hero">
+		<div class="hero-content">
+			<div class="hero-avatar">
+				<img
+					src="/images/avatar.jpg"
+					alt={SITE.subtitle}
+					width="120"
+					height="120"
+				/>
+			</div>
+
+			<h1 class="hero-title">
+				<span class="slash">/</span>immutable-insights<span class="slash">/</span>
+			</h1>
+
+			<p class="hero-bio">
+				Nix, algorithms, speedcubing, and the occasional existential
+				tangent about anime and what it means to be alive in an
+				increasingly computed world.
+			</p>
+
+			<div class="hero-meta">
+				<span>by <strong>{SITE.subtitle}</strong></span>
+				<span class="separator" aria-hidden="true">&mdash;</span>
+				<a href="mailto:t@tsandrini.sh">t@tsandrini.sh</a>
+			</div>
+		</div>
+	</section>
+
+	<div class="divider" aria-hidden="true">
+		<span>&lowast;&lowast;&lowast;</span>
+	</div>
+
+	<section class="latest-section">
+		<h2>Latest</h2>
+		<p class="placeholder">Posts are coming soon. The content from the old site will be migrated here.</p>
+	</section>
+</BaseLayout>
+
+<style>
+	/* Hero */
+	.hero {
+		padding-top: var(--space-4xl);
+		padding-bottom: var(--space-3xl);
+		padding-inline: var(--space-lg);
+	}
+
+	.hero-content {
+		max-width: var(--content-width);
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.hero-avatar {
+		margin-bottom: var(--space-2xl);
+	}
+
+	.hero-avatar img {
+		width: 100px;
+		height: 100px;
+		object-fit: cover;
+		border-radius: 12px;
+		border: 1px solid var(--color-border);
+		filter: grayscale(0.2);
+		transition: filter var(--transition-base);
+	}
+
+	.hero-avatar img:hover {
+		filter: grayscale(0);
+	}
+
+	.hero-title {
+		font-size: var(--text-4xl);
+		font-weight: 800;
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+		margin-bottom: var(--space-xl);
+	}
+
+	.slash {
+		color: var(--color-text-faint);
+		font-weight: 700;
+	}
+
+	.hero-bio {
+		font-size: var(--text-lg);
+		line-height: 1.65;
+		color: var(--color-text-muted);
+		max-width: 36rem;
+		margin-bottom: var(--space-xl);
+	}
+
+	.hero-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.hero-meta strong {
+		color: var(--color-text-muted);
+	}
+
+	.hero-meta a {
+		color: var(--color-text-faint);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.15em;
+	}
+
+	.hero-meta a:hover {
+		color: var(--color-accent);
+	}
+
+	.separator {
+		color: var(--color-border-strong);
+	}
+
+	/* Divider */
+	.divider {
+		text-align: center;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+		letter-spacing: 0.5em;
+		padding-block: var(--space-md);
+	}
+
+	/* Latest section */
+	.latest-section {
+		max-width: var(--content-width);
+		margin-inline: auto;
+		padding-inline: var(--space-lg);
+		padding-bottom: var(--space-4xl);
+	}
+
+	.latest-section h2 {
+		font-size: var(--text-xl);
+		font-weight: 700;
+		margin-bottom: var(--space-lg);
+		padding-bottom: var(--space-sm);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.placeholder {
+		color: var(--color-text-faint);
+		font-style: italic;
+	}
+
+	@media (min-width: 80rem) {
+		.hero {
+			padding-inline: var(--space-xl);
+		}
+
+		.latest-section {
+			padding-inline: var(--space-xl);
+		}
+	}
+</style>

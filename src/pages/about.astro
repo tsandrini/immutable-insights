@@ -31,7 +31,7 @@ const col = parseColumns(page.data.columns);
 		data-columns={col.single ? undefined : "dual"}
 		style={col.style || undefined}
 	>
-		<div class="about-content prose" data-numbered-headings={page.data.numberedHeadings || undefined}>
+		<div class="about-content page-column prose" data-numbered-headings={page.data.numberedHeadings || undefined}>
 			<Content />
 		</div>
 	</article>
@@ -42,11 +42,6 @@ const col = parseColumns(page.data.columns);
 		padding-top: var(--space-3xl);
 		padding-bottom: var(--space-4xl);
 		padding-inline: var(--space-lg);
-	}
-
-	.about-content {
-		max-width: var(--page-width, 50vw);
-		margin-inline: auto;
 	}
 
 	/* First h1 gets special treatment */

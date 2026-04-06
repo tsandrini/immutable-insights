@@ -1,7 +1,8 @@
 ---
 title: About
 description: About tsandrini — software engineer, Nix enthusiast, speedcuber.
-columns: "60vw"
+numberedHeadings: true
+columns: "50vw-25vw"
 ---
 
 # About
@@ -12,11 +13,12 @@ internet, for my unorganized scattered thoughts and ideas.
 
 You can find the complete source of this blog at
 ::github{repo="tsandrini/immutable-insights"}
-
-> The codebase is licensed under the
-> [EUPL 1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12), however,
-> the individual posts have their own appropriate licenses attached to them that
-> you can find at the bottom of the posts.
+:::aside
+The codebase is licensed under the
+[EUPL 1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12), however,
+the individual posts have their own appropriate licenses attached to them that
+you can find at the bottom of the posts.
+:::
 
 # Pubkeys
 

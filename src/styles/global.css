@@ -287,6 +287,33 @@ pre {
  * Asides are floated into the right margin via negative margin,
  * preserving document flow, text selection, and reading order.
  */
+
+/*
+ * Generic column container for static pages.
+ * Apply .page-column to the inner content wrapper. For single-column,
+ * it centers at --page-width. For dual-column, the parent must carry
+ * data-columns="dual" and the --col-left / --col-right CSS vars.
+ */
+.page-column {
+  max-width: var(--page-width, 50vw);
+  margin-inline: auto;
+}
+
+[data-columns="dual"] .page-column {
+  max-width: 100%;
+}
+
+@media (min-width: 72rem) {
+  [data-columns="dual"] .page-column {
+    max-width: var(--col-left);
+    margin-left: calc(
+      (100vw - var(--col-left) - var(--col-right) - var(--layout-gap)) / 2
+    );
+    margin-right: auto;
+    overflow: visible;
+  }
+}
+
 @media (min-width: 72rem) {
   [data-columns="dual"] .prose > .margin-note {
     float: right;

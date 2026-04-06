@@ -5,6 +5,7 @@ image: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
 draft: true
+numberedHeadings: true
 columns: "50vw-25vw"
 description: |
     Managing servers and services deployed on said servers in 2025 can range
@@ -13,7 +14,7 @@ description: |
     and how does it compare to more traditional deployment styles >.<
 ---
 
-# 1. Introduction
+# Introduction
 
 When it comes to virtualisation of linux images there aren't currently that
 many Type 1 or Type 2
@@ -59,7 +60,7 @@ decisions, however, for most of us their nontransparency and complete disregard
 for the community meant we decided to just move on and migrate to a
 different solution => **Proxmox VE**.
 
-# 2. Proxmox
+# Proxmox
 
 **Proxmox Virtual Environment** (Proxmox VE or also PVE) is Type 1 Hypervisor
 (running on bare metal) that uses KVM as its backend. What is special about
@@ -81,7 +82,7 @@ Now this is all great, but the truly novel thing which functions as the whole ba
 for this post is something that I have yet to mention!
 [Proxmox LXCs](https://pve.proxmox.com/wiki/Linux_Container)!
 
-## 2.1. LXCs
+## LXCs
 
 **LXCs** or **Linux Containers** represent a lightweight alternative to fully
 fledged VMs, they share the kernel of the base host (thanks to the fact that
@@ -114,7 +115,7 @@ and performance penalty of running a separate kernel and OS emulation.
 A curious reader might ask, what kind of types are we talking about?
 Great question. 🤓
 
-# 3. The nix ecosystem
+# The nix ecosystem
 
 I'm planning to write some proper introductory tutorials for the nix ecosystem,
 however, right now this will be only a limited short intro into the world of
@@ -129,7 +130,7 @@ to a few different things depending on the context
    GNU/Linux distribution based on Nix (hehe), to "nix" as well.
 
 
-## 3.1. Nix
+## Nix
 
 Both **nixlang** and **cppnix** were designed and written by Eelco around 2003
 in his influential thesis
@@ -161,7 +162,7 @@ only valid packages get built and resolved to a `/nix/store` path. You can
 think of this the same way as how Rust guarantees a memory safe program
 if it compiles (this isn't technically true if you use `unsafe`, but let's
 not worry too much otherwise we will accumulate too many wrinkles). Lastly,
-this is an implication and not an equivalence, which should immediately
+his is an implication and not an equivalence, which should immediately
 make sense to you since if you try hard enough you can technically manually
 push invalid paths (i.e. not packages) into the store, however, given
 a requested package identified by its path hash it is computationaly infeasible
@@ -222,7 +223,7 @@ nix-shell -p "((import <nixpkgs> {}).callPackage ./cowsay.nix {})" --run "cowsay
                 ||     ||
 ```
 
-## 3.2. NixOS
+## NixOS
 
 **NixOS** is a special type of nix derivation, that wraps a bunch of GNU/Linux
 packages into a bootable `.iso` image, but it itself is yet another derivation,
@@ -239,7 +240,7 @@ questionable at best, this is why NixOS introduced the concept of
 The bootable system derivation itself is then hidden under the
 `config.system.build.toplevel` attribute.
 
-### 3.2.1. NixOS modules
+### NixOS modules
 
 :::important[Definition (NixOS module)]
 A **NixOS module** is a nixlang function returning an attrset with 3 special
@@ -255,7 +256,7 @@ using [`lib.evalModules`](https://github.com/NixOS/nixpkgs/blob/d254223c8dfb138c
 3. `imports` is an array of additional NixOS modules that should be added
    to the current evaluation scope.
 :::
-
+:::aside
 These modules technically represent an
 [Open Recursion](https://www.cs.ox.ac.uk/people/ralf.hinze/talks/Open.pdf)
 model and in a very roundabout funny way writing NixOS modules
@@ -265,6 +266,7 @@ I might follow up on this another day with a more in depth blogpost
 since I do really feel like an OOP model might fit NixOS modules more
 and would solve a bunch of issues that stem from the current design.
 Anyway ...
+:::
 
 ----
 
@@ -330,7 +332,7 @@ hosts (which are just other NixOS modules) like so
 }
 ```
 
-### 3.2.2. `nixos-shell`
+### `nixos-shell`
 
 We can actually demonstrate a practical live example using a lightweight
 [QEMU VM](https://www.qemu.org/),
@@ -381,7 +383,7 @@ Navigating to `http://localhost:8080/` should yield you the message
 ```
 
 
-# 4. DevOps and the irony of modern software deployment
+# DevOps and the irony of modern software deployment
 
 As our software grew, so did the requirements for its throughput and the
 servers it was hosted on. On the outside it seems like we went from
@@ -389,7 +391,7 @@ rather unscalable fixed simple systems to modular scalable complex ones and
 that this is a natural evolution directly stemming from the requirements,
 however, is this really the case? Let's analyze it more closely.
 
-## 4.1. 3-axis model of server management
+## 3-axis model of server management
 
 ### Axis A (Location)
 
@@ -447,8 +449,8 @@ related admin panels, AWS DBs or elastic search and so on...
 
 ## Deployment ecosystems
 
-# 5. `PVE . NixOS $ service`
-# 5. Combining PVE and NixOS
+# `PVE . NixOS $ service`
+# Combining PVE and NixOS
 
 Now we reflect on what've learned so far and we will compose this knowledge
 into a new deployment style.

@@ -15,6 +15,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const width = post.data.width;
 
 function formatDate(date: Date): string {
 	return date.toLocaleDateString("en-US", {
@@ -26,7 +27,7 @@ function formatDate(date: Date): string {
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
-	<article class="post-page">
+	<article class="post-page" style={width ? `--page-width: ${width}` : undefined}>
 		<header class="post-header">
 			<h1>{post.data.title}</h1>
 			<div class="post-meta">
@@ -73,7 +74,7 @@ function formatDate(date: Date): string {
 
 <style>
 	.post-page {
-		max-width: var(--content-width);
+		max-width: var(--page-width, 50vw);
 		margin-inline: auto;
 		padding-top: var(--space-3xl);
 		padding-bottom: var(--space-4xl);

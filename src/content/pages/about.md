@@ -2,10 +2,7 @@
 title: About
 description: About tsandrini — software engineer, Nix enthusiast, speedcuber.
 columns: single
-width: 60vw
 ---
-
-import Margin from "../../components/Margin.astro";
 
 # About
 
@@ -14,7 +11,7 @@ Scientist located in Prague, and this is a personal space of mine on the
 internet, for my unorganized scattered thoughts and ideas.
 
 You can find the complete source of this blog at
-[tsandrini/immutable-insights](https://github.com/tsandrini/immutable-insights).
+::github{repo="tsandrini/immutable-insights"}
 
 > The codebase is licensed under the
 > [EUPL 1.2](https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12), however,
@@ -27,19 +24,19 @@ You can find the complete source of this blog at
 
 My primary ssh-ed25519 pubkey is
 
-<Margin>
+:::note
 ```txt
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrK27cm+rAVKuwDjlJgCuy8Rftg2YOALwtnu7z3Ox1 tsandrini
 ```
-</Margin>
+:::
 
 You can append it to your machine via
 
-<Margin>
+:::tip
 ```bash
 wget https://tsandrini.sh/tsandrini.keys -O- >> ~/.ssh/authorized_keys
 ```
-</Margin>
+:::
 
 ## GPG
 
@@ -47,19 +44,19 @@ All my commits, communication and some of my files are signed by a
 GnuPG key with an ascii pubkey counterpart [tsandrini.gpg](/tsandrini.gpg),
 if a different key is being used then it's probably not me.
 
-<Margin>
+:::note
 ```
 1926 AF50 F0B9 96F2 BDD1  6827 3E83 AD69 0FA4 F657
 ```
-</Margin>
+:::
 
 You can append it to your machine via
 
-<Margin>
+:::tip
 ```bash
 wget https://tsandrini.sh/tsandrini.gpg -O- | gpg --import
 ```
-</Margin>
+:::
 
 # Background
 
@@ -132,14 +129,14 @@ As of right now, these are my main focus:
 
 ## Tech & Science
 
-<Margin>
+:::note
 - Rust, Nix, OCaml, Haskell
 - Reproducible systems, server side management, deployment and general DevOps
 - PL: FPs, effect systems
 - Math (nowadays just recreational): algebraic topology, algebraic geometry
   and differential geometry
 - Relativistic physics (really, really, just recreational)
-</Margin>
+:::
 
 ## Nix/NixOS
 
@@ -159,7 +156,7 @@ I am quite active in the nix community, I maintain a bunch
 of packages and also a few nix related projects. I also manage almost every
 machine that I own through nix in some way or another and have everything
 stored in a public monorepo:
-[tsandrini/tensorfiles](https://github.com/tsandrini/tensorfiles).
+::github{repo="tsandrini/tensorfiles"}
 
 ## Speedcubing
 
@@ -181,9 +178,7 @@ Current home times:
 - **Pyraminx**: PB 2.35s, 6.01s ao5, 6.93s ao12.
 - **5x5**: PB 1:51.16s, 2:03.47s ao5, 2:05.44s ao12.
 
-<Margin>
 ![Cubes](/images/cubes_new.jpg)
-</Margin>
 
 ## Other
 
@@ -208,25 +203,19 @@ Some great resources regarding dharma:
 And regarding meditations:
 [TMI](https://www.goodreads.com/book/show/25942786-the-mind-illuminated)!
 
-<Margin>
 ![The Mind Illuminated - Conscious Mind](/images/TMI_diagram.png)
-</Margin>
 
 ### Houseplants
 
 I love plants! Plants everywhere, there is no such thing as "enough plants".
 
-<Margin>
 ![Mandarinka](/images/mandarinka.jpg)
-</Margin>
 
 ### Ergo Keyboards
 
 TBD
 
-<Margin>
 ![Cantor ergo keyboard](/images/keeb.jpg)
-</Margin>
 
 ### Games
 

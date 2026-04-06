@@ -57,6 +57,152 @@ const pageTitle = title === SITE.title ? title : `${title} — ${SITE.subtitle}`
 			<slot />
 		</main>
 		<Footer />
+		<!-- Lightbox overlay (static DOM, toggled via JS) -->
+		<div class="lightbox-overlay" id="lightbox">
+			<div class="lightbox-img-wrapper">
+				<img id="lightbox-img" src="" alt="" />
+				<div class="lightbox-caption" id="lightbox-caption"></div>
+			</div>
+			<div class="lightbox-counter" id="lightbox-counter" hidden></div>
+			<button class="lightbox-btn lightbox-close" id="lightbox-close" aria-label="Close">
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+			</button>
+			<button class="lightbox-btn lightbox-prev" id="lightbox-prev" aria-label="Previous image" hidden>
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+			</button>
+			<button class="lightbox-btn lightbox-next" id="lightbox-next" aria-label="Next image" hidden>
+				<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+			</button>
+		</div>
+
+		<script>
+			function setupLightbox() {
+				const overlay = document.getElementById("lightbox")!;
+				const lbImg = document.getElementById(
+					"lightbox-img",
+				) as HTMLImageElement;
+				const lbCaption = document.getElementById("lightbox-caption")!;
+				const lbCounter = document.getElementById("lightbox-counter")!;
+				const btnClose = document.getElementById("lightbox-close")!;
+				const btnPrev = document.getElementById("lightbox-prev")!;
+				const btnNext = document.getElementById("lightbox-next")!;
+
+				// Collect all prose images (excluding decorative/icon images)
+				let gallery: HTMLImageElement[] = [];
+				let currentIndex = 0;
+
+				function collectImages() {
+					gallery = Array.from(
+						document.querySelectorAll<HTMLImageElement>(".prose img"),
+					);
+				}
+
+				function showImage(index: number) {
+					if (index < 0 || index >= gallery.length) return;
+					currentIndex = index;
+					const img = gallery[currentIndex];
+					lbImg.src = img.src;
+					lbImg.alt = img.alt;
+					lbCaption.textContent = img.alt || "";
+
+					// Show/hide nav buttons
+					const hasMultiple = gallery.length > 1;
+					btnPrev.hidden = !hasMultiple;
+					btnNext.hidden = !hasMultiple;
+					lbCounter.hidden = !hasMultiple;
+					if (hasMultiple) {
+						lbCounter.textContent = `${currentIndex + 1} / ${gallery.length}`;
+					}
+				}
+
+				function open(img: HTMLImageElement) {
+					collectImages();
+					const idx = gallery.indexOf(img);
+					if (idx === -1) return;
+					showImage(idx);
+					overlay.classList.add("active");
+					document.body.style.overflow = "hidden";
+				}
+
+				function close() {
+					overlay.classList.remove("active");
+					document.body.style.overflow = "";
+				}
+
+				function prev() {
+					if (gallery.length <= 1) return;
+					showImage(
+						(currentIndex - 1 + gallery.length) % gallery.length,
+					);
+				}
+
+				function next() {
+					if (gallery.length <= 1) return;
+					showImage((currentIndex + 1) % gallery.length);
+				}
+
+				// Delegate click on prose images
+				document.addEventListener("click", (e) => {
+					const img = (e.target as Element).closest(
+						".prose img",
+					) as HTMLImageElement | null;
+					if (img) {
+						e.preventDefault();
+						open(img);
+					}
+				});
+
+				// Close on overlay background click
+				overlay.addEventListener("click", (e) => {
+					if (
+						e.target === overlay ||
+						(e.target as Element).closest(
+							".lightbox-img-wrapper",
+						) === null
+					) {
+						close();
+					}
+				});
+
+				// Don't close when clicking the image itself, but close on wrapper background
+				overlay
+					.querySelector(".lightbox-img-wrapper")!
+					.addEventListener("click", (e) => {
+						if (e.target !== lbImg) {
+							close();
+						}
+					});
+
+				btnClose.addEventListener("click", close);
+				btnPrev.addEventListener("click", (e) => {
+					e.stopPropagation();
+					prev();
+				});
+				btnNext.addEventListener("click", (e) => {
+					e.stopPropagation();
+					next();
+				});
+
+				// Keyboard navigation
+				document.addEventListener("keydown", (e) => {
+					if (!overlay.classList.contains("active")) return;
+					switch (e.key) {
+						case "Escape":
+							close();
+							break;
+						case "ArrowLeft":
+							prev();
+							break;
+						case "ArrowRight":
+							next();
+							break;
+					}
+				});
+			}
+
+			setupLightbox();
+		</script>
+
 		<script>
 			function setupCodeBlocks() {
 				document.querySelectorAll("pre").forEach((pre) => {

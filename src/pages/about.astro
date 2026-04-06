@@ -34,7 +34,7 @@ const width = page.data.width;
 	}
 
 	.about-content {
-		max-width: var(--page-width, var(--content-width));
+		max-width: var(--page-width, 50vw);
 		margin-inline: auto;
 	}
 
@@ -51,11 +51,6 @@ const width = page.data.width;
 		margin-bottom: var(--space-lg);
 		padding-bottom: var(--space-sm);
 		border-bottom: 2px solid var(--color-border);
-	}
-
-	.about-content :global(img) {
-		margin-block: var(--space-2xl);
-		border: 1px solid var(--color-border);
 	}
 
 	@media (min-width: 80rem) {

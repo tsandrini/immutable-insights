@@ -9,10 +9,17 @@ if (!page) {
 }
 
 const { Content } = await render(page);
+
+const layout = page.data.columns;
+const width = page.data.width;
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description}>
-	<article class="about-page">
+	<article
+		class="about-page"
+		data-layout={layout}
+		style={width ? `--page-width: ${width}` : undefined}
+	>
 		<div class="about-content prose">
 			<Content />
 		</div>
@@ -27,7 +34,7 @@ const { Content } = await render(page);
 	}
 
 	.about-content {
-		max-width: var(--content-width);
+		max-width: var(--page-width, var(--content-width));
 		margin-inline: auto;
 	}
 

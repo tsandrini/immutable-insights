@@ -1,6 +1,23 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { SITE } from "../consts";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("posts", ({ data }) => {
+	return import.meta.env.PROD ? !data.draft : true;
+});
+
+const latestPosts = allPosts
+	.sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
+	.slice(0, 5);
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	});
+}
 ---
 
 <BaseLayout>
@@ -39,7 +56,32 @@ import { SITE } from "../consts";
 
 	<section class="latest-section">
 		<h2>Latest</h2>
-		<p class="placeholder">Posts are coming soon. The content from the old site will be migrated here.</p>
+		{
+			latestPosts.length > 0 ? (
+				<ul class="post-list">
+					{latestPosts.map((post) => (
+						<li class:list={["post-item", { draft: post.data.draft }]}>
+							<a href={`/blog/${post.id}/`}>
+								<span class="post-title">
+									{post.data.draft && (
+										<span class="draft-badge">draft</span>
+									)}
+									{post.data.title}
+								</span>
+								<span class="post-meta">
+									<time datetime={post.data.published.toISOString()}>
+										{formatDate(post.data.published)}
+									</time>
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="placeholder">Posts coming soon.</p>
+			)
+		}
+		<a href="/blog/" class="view-all">View all posts &rarr;</a>
 	</section>
 </BaseLayout>
 
@@ -154,6 +196,69 @@ import { SITE } from "../consts";
 	.placeholder {
 		color: var(--color-text-faint);
 		font-style: italic;
+	}
+
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.post-item a {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--space-md);
+		padding-block: var(--space-sm);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.post-item a:hover .post-title {
+		color: var(--color-accent);
+	}
+
+	.post-title {
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.draft-badge {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-accent);
+		border: 1px solid var(--color-accent);
+		border-radius: 3px;
+		padding: 0.05em 0.4em;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.post-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		white-space: nowrap;
+	}
+
+	.post-item.draft .post-title {
+		color: var(--color-text-muted);
+	}
+
+	.view-all {
+		display: inline-block;
+		margin-top: var(--space-lg);
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		text-decoration: none;
+	}
+
+	.view-all:hover {
+		color: var(--color-accent);
 	}
 
 	@media (min-width: 80rem) {

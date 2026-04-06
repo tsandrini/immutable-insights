@@ -1,0 +1,148 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("posts", ({ data }) => {
+	return import.meta.env.PROD ? !data.draft : true;
+});
+
+const posts = allPosts.sort(
+	(a, b) => b.data.published.getTime() - a.data.published.getTime(),
+);
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "short",
+		day: "numeric",
+	});
+}
+---
+
+<BaseLayout title="Blog" description="All posts">
+	<section class="blog-page">
+		<h1>Blog</h1>
+
+		<ul class="post-list">
+			{
+				posts.map((post) => (
+					<li class:list={["post-item", { draft: post.data.draft }]}>
+						<a href={`/blog/${post.id}/`}>
+							<span class="post-title">
+								{post.data.draft && <span class="draft-badge">draft</span>}
+								{post.data.title}
+							</span>
+							{post.data.description && (
+								<span class="post-description">
+									{post.data.description}
+								</span>
+							)}
+							<span class="post-meta">
+								<time datetime={post.data.published.toISOString()}>
+									{formatDate(post.data.published)}
+								</time>
+								{post.data.category && (
+									<span class="post-category">{post.data.category}</span>
+								)}
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+	.blog-page {
+		max-width: var(--content-width);
+		margin-inline: auto;
+		padding-top: var(--space-3xl);
+		padding-bottom: var(--space-4xl);
+		padding-inline: var(--space-lg);
+	}
+
+	.blog-page h1 {
+		font-size: var(--text-4xl);
+		font-weight: 800;
+		margin-bottom: var(--space-2xl);
+	}
+
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.post-item a {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-xs);
+		padding-block: var(--space-lg);
+		border-bottom: 1px solid var(--color-border);
+		text-decoration: none;
+		color: inherit;
+		transition: background var(--transition-base);
+	}
+
+	.post-item:first-child a {
+		border-top: 1px solid var(--color-border);
+	}
+
+	.post-item a:hover {
+		background: var(--color-surface);
+	}
+
+	.post-title {
+		font-family: var(--font-heading);
+		font-size: var(--text-lg);
+		font-weight: 700;
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.draft-badge {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-accent);
+		border: 1px solid var(--color-accent);
+		border-radius: 3px;
+		padding: 0.05em 0.4em;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.post-description {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.5;
+	}
+
+	.post-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.post-category {
+		border-left: 1px solid var(--color-border);
+		padding-left: var(--space-sm);
+	}
+
+	.post-item.draft .post-title {
+		color: var(--color-text-muted);
+	}
+
+	@media (min-width: 80rem) {
+		.blog-page {
+			padding-inline: var(--space-xl);
+		}
+	}
+</style>

@@ -6,7 +6,23 @@ const pages = defineCollection({
 	schema: z.object({
 		title: z.string(),
 		description: z.string().optional(),
+		columns: z.enum(["single", "dual"]).default("single"),
+		width: z.string().optional(),
 	}),
 });
 
-export const collections = { pages };
+const posts = defineCollection({
+	loader: glob({ pattern: "**/index.{md,mdx}", base: "./src/content/posts" }),
+	schema: z.object({
+		title: z.string(),
+		published: z.coerce.date(),
+		updated: z.coerce.date().optional(),
+		description: z.string().optional(),
+		image: z.string().optional(),
+		tags: z.array(z.string()).default([]),
+		category: z.string().optional(),
+		draft: z.boolean().default(false),
+	}),
+});
+
+export const collections = { pages, posts };

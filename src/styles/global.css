@@ -275,8 +275,37 @@ pre {
 	line-height: 1.78;
 }
 
+/* Dual-column layout: activated by data-layout="dual" on a parent */
+@media (min-width: 72rem) {
+	[data-layout="dual"] .prose {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0 var(--layout-gap);
+	}
+
+	[data-layout="dual"] .prose > * {
+		grid-column: 1;
+	}
+
+	[data-layout="dual"] .prose > .margin-note {
+		grid-column: 2;
+		align-self: start;
+	}
+}
+
 .prose > * + * {
 	margin-top: var(--space-lg);
+}
+
+/* On narrow viewports, margin notes appear inline with subtle styling */
+@media (max-width: 71.99rem) {
+	.prose > .margin-note {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		border-left: 2px solid var(--color-border);
+		padding-left: var(--space-lg);
+		margin-block: var(--space-lg);
+	}
 }
 
 .prose h2 {

@@ -1,0 +1,154 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+	const posts = await getCollection("posts", ({ data }) => {
+		return import.meta.env.PROD ? !data.draft : true;
+	});
+
+	return posts.map((post) => ({
+		params: { slug: post.id },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+	return date.toLocaleDateString("en-US", {
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+}
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+	<article class="post-page">
+		<header class="post-header">
+			<h1>{post.data.title}</h1>
+			<div class="post-meta">
+				<time datetime={post.data.published.toISOString()}>
+					{formatDate(post.data.published)}
+				</time>
+				{
+					post.data.updated && (
+						<span class="updated">
+							(updated{" "}
+							<time datetime={post.data.updated.toISOString()}>
+								{formatDate(post.data.updated)}
+							</time>
+							)
+						</span>
+					)
+				}
+				{
+					post.data.category && (
+						<span class="post-category">{post.data.category}</span>
+					)
+				}
+			</div>
+			{
+				post.data.tags.length > 0 && (
+					<div class="post-tags">
+						{post.data.tags.map((tag) => (
+							<span class="tag">{tag}</span>
+						))}
+					</div>
+				)
+			}
+		</header>
+
+		<div class="post-content prose">
+			<Content />
+		</div>
+
+		<footer class="post-footer">
+			<a href="/blog/">&larr; Back to all posts</a>
+		</footer>
+	</article>
+</BaseLayout>
+
+<style>
+	.post-page {
+		max-width: var(--content-width);
+		margin-inline: auto;
+		padding-top: var(--space-3xl);
+		padding-bottom: var(--space-4xl);
+		padding-inline: var(--space-lg);
+	}
+
+	.post-header {
+		margin-bottom: var(--space-3xl);
+	}
+
+	.post-header h1 {
+		font-size: var(--text-4xl);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		margin-bottom: var(--space-md);
+	}
+
+	.post-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.updated {
+		color: var(--color-text-faint);
+	}
+
+	.post-category {
+		border-left: 1px solid var(--color-border);
+		padding-left: var(--space-sm);
+	}
+
+	.post-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+		margin-top: var(--space-md);
+	}
+
+	.tag {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-muted);
+		border: 1px solid var(--color-border);
+		border-radius: 3px;
+		padding: 0.1em 0.5em;
+	}
+
+	.post-content {
+		margin-bottom: var(--space-3xl);
+	}
+
+	.post-footer {
+		padding-top: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.post-footer a {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		text-decoration: none;
+	}
+
+	.post-footer a:hover {
+		color: var(--color-accent);
+	}
+
+	@media (min-width: 80rem) {
+		.post-page {
+			padding-inline: var(--space-xl);
+		}
+	}
+</style>

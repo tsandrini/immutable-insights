@@ -7,6 +7,7 @@ const pages = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     columns: z.string().optional(),
+    numberedHeadings: z.boolean().default(false),
   }),
 });
 
@@ -22,6 +23,7 @@ const posts = defineCollection({
     category: z.string().optional(),
     draft: z.boolean().default(false),
     columns: z.string().optional(),
+    numberedHeadings: z.boolean().default(false),
   }),
 });
 

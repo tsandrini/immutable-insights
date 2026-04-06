@@ -31,7 +31,7 @@ const col = parseColumns(page.data.columns);
 		data-columns={col.single ? undefined : "dual"}
 		style={col.style || undefined}
 	>
-		<div class="about-content prose">
+		<div class="about-content prose" data-numbered-headings={page.data.numberedHeadings || undefined}>
 			<Content />
 		</div>
 	</article>

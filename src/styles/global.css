@@ -352,6 +352,47 @@ pre {
   margin-bottom: var(--space-sm);
 }
 
+/* --- Numbered headings (opt-in via frontmatter) ------------ */
+
+.prose[data-numbered-headings] {
+  counter-reset: h1-counter h2-counter h3-counter h4-counter;
+}
+
+.prose[data-numbered-headings] h1 {
+  counter-increment: h1-counter;
+  counter-reset: h2-counter h3-counter h4-counter;
+}
+
+.prose[data-numbered-headings] h1::before {
+  content: counter(h1-counter) ".\00a0\00a0";
+}
+
+.prose[data-numbered-headings] h2 {
+  counter-increment: h2-counter;
+  counter-reset: h3-counter h4-counter;
+}
+
+.prose[data-numbered-headings] h2::before {
+  content: counter(h1-counter) "." counter(h2-counter) ".\00a0\00a0";
+}
+
+.prose[data-numbered-headings] h3 {
+  counter-increment: h3-counter;
+  counter-reset: h4-counter;
+}
+
+.prose[data-numbered-headings] h3::before {
+  content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) ".\00a0\00a0";
+}
+
+.prose[data-numbered-headings] h4 {
+  counter-increment: h4-counter;
+}
+
+.prose[data-numbered-headings] h4::before {
+  content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) ".\00a0\00a0";
+}
+
 .prose a {
   color: var(--color-accent);
   text-decoration: underline;

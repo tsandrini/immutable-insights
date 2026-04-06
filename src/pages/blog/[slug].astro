@@ -85,7 +85,7 @@ function formatDate(date: Date): string {
 			}
 		</header>
 
-		<div class="post-content prose">
+		<div class="post-content prose" data-numbered-headings={post.data.numberedHeadings || undefined}>
 			<Content />
 		</div>
 

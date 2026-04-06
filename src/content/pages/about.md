@@ -1,7 +1,7 @@
 ---
 title: About
 description: About tsandrini — software engineer, Nix enthusiast, speedcuber.
-columns: single
+columns: "60vw"
 ---
 
 # About

@@ -326,25 +326,117 @@ pre {
 }
 
 .prose code {
-	font-size: 0.88em;
+	font-size: 0.85em;
 	background: var(--color-code-bg);
-	padding: 0.12em 0.3em;
+	padding: 0.15em 0.35em;
 	border-radius: var(--radius-sm);
+	border: 1px solid var(--color-border);
 }
 
+/* --- Code Blocks (Shiki) ----------------------------------- */
+
 .prose pre {
-	background: var(--color-code-bg);
+	position: relative;
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-md);
-	padding: var(--space-lg);
-	overflow-x: auto;
+	padding: 0;
+	overflow: hidden;
+	margin-block: var(--space-xl);
 	font-size: var(--text-sm);
 }
 
 .prose pre code {
+	display: block;
 	background: none;
-	padding: 0;
+	padding: var(--space-lg) var(--space-lg) var(--space-lg) 0;
+	border: none;
 	border-radius: 0;
+	overflow-x: auto;
+	counter-reset: line;
+	font-size: inherit;
+}
+
+/* Line numbers */
+.prose pre code .line::before {
+	counter-increment: line;
+	content: counter(line);
+	display: inline-block;
+	width: 3ch;
+	margin-right: 1.5ch;
+	padding-left: 1ch;
+	text-align: right;
+	color: var(--color-text-faint);
+	user-select: none;
+	opacity: 0.5;
+}
+
+/* Language label */
+.prose pre[data-language]::before {
+	content: attr(data-language);
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0.2em 0.7em;
+	font-family: var(--font-mono);
+	font-size: var(--text-xs);
+	color: var(--color-text-faint);
+	text-transform: uppercase;
+	letter-spacing: 0.06em;
+	border-bottom: 1px solid var(--color-border);
+	border-left: 1px solid var(--color-border);
+	border-radius: 0 var(--radius-md) 0 var(--radius-md);
+	user-select: none;
+}
+
+/* Copy button */
+.code-copy-btn {
+	position: absolute;
+	bottom: var(--space-sm);
+	right: var(--space-sm);
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+	padding: 0.3em 0.6em;
+	font-family: var(--font-mono);
+	font-size: var(--text-xs);
+	color: var(--color-text-faint);
+	background: var(--color-surface);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	cursor: pointer;
+	opacity: 0;
+	transition:
+		opacity var(--transition-fast),
+		color var(--transition-fast),
+		background-color var(--transition-fast);
+	user-select: none;
+}
+
+.prose pre:hover .code-copy-btn {
+	opacity: 1;
+}
+
+.code-copy-btn:hover {
+	color: var(--color-text);
+	background: var(--color-surface-hover);
+}
+
+.code-copy-btn.copied {
+	color: var(--color-accent);
+}
+
+/* --- Shiki theme wiring ------------------------------------ */
+
+.shiki,
+.shiki span {
+	color: var(--shiki-light);
+	background-color: var(--shiki-light-bg);
+}
+
+[data-theme="dark"] .shiki,
+[data-theme="dark"] .shiki span {
+	color: var(--shiki-dark);
+	background-color: var(--shiki-dark-bg);
 }
 
 .prose img {

@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEntry, render } from "astro:content";
+
+const page = await getEntry("pages", "about");
+
+if (!page) {
+	throw new Error("About page content not found");
+}
+
+const { Content } = await render(page);
+---
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+	<article class="about-page">
+		<div class="about-content prose">
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.about-page {
+		padding-top: var(--space-3xl);
+		padding-bottom: var(--space-4xl);
+		padding-inline: var(--space-lg);
+	}
+
+	.about-content {
+		max-width: var(--content-width);
+		margin-inline: auto;
+	}
+
+	/* First h1 gets special treatment */
+	.about-content :global(h1:first-child) {
+		font-size: var(--text-4xl);
+		margin-bottom: var(--space-2xl);
+	}
+
+	/* Subsequent h1s act as major section dividers */
+	.about-content :global(h1) {
+		font-size: var(--text-3xl);
+		margin-top: var(--space-4xl);
+		margin-bottom: var(--space-lg);
+		padding-bottom: var(--space-sm);
+		border-bottom: 2px solid var(--color-border);
+	}
+
+	.about-content :global(img) {
+		margin-block: var(--space-2xl);
+		border: 1px solid var(--color-border);
+	}
+
+	@media (min-width: 80rem) {
+		.about-page {
+			padding-inline: var(--space-xl);
+		}
+	}
+</style>

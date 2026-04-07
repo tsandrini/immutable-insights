@@ -144,9 +144,25 @@ body {
   font-size: var(--text-base);
   color: var(--color-text);
   background-color: var(--color-bg);
+  background-image:
+    radial-gradient(
+      ellipse 70% 70% at 50% 45%,
+      transparent 30%,
+      rgba(160, 145, 120, 0.35) 100%
+    );
+  background-attachment: fixed;
   transition:
     color var(--transition-base),
     background-color var(--transition-base);
+}
+
+[data-theme="dark"] body {
+  background-image:
+    radial-gradient(
+      ellipse 70% 70% at 50% 45%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.3) 100%
+    );
 }
 
 /* Grain texture — subtle paper feel */
@@ -556,14 +572,14 @@ pre {
 
 /* --- Shiki theme wiring ------------------------------------ */
 
-.shiki,
-.shiki span {
+.astro-code,
+.astro-code span {
   color: var(--shiki-light);
   background-color: var(--shiki-light-bg);
 }
 
-[data-theme="dark"] .shiki,
-[data-theme="dark"] .shiki span {
+[data-theme="dark"] .astro-code,
+[data-theme="dark"] .astro-code span {
   color: var(--shiki-dark);
   background-color: var(--shiki-dark-bg);
 }

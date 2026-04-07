@@ -312,6 +312,8 @@ pre {
   line-height: 1.78;
 }
 
+
+
 /*
  * Two-column layout: activated by data-columns="dual" on a parent.
  * Column widths driven by --col-left / --col-right CSS vars from
@@ -401,11 +403,18 @@ pre {
   }
 }
 
+.prose h1 {
+  margin-top: var(--space-3xl);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+}
+
 .prose h2 {
   margin-top: var(--space-3xl);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
 }
 
 .prose h3 {
@@ -847,6 +856,68 @@ pre {
   font-size: var(--text-xs);
   color: var(--color-text-faint);
   text-align: center;
+}
+
+/* --- Tables ------------------------------------------------ */
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block: var(--space-lg);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.prose thead {
+  border-bottom: 2px solid var(--color-border-strong);
+}
+
+.prose th {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  text-align: left;
+  padding: var(--space-xs) var(--space-sm);
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
+
+.prose td {
+  padding: var(--space-xs) var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* GFM table alignment — honour align attribute from markdown syntax */
+.prose th[align="center"],
+.prose td[align="center"] {
+  text-align: center;
+}
+
+.prose th[align="right"],
+.prose td[align="right"] {
+  text-align: right;
+}
+
+.prose th[align="left"],
+.prose td[align="left"] {
+  text-align: left;
+}
+
+.prose tbody tr:hover {
+  background: var(--color-surface-hover, rgba(0, 0, 0, 0.02));
+}
+
+[data-theme="dark"] .prose tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Responsive: horizontal scroll for wide tables on small screens */
+.prose table {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* --- Lightbox ---------------------------------------------- */

@@ -296,3 +296,5 @@ cscope.po.out
 CLAUDE.md
 AGENTS.md
 .claude
+claude-tmp/
+.playwright-mcp/

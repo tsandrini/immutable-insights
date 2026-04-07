@@ -118,8 +118,8 @@ Rewrite this into common triggers:
 And learn to read these. Below is a *non-exhaustive* table that should get you
 started.
 
-| Trigger |  Sequence | Lefty variant |
-| -------- | -------- | ------------- |
+| Trigger | Sequence | Lefty variant |
+| :------ | :------: | :-----------: |
 | insert | `R U' R'` | `L' U L` |
 | U2 insert | `R U2' R'` | `L' U2 L` |
 | take out pair | `R U R'` | `L' U' L` |

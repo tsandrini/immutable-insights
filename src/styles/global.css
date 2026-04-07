@@ -165,6 +165,24 @@ body {
     );
 }
 
+/* Accent top-edge stripe — like colored stationery binding */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent) 15%,
+    var(--color-accent) 85%,
+    transparent
+  );
+  z-index: 10000;
+}
+
 /* Grain texture — subtle paper feel */
 body::after {
   content: "";

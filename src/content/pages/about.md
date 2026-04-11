@@ -115,7 +115,7 @@ As of right now, these are my main focus:
   sporadic recreational running. Recently I've been trying more to get back into
   my older shape, which is basically impossible, but I'm trying nonetheless.
 
-- **Lifting**: SBD 100/75/145. More on the strength + cardio hybrid
+- **Lifting**: SBD 100/75/150. More on the strength + cardio hybrid
   side, since I don't super care about body aesthetics and I also tend to
   cycle climbing/lifting/running arcs.
 
@@ -178,7 +178,7 @@ Current home times:
 - **2x2**: PB 1.43s, 4.01s ao5, 4.43s ao12.
 - **4x4**: PB 45.46s, 50.70s ao5, 54.33s ao12.
 - **Pyraminx**: PB 2.35s, 6.01s ao5, 6.93s ao12.
-- **5x5**: PB 1:51.16s, 2:03.47s ao5, 2:05.44s ao12.
+- **5x5**: PB 1\:51.16s, 2\:03.47s ao5, 2\:05.44s ao12.
 
 ![Cubes](/images/cubes_new.jpg)
 

@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",
+    "@fontsource-variable/jetbrains-mono": "^5.2.8",
+    "@fontsource-variable/newsreader": "^5.2.10",
+    "@fontsource/young-serif": "^5.2.7",
     "astro": "^5.7.10",
     "remark-directive": "^4.0.0",
     "remark-gfm": "^4.0.1"

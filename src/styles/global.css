@@ -4,6 +4,13 @@
    Tufte-inspired wide layout with sidenotes.
    ============================================================ */
 
+/* --- Fonts (self-hosted via Fontsource) -------------------- */
+
+@import "@fontsource/young-serif/400.css";
+@import "@fontsource-variable/newsreader/opsz.css";
+@import "@fontsource-variable/newsreader/opsz-italic.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+
 /* --- Reset ------------------------------------------------- */
 
 *,
@@ -69,9 +76,9 @@ ol {
 
 :root {
   /* Typography */
-  --font-heading: "Syne", system-ui, sans-serif;
-  --font-body: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", monospace;
+  --font-heading: "Young Serif", Georgia, "Times New Roman", serif;
+  --font-body: "Newsreader Variable", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Code", monospace;
 
   /* Fluid type scale */
   --text-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);
@@ -206,13 +213,14 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 h1 {
   font-size: var(--text-4xl);
+  letter-spacing: -0.02em;
 }
 h2 {
   font-size: var(--text-3xl);

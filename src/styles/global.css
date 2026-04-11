@@ -616,6 +616,32 @@ pre {
   background-color: var(--shiki-dark-bg);
 }
 
+/*
+ * Wire the accent hue into Shiki's red-family tokens.
+ * Shiki bakes hex values into span[style] at build time, so the accent
+ * variable isn't applied automatically. We target the red-family hexes
+ * from the vitesse-light / vitesse-dark themes (punctuation, operators,
+ * strings, string escapes) and route them through --color-accent so the
+ * hue slider rotates them with the rest of the UI.
+ *
+ * Vitesse red-family tokens:
+ *   light: #AB5959 (punct/operator), #B56959 (string), #B5695977 (alpha)
+ *   dark:  #CB7676 (punct/operator), #C98A7D (string), #C98A7D77 (alpha)
+ */
+.astro-code span[style*="#AB5959"],
+.astro-code span[style*="#ab5959"],
+.astro-code span[style*="#B56959"],
+.astro-code span[style*="#b56959"] {
+  color: var(--color-accent);
+}
+
+[data-theme="dark"] .astro-code span[style*="#CB7676"],
+[data-theme="dark"] .astro-code span[style*="#cb7676"],
+[data-theme="dark"] .astro-code span[style*="#C98A7D"],
+[data-theme="dark"] .astro-code span[style*="#c98a7d"] {
+  color: var(--color-accent);
+}
+
 /* --- Admonitions ------------------------------------------- */
 
 .prose .admonition {

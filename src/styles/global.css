@@ -414,7 +414,7 @@ pre {
   margin-top: var(--space-3xl);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
-  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+  /* border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border)); */
 }
 
 .prose h3 {
@@ -879,6 +879,30 @@ pre {
   padding: var(--space-xs) var(--space-sm);
   color: var(--color-text);
   letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.prose th::after {
+  content: "";
+  display: inline-block;
+  width: 0.6em;
+  margin-left: 0.3em;
+  opacity: 0.3;
+}
+
+.prose th:hover::after {
+  content: "↕";
+  opacity: 0.5;
+}
+
+.prose th.sort-asc::after {
+  content: "↑";
+  opacity: 0.7;
+}
+
+.prose th.sort-desc::after {
+  content: "↓";
+  opacity: 0.7;
 }
 
 .prose td {

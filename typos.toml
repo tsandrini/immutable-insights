@@ -4,6 +4,7 @@ OLL = "OLL"
 CLL = "CLL"
 styl = "styl"
 BA = "BA" # tsandrini.gpg lmao
+ths = "ths"
 
 [files]
 extend-exclude = [

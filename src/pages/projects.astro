@@ -2,10 +2,10 @@
 import { getEntry, render } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-const page = await getEntry("pages", "about");
+const page = await getEntry("pages", "projects");
 
 if (!page) {
-  throw new Error("About page content not found");
+  throw new Error("Projects page content not found");
 }
 
 const { Content } = await render(page);
@@ -27,31 +27,31 @@ const col = parseColumns(page.data.columns);
 
 <BaseLayout title={page.data.title} description={page.data.description}>
 	<article
-		class="about-page"
+		class="projects-page"
 		data-columns={col.single ? undefined : "dual"}
 		style={col.style || undefined}
 	>
-		<div class="about-content page-column prose" data-numbered-headings={page.data.numberedHeadings || undefined}>
+		<div class="projects-content page-column prose" data-numbered-headings={page.data.numberedHeadings || undefined}>
 			<Content />
 		</div>
 	</article>
 </BaseLayout>
 
 <style>
-	.about-page {
+	.projects-page {
 		padding-top: var(--space-3xl);
 		padding-bottom: var(--space-4xl);
 		padding-inline: var(--space-lg);
 	}
 
 	/* First h1 gets special treatment */
-	.about-content :global(h1:first-child) {
+	.projects-content :global(h1:first-child) {
 		font-size: var(--text-4xl);
 		margin-bottom: var(--space-2xl);
 	}
 
 	/* Subsequent h1s act as major section dividers */
-	.about-content :global(h1) {
+	.projects-content :global(h1) {
 		font-size: var(--text-3xl);
 		margin-top: var(--space-4xl);
 		margin-bottom: var(--space-lg);
@@ -60,7 +60,7 @@ const col = parseColumns(page.data.columns);
 	}
 
 	@media (min-width: 80rem) {
-		.about-page {
+		.projects-page {
 			padding-inline: var(--space-xl);
 		}
 	}

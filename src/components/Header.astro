@@ -1,5 +1,5 @@
 ---
-import { SITE, NAV_LINKS } from "../consts";
+import { NAV_LINKS, SITE } from "../consts";
 ---
 
 <header class="site-header">
@@ -31,9 +31,12 @@ import { SITE, NAV_LINKS } from "../consts";
 					<li>
 						<a
 							href={link.href}
-							class:list={["nav-link", { active: Astro.url.pathname === link.href }]}
+							class:list={["nav-link", { active: Astro.url.pathname === link.href, external: link.external }]}
+							target={link.external ? "_blank" : undefined}
+							rel={link.external ? "noopener noreferrer" : undefined}
 						>
 							{link.text}
+							{link.external && <span class="nav-ext-glyph" aria-hidden="true">↗</span>}
 						</a>
 					</li>
 				))}
@@ -120,6 +123,23 @@ import { SITE, NAV_LINKS } from "../consts";
 		letter-spacing: 0.04em;
 		padding-bottom: 2px;
 		border-bottom: 1px solid transparent;
+	}
+
+	.nav-link.external {
+		color: var(--color-text-muted);
+	}
+
+	.nav-ext-glyph {
+		display: inline-block;
+		margin-left: 0.2em;
+		font-size: 0.85em;
+		color: var(--color-text-faint);
+		transition: transform var(--transition-fast);
+	}
+
+	.nav-link.external:hover .nav-ext-glyph {
+		transform: translate(1px, -1px);
+		color: var(--color-accent);
 	}
 
 	.nav-link:hover,

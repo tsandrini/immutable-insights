@@ -1,7 +1,7 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { SITE } from "../consts";
 import { getCollection } from "astro:content";
+import { SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
 const allPosts = await getCollection("posts", ({ data }) => {
   return import.meta.env.PROD ? !data.draft : true;

@@ -7,10 +7,12 @@ export const SITE = {
   url: "https://tsandrini.sh",
 };
 
-export const NAV_LINKS = [
+export const NAV_LINKS: { text: string; href: string; external?: boolean }[] = [
   { text: "Home", href: "/" },
-  { text: "Blog", href: "/blog" },
   { text: "About", href: "/about" },
+  { text: "Projects", href: "/projects" },
+  { text: "Blog", href: "/blog" },
+  { text: "GitHub", href: "https://github.com/tsandrini", external: true },
 ];
 
 export const SOCIAL_LINKS = [

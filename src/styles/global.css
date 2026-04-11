@@ -144,12 +144,11 @@ body {
   font-size: var(--text-base);
   color: var(--color-text);
   background-color: var(--color-bg);
-  background-image:
-    radial-gradient(
-      ellipse 70% 70% at 50% 45%,
-      transparent 30%,
-      rgba(160, 145, 120, 0.35) 100%
-    );
+  background-image: radial-gradient(
+    ellipse 70% 70% at 50% 45%,
+    transparent 30%,
+    rgba(160, 145, 120, 0.35) 100%
+  );
   background-attachment: fixed;
   transition:
     color var(--transition-base),
@@ -157,12 +156,11 @@ body {
 }
 
 [data-theme="dark"] body {
-  background-image:
-    radial-gradient(
-      ellipse 70% 70% at 50% 45%,
-      transparent 40%,
-      rgba(0, 0, 0, 0.3) 100%
-    );
+  background-image: radial-gradient(
+    ellipse 70% 70% at 50% 45%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
 }
 
 /* Accent top-edge stripe — like colored stationery binding */
@@ -312,8 +310,6 @@ pre {
   line-height: 1.78;
 }
 
-
-
 /*
  * Two-column layout: activated by data-columns="dual" on a parent.
  * Column widths driven by --col-left / --col-right CSS vars from
@@ -343,7 +339,8 @@ pre {
   [data-columns="dual"] .page-column {
     max-width: var(--col-left);
     margin-left: calc(
-      (100vw - var(--col-left) - var(--col-right) - var(--layout-gap)) / 2
+      (100vw - var(--col-left) - var(--col-right) - var(--layout-gap)) /
+      2
     );
     margin-right: auto;
     overflow: visible;
@@ -407,7 +404,8 @@ pre {
   margin-top: var(--space-3xl);
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-sm);
-  border-bottom: 2px solid color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
+  border-bottom: 2px solid
+    color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
 }
 
 .prose h2 {
@@ -452,7 +450,8 @@ pre {
 }
 
 .prose[data-numbered-headings] h3::before {
-  content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) ".\00a0\00a0";
+  content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter)
+    ".\00a0\00a0";
 }
 
 .prose[data-numbered-headings] h4 {
@@ -460,7 +459,8 @@ pre {
 }
 
 .prose[data-numbered-headings] h4::before {
-  content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter) "." counter(h4-counter) ".\00a0\00a0";
+  content: counter(h1-counter) "." counter(h2-counter) "." counter(h3-counter)
+    "." counter(h4-counter) ".\00a0\00a0";
 }
 
 .prose a {

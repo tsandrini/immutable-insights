@@ -107,6 +107,11 @@ ol {
   --radius-sm: 2px;
   --radius-md: 4px;
 
+  /* Accent hue — drives --color-accent / --color-accent-hover via HSL.
+     Default 0 ≈ the original muted editorial red. Override at runtime
+     (e.g. from the header slider) by setting --accent-hue on :root. */
+  --accent-hue: 0;
+
   /* Light mode (default — paper is naturally light) */
   --color-bg: #f4f1eb;
   --color-surface: #eae6de;
@@ -114,8 +119,8 @@ ol {
   --color-text: #1a1816;
   --color-text-muted: #6e6a62;
   --color-text-faint: #a5a09a;
-  --color-accent: #8b3a3a;
-  --color-accent-hover: #6d2c2c;
+  --color-accent: hsl(var(--accent-hue) 41% 39%);
+  --color-accent-hover: hsl(var(--accent-hue) 43% 30%);
   --color-border: #d4d0c8;
   --color-border-strong: #b8b4aa;
   --color-header-bg: rgba(244, 241, 235, 0.9);
@@ -129,8 +134,8 @@ ol {
   --color-text: #d8d4cc;
   --color-text-muted: #8a8680;
   --color-text-faint: #5c5854;
-  --color-accent: #c27272;
-  --color-accent-hover: #d48a8a;
+  --color-accent: hsl(var(--accent-hue) 39% 60%);
+  --color-accent-hover: hsl(var(--accent-hue) 46% 68%);
   --color-border: #2c2a26;
   --color-border-strong: #3e3c36;
   --color-header-bg: rgba(19, 18, 16, 0.9);

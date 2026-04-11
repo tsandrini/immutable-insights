@@ -1,3 +1,7 @@
+// Toggle the header accent-hue slider. Flip to false before deploying
+// to hide the dev control without removing the underlying plumbing.
+export const SHOW_ACCENT_SLIDER = true;
+
 export const SITE = {
   title: "/immutable-insights/",
   subtitle: "tsandrini",

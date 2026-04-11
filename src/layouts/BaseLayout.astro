@@ -46,7 +46,7 @@ const pageTitle = title === SITE.title ? title : `${title} — ${SITE.subtitle}`
 			rel="stylesheet"
 		/>
 
-		{/* Prevent flash of wrong theme */}
+		{/* Prevent flash of wrong theme / accent hue */}
 		<script is:inline>
 			(function () {
 				const stored = localStorage.getItem("theme");
@@ -54,6 +54,10 @@ const pageTitle = title === SITE.title ? title : `${title} — ${SITE.subtitle}`
 					document.documentElement.setAttribute("data-theme", stored);
 				} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
 					document.documentElement.setAttribute("data-theme", "dark");
+				}
+				const hue = localStorage.getItem("accent-hue");
+				if (hue !== null) {
+					document.documentElement.style.setProperty("--accent-hue", hue);
 				}
 			})();
 		</script>

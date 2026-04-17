@@ -344,6 +344,12 @@ pre {
   margin-inline: auto;
 }
 
+@media (max-width: 71.99rem) {
+  .page-column {
+    max-width: 100%;
+  }
+}
+
 [data-columns="dual"] .page-column {
   max-width: 100%;
 }

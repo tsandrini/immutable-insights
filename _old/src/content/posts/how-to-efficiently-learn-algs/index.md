@@ -9,6 +9,7 @@ description: |
 tags: [Speedcubing, Misc]
 category: Speedcubing
 draft: false
+columns: "50vw"
 ---
 
 # 1. Intro

@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -51,6 +52,19 @@ function formatDate(date: Date): string {
 		data-columns={col.single ? undefined : "dual"}
 		style={col.style || undefined}
 	>
+		{
+			post.data.cover && (
+				<figure class="post-cover" data-lightbox-target>
+					<Image
+						src={post.data.cover}
+						alt={`Cover image for ${post.data.title}`}
+						widths={[600, 900, 1200]}
+						sizes="(max-width: 71.99rem) 100vw, 50vw"
+					/>
+				</figure>
+			)
+		}
+
 		<header class="post-header">
 			<h1>{post.data.title}</h1>
 			<div class="post-meta">
@@ -173,6 +187,18 @@ function formatDate(date: Date): string {
 		border: 1px solid var(--color-border);
 		border-radius: 3px;
 		padding: 0.1em 0.5em;
+	}
+
+	.post-cover {
+		margin-bottom: var(--space-xl);
+	}
+
+	.post-cover :global(img) {
+		width: 100%;
+		max-height: 20rem;
+		object-fit: cover;
+		border-radius: var(--radius-md);
+		cursor: zoom-in;
 	}
 
 	.post-content {

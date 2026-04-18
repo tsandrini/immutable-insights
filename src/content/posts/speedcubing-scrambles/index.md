@@ -2,7 +2,7 @@
 title: Speedcubing scrambles
 published: 2025-03-25
 description: Lorem ipsum dolor sit atmet.
-image: "./cover.png"
+cover: "./cover.png"
 tags: [Speedcubing, Misc]
 category: Speedcubing
 draft: true

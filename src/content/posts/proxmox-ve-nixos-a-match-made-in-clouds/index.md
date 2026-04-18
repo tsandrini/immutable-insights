@@ -1,7 +1,7 @@
 ---
 title: Proxmox VE & NixOS, a match made in clouds?
 published: 2025-07-19
-image: "./cover.png"
+cover: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
 draft: true

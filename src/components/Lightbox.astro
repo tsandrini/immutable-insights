@@ -28,9 +28,11 @@
     let gallery: HTMLImageElement[] = [];
     let currentIndex = 0;
 
+    const LB_SELECTOR = ".prose img, [data-lightbox-target] img";
+
     function collectImages() {
       gallery = Array.from(
-        document.querySelectorAll<HTMLImageElement>(".prose img"),
+        document.querySelectorAll<HTMLImageElement>(LB_SELECTOR),
       );
     }
 
@@ -77,7 +79,7 @@
 
     document.addEventListener("click", (e) => {
       const img = (e.target as Element).closest(
-        ".prose img",
+        LB_SELECTOR,
       ) as HTMLImageElement | null;
       if (img) {
         e.preventDefault();

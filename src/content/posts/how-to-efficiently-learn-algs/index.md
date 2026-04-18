@@ -1,7 +1,7 @@
 ---
 title: How to efficiently learn algs
 published: 2025-03-25
-image: "./cover.png"
+cover: "./cover.png"
 description: |
   Stop wasting your time & potential and finally learn the algsets
   that you've been procrastinating on! A short guide on how to use

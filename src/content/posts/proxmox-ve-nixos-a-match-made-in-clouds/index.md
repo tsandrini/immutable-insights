@@ -18,7 +18,7 @@ description: |
 
 When it comes to virtualisation of linux images there aren't currently that
 many Type 1 or Type 2
-:::aside
+:::aside{mood="thinking"}
 A **Type 1 hypervisor** runs directly on bare metal, while a **Type 2** runs
 on top of an existing OS. Proxmox is Type 1 (KVM-based).
 :::
@@ -38,7 +38,7 @@ real options we end up with are
 4. And lastly one might also use some more vendor specific stuff like
    [Red Hat's virtualization platform](https://www.redhat.com/en/technologies/cloud-computing/openshift/virtualization)
 
-::aside[See the [Proxmox wiki](https://pve.proxmox.com/wiki/Main_Page) for official docs.]
+::aside[See the [Proxmox wiki](https://pve.proxmox.com/wiki/Main_Page) for official docs.]{mood="sparkle"}
 
 In my limited czech experience I've perceived VMware and Proxmox to be roughly
 equal in terms of popularity/use and community support up until very recently
@@ -256,7 +256,7 @@ using [`lib.evalModules`](https://github.com/NixOS/nixpkgs/blob/d254223c8dfb138c
 3. `imports` is an array of additional NixOS modules that should be added
    to the current evaluation scope.
 :::
-:::aside
+:::aside{mood="excited"}
 These modules technically represent an
 [Open Recursion](https://www.cs.ox.ac.uk/people/ralf.hinze/talks/Open.pdf)
 model and in a very roundabout funny way writing NixOS modules

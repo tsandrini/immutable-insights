@@ -376,11 +376,96 @@ pre {
     margin-bottom: var(--space-lg);
     font-size: var(--text-sm);
     line-height: 1.6;
+
+    position: relative;
+    background: color-mix(in srgb, var(--color-accent) 7%, var(--color-bg));
+    border: 1px solid
+      color-mix(in srgb, var(--color-accent) 25%, var(--color-border));
+    border-radius: 14px;
+    padding: var(--space-md) var(--space-lg) var(--space-md);
+  }
+
+  /* Speech-bubble tail pointing back toward the main text column */
+  [data-columns="dual"] .prose > .margin-note::before,
+  [data-columns="dual"] .prose > .margin-note::after {
+    content: "";
+    position: absolute;
+    top: 1.25rem;
+    width: 0;
+    height: 0;
+    border-style: solid;
+  }
+  [data-columns="dual"] .prose > .margin-note::before {
+    left: -10px;
+    border-width: 6px 10px 6px 0;
+    border-color: transparent
+      color-mix(in srgb, var(--color-accent) 25%, var(--color-border))
+      transparent transparent;
+  }
+  [data-columns="dual"] .prose > .margin-note::after {
+    left: -9px;
+    border-width: 6px 10px 6px 0;
+    border-color: transparent
+      color-mix(in srgb, var(--color-accent) 7%, var(--color-bg))
+      transparent transparent;
+  }
+
+  /* When wrapping an admonition, drop bubble chrome to avoid doubled styling */
+  [data-columns="dual"] .prose > .margin-note:has(> .admonition) {
+    background: transparent;
+    border: none;
+    padding: 0;
+  }
+  [data-columns="dual"] .prose > .margin-note:has(> .admonition)::before,
+  [data-columns="dual"] .prose > .margin-note:has(> .admonition)::after {
+    content: none;
   }
 
   /* Leaf variant is even more compact */
   [data-columns="dual"] .prose > .margin-note-leaf {
     font-size: var(--text-xs);
+  }
+}
+
+/* Kaomoji mascot — the "voice" of the aside. Placeholder for real art.
+   Uses a broad-coverage font stack because kaomoji rely on obscure Unicode
+   (Canadian syllabics, phonetic extensions, Arabic presentation forms) that
+   most mono/serif fonts don't ship. System UI + Noto fallbacks cover them. */
+.margin-note > .mascot {
+  font-family:
+    "Segoe UI Symbol", "Apple Color Emoji", "Noto Sans", "Noto Sans Symbols 2",
+    system-ui, sans-serif;
+  font-size: 1.1em;
+  line-height: 1;
+  color: var(--color-accent);
+  margin: 0 0 var(--space-sm);
+  letter-spacing: 0;
+  user-select: none;
+}
+
+@media (min-width: 72rem) {
+  [data-columns="dual"] .margin-note > .mascot {
+    position: absolute;
+    top: -0.99em;
+    left: -0.6em;
+    margin: 0;
+    padding: 0 0.35em;
+    font-size: 1.4em;
+    background: var(--color-bg);
+    border-radius: 999px;
+    transform: rotate(-4deg);
+    transform-origin: center;
+  }
+}
+
+/* Inline mascot on narrow viewports — sits before first line of content */
+@media (max-width: 71.99rem) {
+  .margin-note > .mascot {
+    display: inline;
+    margin-right: 0.4em;
+  }
+  .margin-note > .mascot + p {
+    display: inline;
   }
 }
 

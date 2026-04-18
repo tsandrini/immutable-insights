@@ -1,10 +1,42 @@
 import { visit } from "unist-util-visit";
 
 /**
+ * Kaomoji set for aside moods. Used as a placeholder mascot until real
+ * illustration replaces it. Picking replacement art later is a CSS/markup
+ * swap — the directive API stays the same.
+ */
+const MOOD_KAOMOJI = {
+  default: "ᓚ₍ ^. .^₎",
+  excited: "૮ ˶ˆ ᵕ ˆ˶ ა",
+  thinking: "(｡•ᴗ-)✧",
+  love: "૮₍ ˶ᵔ ᵕ ᵔ˶ ₎ა",
+  shock: "( °o° )",
+  sleepy: "(｡-ω-)zzz",
+  mischief: "(｡•̀ᴗ-)✧",
+  puppy: "૮ • ﻌ • ა",
+  sparkle: "(≧◡≦) ✧",
+};
+
+function buildMascotNode(mood) {
+  const kaomoji = MOOD_KAOMOJI[mood] || MOOD_KAOMOJI.default;
+  return {
+    type: "paragraph",
+    data: {
+      hName: "div",
+      hProperties: { class: "mascot", "aria-hidden": "true" },
+    },
+    children: [{ type: "text", value: kaomoji }],
+  };
+}
+
+/**
  * Remark plugin that transforms :::aside container directives and ::aside[]
  * leaf directives into <aside class="margin-note"> elements.
  *
  * Requires remark-directive for the ::: / :: syntax.
+ *
+ * Supports an optional mood attribute — :::aside{mood="excited"} — which
+ * prepends a kaomoji mascot. See MOOD_KAOMOJI for the vocabulary.
  *
  * CSS handles positioning via float: right + negative margin to pull
  * asides into the right column. The aside appears in the document flow
@@ -20,19 +52,25 @@ export function remarkAside() {
     // First pass: transform directive nodes into aside elements
     visit(tree, (node) => {
       if (node.type === "containerDirective" && node.name === "aside") {
+        const mood = node.attributes?.mood || "default";
         if (!node.data) node.data = {};
         node.data.hName = "aside";
         node.data.hProperties = {
           class: "margin-note",
+          "data-mood": mood,
         };
+        node.children = [buildMascotNode(mood), ...(node.children || [])];
       }
 
       if (node.type === "leafDirective" && node.name === "aside") {
+        const mood = node.attributes?.mood || "default";
         if (!node.data) node.data = {};
         node.data.hName = "aside";
         node.data.hProperties = {
           class: "margin-note margin-note-leaf",
+          "data-mood": mood,
         };
+        node.children = [buildMascotNode(mood), ...(node.children || [])];
       }
     });
 

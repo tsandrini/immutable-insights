@@ -1,10 +1,13 @@
 import mdx from "@astrojs/mdx";
 import { defineConfig } from "astro/config";
+import rehypeKatex from "rehype-katex";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions.mjs";
 import { remarkAside } from "./src/plugins/remark-aside.mjs";
 import { remarkForgeCards } from "./src/plugins/remark-forge-cards.mjs";
+import { remarkUnwrapDirectives } from "./src/plugins/remark-unwrap-directives.mjs";
 
 export default defineConfig({
   integrations: [mdx()],
@@ -15,7 +18,10 @@ export default defineConfig({
       remarkAdmonitions,
       remarkForgeCards,
       remarkAside,
+      remarkUnwrapDirectives,
+      remarkMath,
     ],
+    rehypePlugins: [rehypeKatex],
     shikiConfig: {
       themes: {
         light: "vitesse-light",

@@ -17,7 +17,10 @@
     "@fontsource-variable/newsreader": "^5.2.10",
     "@fontsource/young-serif": "^5.2.7",
     "astro": "^5.7.10",
+    "katex": "^0.16.45",
+    "rehype-katex": "^7.0.1",
     "remark-directive": "^4.0.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "remark-math": "^6.0.0"
   }
 }

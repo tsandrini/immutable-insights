@@ -1,6 +1,6 @@
 ---
-import { getCollection, render } from "astro:content";
 import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export async function getStaticPaths() {
@@ -84,7 +84,12 @@ function formatDate(date: Date): string {
 				}
 				{
 					post.data.category && (
-						<span class="post-category">{post.data.category}</span>
+						<a
+							class="post-category"
+							href={`/blog/?category=${encodeURIComponent(post.data.category)}`}
+						>
+							{post.data.category}
+						</a>
 					)
 				}
 			</div>
@@ -92,7 +97,12 @@ function formatDate(date: Date): string {
 				post.data.tags.length > 0 && (
 					<div class="post-tags">
 						{post.data.tags.map((tag) => (
-							<span class="tag">{tag}</span>
+							<a
+								class="tag"
+								href={`/blog/?tag=${encodeURIComponent(tag)}`}
+							>
+								{tag}
+							</a>
 						))}
 					</div>
 				)
@@ -187,6 +197,23 @@ function formatDate(date: Date): string {
 		border: 1px solid var(--color-border);
 		border-radius: 3px;
 		padding: 0.1em 0.5em;
+		text-decoration: none;
+		transition:
+			color var(--transition-base),
+			border-color var(--transition-base);
+	}
+
+	.tag:hover {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+
+	a.post-category {
+		transition: color var(--transition-base);
+	}
+
+	a.post-category:hover {
+		color: var(--color-accent);
 	}
 
 	.post-cover {

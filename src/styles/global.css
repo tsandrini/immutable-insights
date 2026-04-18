@@ -78,7 +78,8 @@ ol {
   /* Typography */
   --font-heading: "Young Serif", Georgia, "Times New Roman", serif;
   --font-body: "Newsreader Variable", Georgia, "Times New Roman", serif;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, "Cascadia Code", monospace;
+  --font-mono:
+    "JetBrains Mono Variable", ui-monospace, "Cascadia Code", monospace;
 
   /* Fluid type scale */
   --text-xs: clamp(0.72rem, 0.68rem + 0.2vw, 0.8rem);

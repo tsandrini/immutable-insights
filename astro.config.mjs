@@ -4,6 +4,7 @@ import rehypeKatex from "rehype-katex";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import { rehypeEmojiMutant } from "./src/plugins/rehype-emoji-mutant.mjs";
 import { remarkAdmonitions } from "./src/plugins/remark-admonitions.mjs";
 import { remarkAside } from "./src/plugins/remark-aside.mjs";
 import { remarkForgeCards } from "./src/plugins/remark-forge-cards.mjs";
@@ -21,7 +22,7 @@ export default defineConfig({
       remarkUnwrapDirectives,
       remarkMath,
     ],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypeEmojiMutant],
     shikiConfig: {
       themes: {
         light: "vitesse-light",

@@ -298,3 +298,6 @@ AGENTS.md
 .claude
 claude-tmp/
 .playwright-mcp/
+
+# Generated emoji index — open locally, not built
+emoji-index.html

@@ -118,7 +118,7 @@ ol {
   /* Accent hue — drives --color-accent / --color-accent-hover via HSL.
      Default 0 ≈ the original muted editorial red. Override at runtime
      (e.g. from the header slider) by setting --accent-hue on :root. */
-  --accent-hue: 0;
+  --accent-hue: 115;
 
   /* Light mode (default — paper is naturally light) */
   --color-bg: #f4f1eb;
@@ -406,8 +406,8 @@ pre {
     left: -9px;
     border-width: 6px 10px 6px 0;
     border-color: transparent
-      color-mix(in srgb, var(--color-accent) 7%, var(--color-bg))
-      transparent transparent;
+      color-mix(in srgb, var(--color-accent) 7%, var(--color-bg)) transparent
+      transparent;
   }
 
   /* When wrapping an admonition, drop bubble chrome to avoid doubled styling */
@@ -959,6 +959,20 @@ pre {
 
 .prose img:hover {
   border-color: var(--color-border-strong);
+}
+
+/* Inline emoji (Mutant Standard shortcodes) — override .prose img block styling */
+.emoji,
+.prose img.emoji {
+  display: inline-block;
+  vertical-align: -0.15em;
+  height: 1.1em;
+  width: auto;
+  max-width: none;
+  margin: 0 0.05em;
+  border: none;
+  border-radius: 0;
+  cursor: inherit;
 }
 
 /* When image is inside a paragraph, don't double-up margins */

@@ -117,7 +117,6 @@ As of right now, these are my main focus:
   if you want to check up on my endeavours, you can follow me on
   [Strava](https://www.strava.com/athletes/tsandrini_) or also
   [Garmin connect](https://connect.garmin.com/modern/profile/108ef28c-c508-45e8-8b59-43c301d48f9e).
-  <iframe height='160' width='300' frameborder='0' allowtransparency='true' scrolling='no' src='https://www.strava.com/athletes/30711285/activity-summary/0640a92a310dfc34b81f58430cf84e61ae17aabe'></iframe>
 
   Here are some random ancient results that are still available on the internet
   if you are interested:

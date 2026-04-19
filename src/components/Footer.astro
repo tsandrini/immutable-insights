@@ -36,7 +36,11 @@ const icons: Record<string, string> = {
 		</nav>
 
 		<p class="copyright">
-			&copy; {year} {SITE.subtitle}
+			&copy; {year} {SITE.subtitle}, made in
+			<a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>,
+			emojis provided by
+			<a href="https://mutant.tech" target="_blank" rel="noopener noreferrer">Mutant Standard</a>
+			(<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a>)
 		</p>
 	</div>
 </footer>
@@ -78,6 +82,18 @@ const icons: Record<string, string> = {
 		font-family: var(--font-mono);
 		font-size: var(--text-xs);
 		color: var(--color-text-faint);
+		text-align: center;
+		line-height: 1.8;
+	}
+
+	.copyright a {
+		color: var(--color-text-muted);
+		border-bottom: 1px dotted currentColor;
+		transition: color var(--transition-fast);
+	}
+
+	.copyright a:hover {
+		color: var(--color-accent);
 	}
 
 	@media (min-width: 80rem) {

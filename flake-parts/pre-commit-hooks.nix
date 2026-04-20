@@ -9,6 +9,7 @@
         "flake.lock"
         "_old/.*"
         ".*\\.jpg$"
+        "public/keybase.txt"
       ];
 
       hooks = {

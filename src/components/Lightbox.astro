@@ -28,7 +28,8 @@
     let gallery: HTMLImageElement[] = [];
     let currentIndex = 0;
 
-    const LB_SELECTOR = ".prose img, [data-lightbox-target] img";
+    const LB_SELECTOR =
+      ".prose img:not(.emoji), [data-lightbox-target] img:not(.emoji)";
 
     function collectImages() {
       gallery = Array.from(

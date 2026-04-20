@@ -1,0 +1,148 @@
+---
+// Decorative dog paw trail down the right margin on wide viewports.
+// Paws are generated at mount based on document height and fade in
+// as the reader scrolls past them (reading-progress style).
+---
+
+<div class="paw-trail" aria-hidden="true"></div>
+
+<script>
+	const PAW_SVG = `<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+		<ellipse cx="32" cy="44" rx="13" ry="11"/>
+		<ellipse cx="14" cy="28" rx="5.5" ry="7"/>
+		<ellipse cx="24" cy="14" rx="5" ry="6.5"/>
+		<ellipse cx="40" cy="14" rx="5" ry="6.5"/>
+		<ellipse cx="50" cy="28" rx="5.5" ry="7"/>
+	</svg>`;
+
+	const REM = 16;
+	const WIDE_BREAKPOINT = 72 * REM;
+	const SPACING = 7 * REM;
+	const START_OFFSET = 6 * REM;
+	const END_OFFSET = 6 * REM;
+
+	let observer: IntersectionObserver | null = null;
+
+	function clearTrail(container: HTMLElement) {
+		container.innerHTML = "";
+		if (observer) observer.disconnect();
+	}
+
+	function buildTrail() {
+		const container = document.querySelector<HTMLElement>(".paw-trail");
+		if (!container) return;
+
+		clearTrail(container);
+
+		if (window.innerWidth < WIDE_BREAKPOINT) return;
+
+		const docHeight = document.documentElement.scrollHeight;
+		const usable = docHeight - START_OFFSET - END_OFFSET;
+		const count = Math.max(0, Math.floor(usable / SPACING));
+
+		const frag = document.createDocumentFragment();
+		for (let i = 0; i < count; i++) {
+			const paw = document.createElement("div");
+			paw.className = `paw ${i % 2 === 0 ? "paw-left" : "paw-right"}`;
+			paw.style.top = `${START_OFFSET + i * SPACING}px`;
+			paw.innerHTML = PAW_SVG;
+			frag.appendChild(paw);
+		}
+		container.appendChild(frag);
+
+		observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-visible");
+						observer?.unobserve(entry.target);
+					}
+				}
+			},
+			{ rootMargin: "0px 0px -20% 0px" },
+		);
+		for (const paw of container.querySelectorAll(".paw")) {
+			observer.observe(paw);
+		}
+	}
+
+	// Rebuild on resize (crossing the breakpoint or layout shift changing height).
+	let resizeTimer: number | undefined;
+	function scheduleRebuild() {
+		window.clearTimeout(resizeTimer);
+		resizeTimer = window.setTimeout(buildTrail, 200);
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", buildTrail);
+	} else {
+		buildTrail();
+	}
+	window.addEventListener("resize", scheduleRebuild);
+	window.addEventListener("load", buildTrail);
+</script>
+
+<style is:global>
+	.paw-trail {
+		position: absolute;
+		top: 0;
+		right: 1.5rem;
+		width: 5rem;
+		height: 100%;
+		pointer-events: none;
+		z-index: 1;
+		display: none;
+	}
+
+	@media (min-width: 72rem) {
+		.paw-trail {
+			display: block;
+		}
+	}
+
+	.paw-trail .paw {
+		position: absolute;
+		width: 2rem;
+		height: 2rem;
+		opacity: 0;
+		transform: translateY(0.5rem);
+		transition:
+			opacity 0.7s ease,
+			transform 0.7s ease;
+	}
+
+	.paw-trail .paw.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.paw-trail .paw svg {
+		width: 100%;
+		height: 100%;
+		fill: var(--color-accent);
+		opacity: 0.45;
+	}
+
+	.paw-trail .paw-left {
+		left: 0;
+	}
+
+	.paw-trail .paw-left.is-visible {
+		transform: translateY(0) rotate(-18deg);
+	}
+
+	.paw-trail .paw-right {
+		right: 0;
+	}
+
+	.paw-trail .paw-right.is-visible {
+		transform: translateY(0) rotate(18deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.paw-trail .paw {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>

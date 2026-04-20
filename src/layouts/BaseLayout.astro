@@ -3,6 +3,7 @@ import CodeCopyButton from "../components/CodeCopyButton.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Lightbox from "../components/Lightbox.astro";
+import PawPrints from "../components/PawPrints.astro";
 import SortableTable from "../components/SortableTable.astro";
 import "../styles/global.css";
 import "katex/dist/katex.min.css";
@@ -65,5 +66,6 @@ const pageTitle = title === SITE.title ? title : `${title} — ${SITE.subtitle}`
 		<Lightbox />
 		<CodeCopyButton />
 		<SortableTable />
+		<PawPrints />
 	</body>
 </html>

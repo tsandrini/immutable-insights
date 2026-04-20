@@ -18,6 +18,11 @@ export const LICENSE = {
   href: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
 
+export const CODE_LICENSE = {
+  name: "EUPL v1.2",
+  href: "https://joinup.ec.europa.eu/collection/eupl/eupl-text-eupl-12",
+};
+
 export const NAV_LINKS: { text: string; href: string; external?: boolean }[] = [
   { text: "Home", href: "/" },
   { text: "About", href: "/about" },

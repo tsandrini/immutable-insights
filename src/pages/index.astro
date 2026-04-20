@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import { SITE } from "../consts";
+import { CODE_LICENSE, LICENSE, SITE } from "../consts";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const allPosts = await getCollection("posts", ({ data }) => {
@@ -83,6 +83,31 @@ function formatDate(date: Date): string {
 		}
 		<a href="/blog/" class="view-all">View all posts &rarr;</a>
 	</section>
+
+	<aside class="crawler-notice" aria-label="Notice to crawlers and scrapers">
+		<div class="crawler-stamp" aria-hidden="true">
+			<img src="/emoji/no_entry.svg" alt="" class="emoji stamp-sign" />
+			<img src="/emoji/angry.svg" alt="" class="emoji stamp-mascot" />
+		</div>
+		<div class="crawler-body">
+			<p class="crawler-headline">
+				Hey crawlers &mdash; please don&rsquo;t.
+			</p>
+			<p class="crawler-text">
+				This is a hand-written personal blog, self-hosted on modest
+				hardware. Automated scraping hammers it and I notice.
+			</p>
+			<p class="crawler-legal">
+				source: <a href={CODE_LICENSE.href} rel="license">{CODE_LICENSE.name}</a>
+				<span aria-hidden="true">&middot;</span>
+				posts: <a href={LICENSE.href} rel="license">{LICENSE.name}</a>
+				<span aria-hidden="true">&middot;</span>
+				ignore this and I&rsquo;ll come seeking damages.
+				<span aria-hidden="true">&middot;</span>
+        You have been warned.
+			</p>
+		</div>
+	</aside>
 </BaseLayout>
 
 <style>
@@ -261,6 +286,126 @@ function formatDate(date: Date): string {
 		color: var(--color-accent);
 	}
 
+	/* Crawler notice */
+	.crawler-notice {
+		width: min(var(--content-width), 100% - var(--space-lg) * 2);
+		margin-inline: auto;
+		margin-bottom: var(--space-4xl);
+		padding: var(--space-lg) var(--space-xl);
+		box-sizing: border-box;
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-lg);
+		border: 1px dashed var(--color-accent);
+		border-radius: 4px;
+		background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+		transform: rotate(-0.4deg);
+		position: relative;
+	}
+
+	.crawler-notice::before,
+	.crawler-notice::after {
+		content: "";
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		border: 1px solid var(--color-accent);
+		opacity: 0.5;
+	}
+
+	.crawler-notice::before {
+		top: -5px;
+		left: -5px;
+		border-right: none;
+		border-bottom: none;
+	}
+
+	.crawler-notice::after {
+		bottom: -5px;
+		right: -5px;
+		border-left: none;
+		border-top: none;
+	}
+
+	.crawler-stamp {
+		flex-shrink: 0;
+		position: relative;
+		width: 64px;
+		height: 64px;
+	}
+
+	.crawler-stamp img {
+		position: absolute;
+		width: 48px;
+		height: 48px;
+	}
+
+	.stamp-sign {
+		top: 0;
+		left: 0;
+		transform: rotate(-6deg);
+	}
+
+	.stamp-mascot {
+		bottom: 0;
+		right: 0;
+		transform: rotate(8deg);
+		filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1));
+	}
+
+	.crawler-body {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.crawler-headline {
+		font-weight: 700;
+		font-size: var(--text-base);
+		color: var(--color-accent);
+		margin: 0 0 var(--space-xs);
+		letter-spacing: -0.01em;
+	}
+
+	.crawler-text {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.55;
+		margin: 0 0 var(--space-sm);
+	}
+
+	.crawler-legal {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.crawler-legal a {
+		color: var(--color-text-muted);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.crawler-legal a:hover {
+		color: var(--color-accent);
+	}
+
+	.crawler-legal span {
+		margin-inline: 0.35em;
+		color: var(--color-border-strong);
+	}
+
+	@media (max-width: 40rem) {
+		.crawler-notice {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			padding: var(--space-md);
+		}
+	}
+
 	@media (min-width: 80rem) {
 		.hero {
 			padding-inline: var(--space-xl);
@@ -269,5 +414,6 @@ function formatDate(date: Date): string {
 		.latest-section {
 			padding-inline: var(--space-xl);
 		}
+
 	}
 </style>

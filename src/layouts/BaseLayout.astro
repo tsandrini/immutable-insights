@@ -1,0 +1,73 @@
+---
+import CodeCopyButton from "../components/CodeCopyButton.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import HeadingAnchors from "../components/HeadingAnchors.astro";
+import Lightbox from "../components/Lightbox.astro";
+import PawPrints from "../components/PawPrints.astro";
+import SortableTable from "../components/SortableTable.astro";
+import "../styles/global.css";
+import "katex/dist/katex.min.css";
+import { SITE } from "../consts";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = SITE.title, description = SITE.description } = Astro.props;
+
+const pageTitle = title === SITE.title ? title : `${title} — ${SITE.subtitle}`;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<meta name="author" content={SITE.author} />
+
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+
+		<link rel="icon" href="/favicon/favicon-light-32.png" sizes="32x32" media="(prefers-color-scheme: light)" />
+		<link rel="icon" href="/favicon/favicon-light-192.png" sizes="192x192" media="(prefers-color-scheme: light)" />
+		<link rel="apple-touch-icon" href="/favicon/favicon-light-180.png" media="(prefers-color-scheme: light)" />
+		<link rel="icon" href="/favicon/favicon-dark-32.png" sizes="32x32" media="(prefers-color-scheme: dark)" />
+		<link rel="icon" href="/favicon/favicon-dark-192.png" sizes="192x192" media="(prefers-color-scheme: dark)" />
+		<link rel="apple-touch-icon" href="/favicon/favicon-dark-180.png" media="(prefers-color-scheme: dark)" />
+
+		{/* Prevent flash of wrong theme / accent hue */}
+		<script is:inline>
+			(function () {
+				const stored = localStorage.getItem("theme");
+				if (stored) {
+					document.documentElement.setAttribute("data-theme", stored);
+				} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+					document.documentElement.setAttribute("data-theme", "dark");
+				}
+				const hue = localStorage.getItem("accent-hue");
+				if (hue !== null) {
+					document.documentElement.style.setProperty("--accent-hue", hue);
+				}
+			})();
+		</script>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<slot />
+		</main>
+		<Footer />
+		<Lightbox />
+		<CodeCopyButton />
+		<HeadingAnchors />
+		<SortableTable />
+		<PawPrints />
+	</body>
+</html>

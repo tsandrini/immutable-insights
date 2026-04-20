@@ -4,3 +4,10 @@ OLL = "OLL"
 CLL = "CLL"
 styl = "styl"
 BA = "BA" # tsandrini.gpg lmao
+ths = "ths"
+
+[files]
+extend-exclude = [
+  "src/content/posts/speedcubing-scrambles/index.md",
+  "src/content/posts/shared-nix-store-in-proxmox-ve/index.md"
+]

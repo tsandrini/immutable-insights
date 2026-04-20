@@ -1,0 +1,353 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { LICENSE, SITE } from "../../consts";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts", ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter } = await render(post);
+const { words, minutes } = remarkPluginFrontmatter as {
+  words?: number;
+  minutes?: number;
+};
+
+/**
+ * Parse the `columns` frontmatter field.
+ * - "50vw"       → single column, 50vw wide
+ * - "50vw-30vw"  → two columns: main 50vw, aside 30vw
+ * - undefined    → default single column (50vw)
+ */
+function parseColumns(columns?: string) {
+  if (!columns) return { single: true, style: "" };
+  const parts = columns.split("-");
+  if (parts.length === 1) {
+    return { single: true, style: `--page-width: ${parts[0]};` };
+  }
+  return {
+    single: false,
+    style: `--col-left: ${parts[0]}; --col-right: ${parts[1]};`,
+  };
+}
+
+const col = parseColumns(post.data.columns);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+	<article
+		class="post-page"
+		data-columns={col.single ? undefined : "dual"}
+		style={col.style || undefined}
+	>
+		{
+			post.data.cover && (
+				<figure class="post-cover" data-lightbox-target>
+					<Image
+						src={post.data.cover}
+						alt={`Cover image for ${post.data.title}`}
+						widths={[600, 900, 1200]}
+						sizes="(max-width: 71.99rem) 100vw, 50vw"
+					/>
+				</figure>
+			)
+		}
+
+		<header class="post-header">
+			<h1>{post.data.title}</h1>
+			<div class="post-meta">
+				<time datetime={post.data.published.toISOString()}>
+					{formatDate(post.data.published)}
+				</time>
+				{
+					post.data.updated && (
+						<span class="updated">
+							(updated{" "}
+							<time datetime={post.data.updated.toISOString()}>
+								{formatDate(post.data.updated)}
+							</time>
+							)
+						</span>
+					)
+				}
+				{
+					post.data.category && (
+						<a
+							class="post-category"
+							href={`/blog/?category=${encodeURIComponent(post.data.category)}`}
+						>
+							{post.data.category}
+						</a>
+					)
+				}
+				{
+					typeof words === "number" && typeof minutes === "number" && (
+						<span class="post-reading">
+							{words.toLocaleString()} words · {minutes} min read
+						</span>
+					)
+				}
+			</div>
+			{
+				post.data.tags.length > 0 && (
+					<div class="post-tags">
+						{post.data.tags.map((tag) => (
+							<a
+								class="tag"
+								href={`/blog/?tag=${encodeURIComponent(tag)}`}
+							>
+								{tag}
+							</a>
+						))}
+					</div>
+				)
+			}
+		</header>
+
+		<div class="post-content prose" data-numbered-headings={post.data.numberedHeadings || undefined}>
+			<Content />
+		</div>
+
+		<aside class="post-colophon">
+			<dl>
+				<div>
+					<dt>Author</dt>
+					<dd>{SITE.author}</dd>
+				</div>
+				<div>
+					<dt>Published</dt>
+					<dd>
+						<time datetime={post.data.published.toISOString()}>
+							{formatDate(post.data.published)}
+						</time>
+					</dd>
+				</div>
+				{
+					post.data.updated && (
+						<div>
+							<dt>Updated</dt>
+							<dd>
+								<time datetime={post.data.updated.toISOString()}>
+									{formatDate(post.data.updated)}
+								</time>
+							</dd>
+						</div>
+					)
+				}
+				<div>
+					<dt>License</dt>
+					<dd>
+						<a href={LICENSE.href} rel="license noopener noreferrer" target="_blank">
+							{LICENSE.name}
+						</a>
+					</dd>
+				</div>
+			</dl>
+		</aside>
+
+		<footer class="post-footer">
+			<a href="/blog/">&larr; Back to all posts</a>
+		</footer>
+	</article>
+</BaseLayout>
+
+<style>
+	.post-page {
+		max-width: var(--page-width, 50vw);
+		margin-inline: auto;
+		padding-top: var(--space-3xl);
+		padding-bottom: var(--space-4xl);
+		padding-inline: var(--space-lg);
+	}
+
+	@media (max-width: 71.99rem) {
+		.post-page {
+			max-width: 100%;
+		}
+	}
+
+	/*
+	 * On mobile, dual-column pages behave like single column — full width,
+	 * centered. The aside float + margin shift only kicks in on wide screens.
+	 */
+	.post-page[data-columns="dual"] {
+		max-width: 100%;
+	}
+
+	@media (min-width: 72rem) {
+		.post-page[data-columns="dual"] {
+			max-width: var(--col-left);
+			margin-left: calc(
+				(100vw - var(--col-left) - var(--col-right) - var(--layout-gap)) / 2
+			);
+			margin-right: auto;
+			overflow: visible;
+		}
+	}
+
+	.post-header {
+		margin-bottom: var(--space-3xl);
+	}
+
+	.post-header h1 {
+		font-size: var(--text-4xl);
+		font-weight: 800;
+		line-height: 1.1;
+		letter-spacing: -0.02em;
+		margin-bottom: var(--space-md);
+	}
+
+	.post-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.updated {
+		color: var(--color-text-faint);
+	}
+
+	.post-category,
+	.post-reading {
+		border-left: 1px solid var(--color-border);
+		padding-left: var(--space-sm);
+	}
+
+	.post-tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-xs);
+		margin-top: var(--space-md);
+	}
+
+	.tag {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-muted);
+		border: 1px solid var(--color-border);
+		border-radius: 3px;
+		padding: 0.1em 0.5em;
+		text-decoration: none;
+		transition:
+			color var(--transition-base),
+			border-color var(--transition-base);
+	}
+
+	.tag:hover {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+
+	a.post-category {
+		transition: color var(--transition-base);
+	}
+
+	a.post-category:hover {
+		color: var(--color-accent);
+	}
+
+	.post-cover {
+		margin-bottom: var(--space-xl);
+	}
+
+	.post-cover :global(img) {
+		width: 100%;
+		max-height: 20rem;
+		object-fit: cover;
+		border-radius: var(--radius-md);
+		cursor: zoom-in;
+	}
+
+	.post-content {
+		margin-bottom: var(--space-3xl);
+	}
+
+	.post-colophon {
+		margin-top: var(--space-2xl);
+		padding-top: var(--space-lg);
+		border-top: 1px solid var(--color-border);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+	}
+
+	.post-colophon dl {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: var(--space-xs) var(--space-lg);
+		margin: 0;
+	}
+
+	.post-colophon dl > div {
+		display: contents;
+	}
+
+	.post-colophon dt {
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-text-faint);
+	}
+
+	.post-colophon dd {
+		margin: 0;
+		color: var(--color-text-muted);
+	}
+
+	.post-colophon a {
+		color: var(--color-text-muted);
+		text-decoration: underline;
+		text-decoration-color: var(--color-border);
+		text-underline-offset: 0.2em;
+		transition:
+			color var(--transition-base),
+			text-decoration-color var(--transition-base);
+	}
+
+	.post-colophon a:hover {
+		color: var(--color-accent);
+		text-decoration-color: var(--color-accent);
+	}
+
+	.post-footer {
+		margin-top: var(--space-xl);
+		padding-top: var(--space-xl);
+		border-top: 1px solid var(--color-border);
+	}
+
+	.post-footer a {
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		text-decoration: none;
+	}
+
+	.post-footer a:hover {
+		color: var(--color-accent);
+	}
+
+	@media (min-width: 80rem) {
+		.post-page {
+			padding-inline: var(--space-xl);
+		}
+	}
+</style>

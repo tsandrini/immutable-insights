@@ -1,0 +1,419 @@
+---
+import { getCollection } from "astro:content";
+import { CODE_LICENSE, LICENSE, SITE } from "../consts";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const allPosts = await getCollection("posts", ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+const latestPosts = allPosts
+  .sort((a, b) => b.data.published.getTime() - a.data.published.getTime())
+  .slice(0, 5);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<BaseLayout>
+	<section class="hero">
+		<div class="hero-content">
+			<div class="hero-avatar">
+				<img
+					src="/images/avatar.jpg"
+					alt={SITE.subtitle}
+					width="120"
+					height="120"
+				/>
+			</div>
+
+			<h1 class="hero-title">
+				<span class="slash">/</span>immutable-insights<span class="slash">/</span>
+			</h1>
+
+			<p class="hero-bio">
+				Nix, algorithms, speedcubing, and the occasional existential
+				tangent about life and what it means to be alive in an
+				increasingly computed world.
+			</p>
+
+			<div class="hero-meta">
+				<span>by <strong>{SITE.subtitle}</strong></span>
+				<span class="separator" aria-hidden="true">&mdash;</span>
+				<a href="mailto:t@tsandrini.sh">t@tsandrini.sh</a>
+			</div>
+		</div>
+	</section>
+
+	<div class="divider" aria-hidden="true">
+		<span>&lowast;&lowast;&lowast;</span>
+	</div>
+
+	<section class="latest-section">
+		<h2>Latest</h2>
+		{
+			latestPosts.length > 0 ? (
+				<ul class="post-list">
+					{latestPosts.map((post) => (
+						<li class:list={["post-item", { draft: post.data.draft }]}>
+							<a href={`/blog/${post.id}/`}>
+								<span class="post-title">
+									{post.data.draft && (
+										<span class="draft-badge">draft</span>
+									)}
+									{post.data.title}
+								</span>
+								<span class="post-meta">
+									<time datetime={post.data.published.toISOString()}>
+										{formatDate(post.data.published)}
+									</time>
+								</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="placeholder">Posts coming soon.</p>
+			)
+		}
+		<a href="/blog/" class="view-all">View all posts &rarr;</a>
+	</section>
+
+	<aside class="crawler-notice" aria-label="Notice to crawlers and scrapers">
+		<div class="crawler-stamp" aria-hidden="true">
+			<img src="/emoji/no_entry.svg" alt="" class="emoji stamp-sign" />
+			<img src="/emoji/angry.svg" alt="" class="emoji stamp-mascot" />
+		</div>
+		<div class="crawler-body">
+			<p class="crawler-headline">
+				Hey crawlers &mdash; please don&rsquo;t.
+			</p>
+			<p class="crawler-text">
+				This is a hand-written personal blog, self-hosted on modest
+				hardware. Automated scraping hammers it and I notice.
+			</p>
+			<p class="crawler-legal">
+				source: <a href={CODE_LICENSE.href} rel="license">{CODE_LICENSE.name}</a>
+				<span aria-hidden="true">&middot;</span>
+				posts: <a href={LICENSE.href} rel="license">{LICENSE.name}</a>
+				<span aria-hidden="true">&middot;</span>
+				ignore this and I&rsquo;ll come seeking damages.
+				<span aria-hidden="true">&middot;</span>
+        You have been warned.
+			</p>
+		</div>
+	</aside>
+</BaseLayout>
+
+<style>
+	/* Hero */
+	.hero {
+		padding-top: var(--space-4xl);
+		padding-bottom: var(--space-3xl);
+		padding-inline: var(--space-lg);
+	}
+
+	.hero-content {
+		max-width: var(--content-width);
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.hero-avatar {
+		margin-bottom: var(--space-2xl);
+	}
+
+	.hero-avatar img {
+		width: 100px;
+		height: 100px;
+		object-fit: cover;
+		border-radius: 12px;
+		border: 1px solid var(--color-border);
+		filter: grayscale(0.2);
+		transition: filter var(--transition-base);
+	}
+
+	.hero-avatar img:hover {
+		filter: grayscale(0);
+	}
+
+	.hero-title {
+		font-size: var(--text-4xl);
+		font-weight: 800;
+		line-height: 1.05;
+		letter-spacing: -0.03em;
+		margin-bottom: var(--space-xl);
+	}
+
+	.slash {
+		color: var(--color-text-faint);
+		font-weight: 700;
+	}
+
+	.hero-bio {
+		font-size: var(--text-lg);
+		line-height: 1.65;
+		color: var(--color-text-muted);
+		max-width: 36rem;
+		margin-bottom: var(--space-xl);
+	}
+
+	.hero-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.hero-meta strong {
+		color: var(--color-text-muted);
+	}
+
+	.hero-meta a {
+		color: var(--color-text-faint);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.15em;
+	}
+
+	.hero-meta a:hover {
+		color: var(--color-accent);
+	}
+
+	.separator {
+		color: var(--color-border-strong);
+	}
+
+	/* Divider */
+	.divider {
+		text-align: center;
+		color: var(--color-text-faint);
+		font-size: var(--text-sm);
+		letter-spacing: 0.5em;
+		padding-block: var(--space-md);
+	}
+
+	/* Latest section */
+	.latest-section {
+		max-width: var(--content-width);
+		margin-inline: auto;
+		padding-inline: var(--space-lg);
+		padding-bottom: var(--space-4xl);
+	}
+
+	.latest-section h2 {
+		font-size: var(--text-xl);
+		font-weight: 700;
+		margin-bottom: var(--space-lg);
+		padding-bottom: var(--space-sm);
+		border-bottom: 1px solid var(--color-border);
+	}
+
+	.placeholder {
+		color: var(--color-text-faint);
+		font-style: italic;
+	}
+
+	.post-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.post-item a {
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: var(--space-md);
+		padding-block: var(--space-sm);
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.post-item a:hover .post-title {
+		color: var(--color-accent);
+	}
+
+	.post-title {
+		font-weight: 600;
+		display: flex;
+		align-items: center;
+		gap: var(--space-sm);
+	}
+
+	.draft-badge {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		font-weight: 500;
+		color: var(--color-accent);
+		border: 1px solid var(--color-accent);
+		border-radius: 3px;
+		padding: 0.05em 0.4em;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.post-meta {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		white-space: nowrap;
+	}
+
+	.post-item.draft .post-title {
+		color: var(--color-text-muted);
+	}
+
+	.view-all {
+		display: inline-block;
+		margin-top: var(--space-lg);
+		font-family: var(--font-mono);
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		text-decoration: none;
+	}
+
+	.view-all:hover {
+		color: var(--color-accent);
+	}
+
+	/* Crawler notice */
+	.crawler-notice {
+		width: min(var(--content-width), 100% - var(--space-lg) * 2);
+		margin-inline: auto;
+		margin-bottom: var(--space-4xl);
+		padding: var(--space-lg) var(--space-xl);
+		box-sizing: border-box;
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-lg);
+		border: 1px dashed var(--color-accent);
+		border-radius: 4px;
+		background: color-mix(in srgb, var(--color-accent) 4%, transparent);
+		transform: rotate(-0.4deg);
+		position: relative;
+	}
+
+	.crawler-notice::before,
+	.crawler-notice::after {
+		content: "";
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		border: 1px solid var(--color-accent);
+		opacity: 0.5;
+	}
+
+	.crawler-notice::before {
+		top: -5px;
+		left: -5px;
+		border-right: none;
+		border-bottom: none;
+	}
+
+	.crawler-notice::after {
+		bottom: -5px;
+		right: -5px;
+		border-left: none;
+		border-top: none;
+	}
+
+	.crawler-stamp {
+		flex-shrink: 0;
+		position: relative;
+		width: 64px;
+		height: 64px;
+	}
+
+	.crawler-stamp img {
+		position: absolute;
+		width: 48px;
+		height: 48px;
+	}
+
+	.stamp-sign {
+		top: 0;
+		left: 0;
+		transform: rotate(-6deg);
+	}
+
+	.stamp-mascot {
+		bottom: 0;
+		right: 0;
+		transform: rotate(8deg);
+		filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1));
+	}
+
+	.crawler-body {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.crawler-headline {
+		font-weight: 700;
+		font-size: var(--text-base);
+		color: var(--color-accent);
+		margin: 0 0 var(--space-xs);
+		letter-spacing: -0.01em;
+	}
+
+	.crawler-text {
+		font-size: var(--text-sm);
+		color: var(--color-text-muted);
+		line-height: 1.55;
+		margin: 0 0 var(--space-sm);
+	}
+
+	.crawler-legal {
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+		line-height: 1.6;
+		margin: 0;
+	}
+
+	.crawler-legal a {
+		color: var(--color-text-muted);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 0.2em;
+	}
+
+	.crawler-legal a:hover {
+		color: var(--color-accent);
+	}
+
+	.crawler-legal span {
+		margin-inline: 0.35em;
+		color: var(--color-border-strong);
+	}
+
+	@media (max-width: 40rem) {
+		.crawler-notice {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			padding: var(--space-md);
+		}
+	}
+
+	@media (min-width: 80rem) {
+		.hero {
+			padding-inline: var(--space-xl);
+		}
+
+		.latest-section {
+			padding-inline: var(--space-xl);
+		}
+
+	}
+</style>

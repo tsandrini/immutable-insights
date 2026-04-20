@@ -1,0 +1,148 @@
+---
+// Decorative dog paw trail down the right margin on wide viewports.
+// Paws are rendered at SSR (fixed count, clipped by container overflow),
+// then a client-side IntersectionObserver fades each one in as the reader
+// scrolls past it (reading-progress style).
+// Fixed pool of paws. Extras beyond the document height are clipped by the
+// container's `overflow: hidden`, so short pages render fewer visible paws
+// than this cap, while long posts (~20+ min reads) still have enough.
+const PAW_COUNT = 240;
+const paws = Array.from({ length: PAW_COUNT }, (_, i) => i);
+---
+
+<div class="paw-trail" aria-hidden="true">
+	{
+		paws.map((i) => (
+			<div
+				class:list={[
+					"paw",
+					i % 2 === 0 ? "paw-left" : "paw-right",
+				]}
+				style={`top: calc(6rem + ${i} * 7rem)`}
+			>
+				<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+					<ellipse cx="32" cy="44" rx="13" ry="11" />
+					<ellipse cx="14" cy="28" rx="5.5" ry="7" />
+					<ellipse cx="24" cy="14" rx="5" ry="6.5" />
+					<ellipse cx="40" cy="14" rx="5" ry="6.5" />
+					<ellipse cx="50" cy="28" rx="5.5" ry="7" />
+				</svg>
+			</div>
+		))
+	}
+</div>
+
+<script>
+	const WIDE_BREAKPOINT = 72 * 16;
+
+	function wireTrail() {
+		const container = document.querySelector<HTMLElement>(".paw-trail");
+		if (!container) return;
+		if (window.innerWidth < WIDE_BREAKPOINT) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("is-visible");
+						observer.unobserve(entry.target);
+					}
+				}
+			},
+			{ rootMargin: "0px 0px -20% 0px" },
+		);
+		// Observe only the paws that aren't marked always-visible by CSS —
+		// the above-fold ones paint instantly via a CSS default, avoiding
+		// any first-paint flash on page navigation.
+		const paws = container.querySelectorAll<HTMLElement>(".paw");
+		for (let i = 0; i < paws.length; i++) {
+			if (i >= 8) observer.observe(paws[i]);
+		}
+	}
+
+	if (document.readyState === "loading") {
+		document.addEventListener("DOMContentLoaded", wireTrail);
+	} else {
+		wireTrail();
+	}
+</script>
+
+<style is:global>
+	.paw-trail {
+		position: absolute;
+		top: 0;
+		right: 1.5rem;
+		width: 5rem;
+		height: 100%;
+		pointer-events: none;
+		overflow: hidden;
+		z-index: 1;
+		display: none;
+	}
+
+	@media (min-width: 72rem) {
+		.paw-trail {
+			display: block;
+		}
+	}
+
+	.paw-trail .paw {
+		position: absolute;
+		width: 2rem;
+		height: 2rem;
+		opacity: 0;
+		transform: translateY(0.5rem);
+		transition:
+			opacity 0.7s ease,
+			transform 0.7s ease;
+	}
+
+	/* The first ~8 paws cover any reasonable above-fold area on wide viewports.
+	   They render visible on first paint with no transition, so there is no
+	   fade-flash on page load / navigation. */
+	.paw-trail .paw:nth-child(-n + 8) {
+		opacity: 1;
+		transition: none;
+	}
+	.paw-trail .paw-left:nth-child(-n + 8) {
+		transform: rotate(-18deg);
+	}
+	.paw-trail .paw-right:nth-child(-n + 8) {
+		transform: rotate(18deg);
+	}
+
+	.paw-trail .paw.is-visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.paw-trail .paw svg {
+		width: 100%;
+		height: 100%;
+		fill: var(--color-accent);
+		opacity: 0.45;
+	}
+
+	.paw-trail .paw-left {
+		left: 0;
+	}
+
+	.paw-trail .paw-left.is-visible {
+		transform: translateY(0) rotate(-18deg);
+	}
+
+	.paw-trail .paw-right {
+		right: 0;
+	}
+
+	.paw-trail .paw-right.is-visible {
+		transform: translateY(0) rotate(18deg);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.paw-trail .paw {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>

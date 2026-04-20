@@ -13,12 +13,11 @@
   gh,
   typos,
   nix-output-monitor,
-  nixfmt-rfc-style,
+  nixfmt,
   markdownlint-cli,
   astro-language-server,
   writeShellScriptBin,
   nix-fast-build,
-  dev-process ? null,
   pre-commit ? null,
 }:
 let
@@ -37,14 +36,14 @@ mkShell {
 
   packages =
     (lib.attrValues scripts)
-    ++ (lib.optional (dev-process != null) dev-process)
+    ++ (lib.optional (pre-commit != null) pre-commit.settings.enabledPackages)
     ++ [
       # -- NIX UTILS --
       nil # Yet another language server for Nix
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
       nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
-      nixfmt-rfc-style # An opinionated formatter for Nix
+      nixfmt # An opinionated formatter for Nix
       nix-fast-build
 
       # -- GIT RELATED UTILS --
@@ -69,7 +68,7 @@ mkShell {
 
   shellHook = ''
     ${lib.concatLines (lib.mapAttrsToList (name: value: "export ${name}=${value}") env)}
-    ${lib.optionalString (pre-commit != null) pre-commit.installationScript}
+    ${lib.optionalString (pre-commit != null) pre-commit.settings.shellHook}
 
     # Welcome splash text
     echo ""; echo -e "\e[1;37;42mWelcome to the immutable-insights devshell!\e[0m"; echo ""

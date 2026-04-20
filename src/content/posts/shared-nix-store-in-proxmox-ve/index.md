@@ -1,18 +1,18 @@
 ---
-title: "Shared `/nix/store` in Proxmox VE"
+title: "Shared `/nix/store` in Proxmox VE (TODO)"
 published: 2025-03-25
 description: Lorem ipsum dolor sit atmet.
-image: "./cover.png"
+cover: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
-draft: true
+draft: false
 ---
 
 # Introduction
 
 Since I am managing a [Proxmox VE](https://www.proxmox.com/en/) cluster
 with a ton of [NixOS](https://nixos.org/) [LXCs](https://linuxcontainers.org/)
-I've been recently wondering how feasible would be setting up a 
+I've been recently wondering how feasible would be setting up a
 shared `/nix/store` across all of them and what kind of pros/cons
 would that bring. The usual approach to this is creating a central
 store cache that would then be served to the other containers on the same
@@ -34,7 +34,7 @@ volume for a shared store? Let's find out 😎
 
 # Summary
 
-podařilo se mi jinak setupnout ten shared `/nix/store` napric kontejnerama, ale 
+podařilo se mi jinak setupnout ten shared `/nix/store` napric kontejnerama, ale
 musim rict, ze je to velice not worth nakonec :monkaS: :aPES_SadRain: anyway, já
  tam mám dva storage,
 
@@ -57,12 +57,12 @@ mkdir -p /mnt/shared_nix_store
 echo "/dev/pve/shared_nix_store /mnt/shared_nix_store ext4 defaults 0 0" >> /etc
 /fstab
 mount /mnt/shared_nix_store
-systemctl daemon-reload 
+systemctl daemon-reload
 mkdir -p /mnt/shared_nix_store/store
 chmod 755 /mnt/shared_nix_store/store
 ```
 
-a potom muzes vytvorit ty bind mounty na kontejnery pomoci (`+ro` flag pokud to 
+a potom muzes vytvorit ty bind mounty na kontejnery pomoci (`+ro` flag pokud to
 chces jen read-only)
 
 ```bash
@@ -70,7 +70,7 @@ pct set CT_ID -mp0 /mnt/shared_nix_store/store,mp=/nix/store
 ```
 
 Kazdopadne tady budes potom řešit bootstrapping chicken and egg issue když to bu
-deš poprvý pouštět, jelikož budeš mít prázdnej store a budeš neschopnej zapnout 
+deš poprvý pouštět, jelikož budeš mít prázdnej store a budeš neschopnej zapnout
 jakejkoliv nixos image :monkaS: tak pak musíš ještě řešit bootstrapping toho sha
 red storu
 
@@ -85,7 +85,7 @@ ind
 pct start CT_ID
 ```
 
-No a ve vysledku na to nejak kaslu, minimalizoval jsem ten base template na 1GB 
+No a ve vysledku na to nejak kaslu, minimalizoval jsem ten base template na 1GB
 a whatever, budu prostě kopírovat giga, jelikož ono je problém, že když ty obraz
 y buildis, tak se inherentne vsude stejnak ten /nix/store kopiruje a musis to ma
 nualne mazat, je to zkratka dost neergonomicky a lepsi je asi proste minimalizov

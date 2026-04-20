@@ -1,0 +1,42 @@
+<script>
+  function setupSortableTables() {
+    document.querySelectorAll(".prose table").forEach((table) => {
+      const thead = table.querySelector("thead");
+      const tbody = table.querySelector("tbody");
+      if (!thead || !tbody) return;
+
+      const ths = thead.querySelectorAll("th");
+      ths.forEach((th, colIdx) => {
+        th.style.cursor = "pointer";
+        th.dataset.sortDir = "";
+
+        th.addEventListener("click", () => {
+          const dir = th.dataset.sortDir === "asc" ? "desc" : "asc";
+          ths.forEach((h) => {
+            h.dataset.sortDir = "";
+            h.classList.remove("sort-asc", "sort-desc");
+          });
+          th.dataset.sortDir = dir;
+          th.classList.add(dir === "asc" ? "sort-asc" : "sort-desc");
+
+          const rows = Array.from(tbody.querySelectorAll("tr"));
+          rows.sort((a, b) => {
+            const aText = (a.children[colIdx]?.textContent ?? "")
+              .trim()
+              .toLowerCase();
+            const bText = (b.children[colIdx]?.textContent ?? "")
+              .trim()
+              .toLowerCase();
+            return dir === "asc"
+              ? aText.localeCompare(bText, undefined, { numeric: true })
+              : bText.localeCompare(aText, undefined, { numeric: true });
+          });
+          rows.forEach((row) => tbody.appendChild(row));
+        });
+      });
+    });
+  }
+
+  setupSortableTables();
+  document.addEventListener("astro:after-swap", setupSortableTables);
+</script>

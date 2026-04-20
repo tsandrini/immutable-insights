@@ -1,0 +1,62 @@
+==================================================================
+https://keybase.io/tsandrini
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://tsandrini.sh
+  * I am tsandrini (https://keybase.io/tsandrini) on keybase.
+  * I have a public key with fingerprint 1926 AF50 F0B9 96F2 BDD1  6827 3E83 AD69 0FA4 F657
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0116b52706ca5bbaa431886ca85afa6a4c869ada5741ab720f029ff6d322883873d50a",
+      "fingerprint": "1926af50f0b996f2bdd168273e83ad690fa4f657",
+      "host": "keybase.io",
+      "key_id": "3e83ad690fa4f657",
+      "kid": "0116b52706ca5bbaa431886ca85afa6a4c869ada5741ab720f029ff6d322883873d50a",
+      "uid": "5726fd22cf9a39a1945ef705e4ba3f19",
+      "username": "tsandrini"
+    },
+    "service": {
+      "hostname": "tsandrini.sh",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1771695094,
+  "expire_in": 157680000,
+  "prev": "cc9df7d2877d17022fd50450d1e58171935cb8f3f3fd48270edd99d3cd0766c3",
+  "seqno": 4,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owJ4nK1SPYgUMRSe07Vw8WeFc1FQYYP4A+uRZCZ/WyiCpcIVJ2JzSzJJdsOtM+PM
+7OpyXGWxloIgaieoYHHYnIXFFddYeJWFrYWFeGohCrZnZvEasTQpwnv5vu+97yX3
+9u8O6s3zd1bdwae/rs1sbqnAPfq6vQxUqsegswyWzPQwA22KsrvkNOgAiBBVBDNI
+Y0mUkjIKEec+4ERaSWUUcyqkloRFSCqGoYVYWEt1iDHnIWehJlCCNrAu6Zk8y11S
+elkkMJWWeLQSglqstEaUYxYaHkpNBbQyspQwT+ynRcXwzSlZmDmX+pwPutP2/oH/
+z30Pp3KEYWo1xrEVMhQSiYgYyyAxkZKhRaICFiZP5A3j0WUhE+2dOrDSBj49crGp
+JltZ+RsyV/Q9OcvTMo3Tgb/pl2VWdCpmOc4q6C2jun9Eusol2g/SM0YmL1yagA7y
+yLh0lSpiDFFBoIjawNzOXG66rkIQRjn0q6pjRl4yjoW27LrGnDGNGMTYersRgRoZ
+whFDIiSx4jb0W0f+XaDRWggdxhoySuMQVL5uJino+FKl7HnNwvUSWQ5zA1bqd4e1
+oFkPjjdbtaOnXs5/f/3gx/q7/umdv7dnV/Xxgvrexk7mzIdge2Hhy5Fj2cmHG40X
+V8rVxrPFS5P5x4c/Hrr67fKBT6M3rZlgfW1rsm/j1f0Ls5s/x2uzzycnPrfOvV28
+qN4PnhRnm7Xfjvnrtg==
+=ztVz
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/tsandrini
+
+==================================================================

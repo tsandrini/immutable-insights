@@ -291,3 +291,13 @@ cscope.files
 cscope.out
 cscope.in.out
 cscope.po.out
+
+# LLMs/AIs
+CLAUDE.md
+AGENTS.md
+.claude
+claude-tmp/
+.playwright-mcp/
+
+# Generated emoji index — open locally, not built
+emoji-index.html

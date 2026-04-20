@@ -1,7 +1,7 @@
 ---
 title: Proxmox VE & NixOS, a match made in clouds?
 published: 2025-07-19
-image: "./cover.png"
+cover: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
 draft: true
@@ -122,7 +122,7 @@ to a few different things depending on the context
 Technically there are a few different compilers and evaluators for nixlang, but the one
 that started it all by [Eelco Dolstra](https://edolstra.github.io/) back in 2003
 is `github:NixOS/nix` which
-is also referred to as **cppnix** to prevent confusion from other implementatons.
+is also referred to as **cppnix** to prevent confusion from other implementations.
 
 ::github{repo="NixOS/nix"}
 :::

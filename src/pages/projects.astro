@@ -1,27 +1,67 @@
 ---
+import { getEntry, render } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
 
-import MainGridLayout from "../layouts/MainGridLayout.astro";
+const page = await getEntry("pages", "projects");
 
-import { getEntry } from "astro:content";
-import { render } from "astro:content";
-import Markdown from "@components/misc/Markdown.astro";
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
-
-const projectsPost = await getEntry("spec", "projects");
-
-if (!projectsPost) {
-	throw new Error("Projects page content not found");
+if (!page) {
+  throw new Error("Projects page content not found");
 }
 
-const { Content, headings } = await render(projectsPost);
+const { Content } = await render(page);
+
+function parseColumns(columns?: string) {
+  if (!columns) return { single: true, style: "" };
+  const parts = columns.split("-");
+  if (parts.length === 1) {
+    return { single: true, style: `--page-width: ${parts[0]};` };
+  }
+  return {
+    single: false,
+    style: `--col-left: ${parts[0]}; --col-right: ${parts[1]};`,
+  };
+}
+
+const col = parseColumns(page.data.columns);
 ---
-<MainGridLayout title={i18n(I18nKey.projects)} description={i18n(I18nKey.projects)} headings={headings}>
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <Markdown class="mb-6 markdown-content onload-animation">
-                <Content />
-            </Markdown>
-        </div>
-    </div>
-</MainGridLayout>
+
+<BaseLayout title={page.data.title} description={page.data.description}>
+	<article
+		class="projects-page"
+		data-columns={col.single ? undefined : "dual"}
+		style={col.style || undefined}
+	>
+		<div class="projects-content page-column prose" data-numbered-headings={page.data.numberedHeadings || undefined}>
+			<Content />
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.projects-page {
+		padding-top: var(--space-3xl);
+		padding-bottom: var(--space-4xl);
+		padding-inline: var(--space-lg);
+	}
+
+	/* First h1 gets special treatment */
+	.projects-content :global(h1:first-child) {
+		font-size: var(--text-4xl);
+		margin-bottom: var(--space-2xl);
+	}
+
+	/* Subsequent h1s act as major section dividers */
+	.projects-content :global(h1) {
+		font-size: var(--text-3xl);
+		margin-top: var(--space-4xl);
+		margin-bottom: var(--space-lg);
+		padding-bottom: var(--space-sm);
+		border-bottom: 2px solid var(--color-border);
+	}
+
+	@media (min-width: 80rem) {
+		.projects-page {
+			padding-inline: var(--space-xl);
+		}
+	}
+</style>

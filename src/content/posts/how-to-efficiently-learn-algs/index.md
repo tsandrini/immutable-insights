@@ -1,7 +1,7 @@
 ---
 title: How to efficiently learn algs
 published: 2025-03-25
-image: "./cover.png"
+cover: "./cover.png"
 description: |
   Stop wasting your time & potential and finally learn the algsets
   that you've been procrastinating on! A short guide on how to use
@@ -9,6 +9,7 @@ description: |
 tags: [Speedcubing, Misc]
 category: Speedcubing
 draft: false
+columns: "50vw-25vw"
 ---
 
 # 1. Intro
@@ -22,9 +23,8 @@ However, when I returned back to cubing I managed to relearn OLL & PLL (+ other
 small algsets) in 2 weeks (normal workweeks should be noted) just by having
 a structured plan and structured learning sessions, here are my findings and how to apply
 them to your alg learning.
-
-:::note
-To illustrate my points I'm using examples from 3x3 PLL & OLL, but the process
+:::aside{mood="mischief"}
+To illustrate our points we will be using examples from 3x3 PLL & OLL, but the process
 is equally applicable to any other twisty puzzle.
 :::
 
@@ -45,16 +45,18 @@ are true in most cases and hold especially true if you are starting out):
   hand)
 4. don't learn outdated algs
 
-Cubing has developed and so have the fingertricks and the algorithms. As you get
-more experienced you'll be able to gauge them more and more properly. There
-are even ways to define an actually measurable quantity of an algorithms
-ergonomic potential.
-
+:::aside
 :::important
 You should treat the fingertricks as a part of the algorithm, that is a
 different execution of the same sequence will most of the time require
 an equal relearning time as it would to learn a different alg.
 :::
+
+Cubing has developed and so have the fingertricks and the algorithms. As you get
+more experienced you'll be able to gauge them more and more properly. There
+are even ways to define an actually measurable quantity of an algorithms
+ergonomic potential.
+
 
 ### 2.1.1. PLL & OLL Resources
 
@@ -78,6 +80,7 @@ If you are just starting out, here are some basic resources to bootstrap you
   of popular righty algs, so I wouldn't recommend selecting algs based off
   his materials
 
+:::aside
 :::tip
 Another important tip is to know which algs have standard solutions and you
 don't need to research any other algs and should just stick to the default
@@ -118,8 +121,8 @@ Rewrite this into common triggers:
 And learn to read these. Below is a *non-exhaustive* table that should get you
 started.
 
-| Trigger |  Sequence | Lefty variant |
-| -------- | -------- | ------------- |
+| Trigger | Sequence | Lefty variant |
+| :------ | :------: | :-----------: |
 | insert | `R U' R'` | `L' U L` |
 | U2 insert | `R U2' R'` | `L' U2 L` |
 | take out pair | `R U R'` | `L' U' L` |
@@ -134,15 +137,18 @@ started.
 | fat sledge | `r' F R F'` | `l F' L' F'` |
 | fat sune | `r U R' U R U2' r'` | `l' U' L U' L' U2 l` |
 
-And many, many more... This should illustrate how the triggers get combined
-and composed into new ones.
 
+:::aside
 :::note
 Technically `U2' <=> U2`, but the apostrophe here indicates that it is usually
 more ergonomic to do the double flick with your left hand to prevent
 **overwork** := overuse of one hand and not balancing the moves between both
 hands.
 :::
+
+And many, many more... This should illustrate how the triggers get combined
+and composed into new ones.
+
 
 ## 2.3. Learning the alg
 
@@ -183,6 +189,7 @@ This can be visually translated into
 reinsert with a U) (restore the front slot)
 ```
 
+:::aside{mood="excited"}
 :::important
 **You need to learn visually**! For most people brute force memorization will
 always take longer, use all tools at your disposal, visual and auditory

@@ -90,8 +90,12 @@ society
 
 - [Metta](https://en.wikipedia.org/wiki/Maitr%C4%AB) — i.e. loving kindness to oneself, to others and to your environment
 - [Kalokagathia](https://en.wikipedia.org/wiki/Kalos_kagathos) — harmony between physical and mental wellbeing
-- *Equality*, both in a [metaphysical](https://en.wikipedia.org/wiki/Metaphysics)
-  and material way
+- *Equality*, both in a [metaphysical](https://en.wikipedia.org/wiki/Metaphysics) and material way
+:::aside{mood="love"}
+This manifests as fighting for [civil rights](https://en.wikipedia.org/wiki/Civil_rights_movement),
+[fourth wave feminism](https://en.wikipedia.org/wiki/Fourth-wave_feminism) :female_symbol:,
+queer rights :rainbow_flag: and also green activism :green_heart:!
+:::
 - Open Source/Open Hardware and sometimes also [Free Software](https://www.gnu.org/philosophy/free-sw.html)
 
 # Interests
@@ -100,7 +104,7 @@ society
 
 Aside from stuff related to my profession, sports represent one of the main
 things that bring me joy & peace in my spare time. I am open to doing/trying
-almost any sports except ball sports, which I am not particularly good at. 😭
+almost any sports except ball sports, which I am not particularly good at.
 
 As of right now, these are my main focus:
 
@@ -108,7 +112,7 @@ As of right now, these are my main focus:
   sport climbing depending on the season. I'd guess my bouldering grade to be
   between V5-V7, but that is super relative to the gym grading, most seem to be
   sandbagged, but there are also some very soft gyms in Prague. I tend to prefer
-  slabby technical flexy climbing rather than pure power 🤔
+  slabby technical flexy climbing rather than pure power :monocle:
 
 - **Running**: Running was my primary sport for a long time, but the huge volumes
   at such an early age completely destroyed my right knee so now I do only
@@ -134,7 +138,7 @@ As of right now, these are my main focus:
   - [25.08.2013 Rakovnická patnáctka: 15km in 1:13:05 h](https://maratonkladno.cz/a/a3493.xls)
   - [15.08.2013 Rozdělovský 1/4 maraton: 10.5km in 49:01 min](https://maratonkladno.cz/a/a3482.pdf)
 
-- **Lifting**: SBD 100/75/150, iykuk 💪 more on the **strength + cardio => hybrid**
+- **Lifting**: SBD 100/75/150, iykuk :soft: more on the **strength + cardio => hybrid**
   side, since I don't super care about body aesthetics and I also tend to
   cycle climbing/lifting/running arcs.
 
@@ -150,14 +154,12 @@ As of right now, these are my main focus:
 
 ## Tech & Science
 
-:::note
 - Rust, Nix, OCaml, Haskell
 - Reproducible systems, server side management, deployment and general DevOps
 - PL: FPs, effect systems
 - Math (nowadays just recreational): algebraic topology, algebraic geometry
   and differential geometry
 - Relativistic physics (really, really, just recreational)
-:::
 
 ## Nix/NixOS
 
@@ -277,7 +279,7 @@ in some way or another and have everything store in a public monorepo.
 
 I recently returned to cubing after an unfortunate 10 years long pause. I was a
 super active cuber back in 2013-2015 with respectable averages back then
-(not so much anymore 😭), had a pause and now I have a bit more
+(not so much anymore :sweat:), had a pause and now I have a bit more
 free time that I can dedicate to my random fancy cubical and non-cubical puzzles.
 Also planning to compete more and get higher on the czech national rankings.
 
@@ -297,6 +299,10 @@ And if you are into this kind of thing, here are my current times at home:
   [CFOP](https://www.speedsolving.com/wiki/index.php/CFOP_method)
   with occasional [Roux](https://www.speedsolving.com/wiki/index.php?title=Roux_method)
   /[ZZ](https://www.speedsolving.com/wiki/index.php?title=ZZ_method). Dual CN.
+
+:::aside{mood="shock"}
+<iframe width=450 height=300 src="https://www.youtube.com/embed/QiV1wH-6Q6M?si=JKMvN2TvZH6YfIxU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+:::
 
 - **3x3 OH**: (One-handed) 16.62s PB
   (`D' R2 D R2 B2 R2 D R2 U2 F2 L F' U B D2 U F' D' R' B'`), 22.18s ao5,

@@ -962,13 +962,15 @@ pre {
   border-color: var(--color-border-strong);
 }
 
-/* Inline emoji (Mutant Standard shortcodes) — override .prose img block styling */
+/* Inline emoji (Mutant Standard shortcodes) — override .prose img block styling.
+   Height + vertical-align calibrated to sit within the text line-box without
+   triggering line-height expansion (same values Twemoji recommends). */
 .emoji,
 .prose img.emoji {
   display: inline-block;
-  vertical-align: -0.15em;
-  height: 1.1em;
-  width: auto;
+  vertical-align: -0.125em;
+  height: 1.2em;
+  width: 1.2em;
   max-width: none;
   margin: 0 0.05em;
   border: none;
@@ -976,12 +978,15 @@ pre {
   cursor: inherit;
 }
 
-/* When image is inside a paragraph, don't double-up margins */
-.prose p > img:only-child {
+/* When image is inside a paragraph, don't double-up margins.
+   Exclude .emoji — those are inline and shouldn't trigger the
+   lone-image-paragraph treatment even when they're the only img element
+   (text nodes don't count against :only-child). */
+.prose p > img:only-child:not(.emoji) {
   margin-block: 0;
 }
 
-.prose p:has(> img:only-child) {
+.prose p:has(> img:only-child:not(.emoji)) {
   margin-block: var(--space-xl);
   text-align: center;
 }

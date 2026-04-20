@@ -372,15 +372,18 @@ And regarding meditations? Only one correct answer! (a small hyperbole okay,
 definitely use whatever suits your individual needs, for example, if you
 require more meditative joy)
 [TMI](https://www.goodreads.com/book/show/25942786-the-mind-illuminated)!!!
+:::aside{mood="thinking"}
+One has to liberate themselves from the shackles of their own
+Discriminating Mind :exhale:
+![The Mind Illuminated - Conscious Mind](/images/TMI_diagram.png)
+:::
 For me personally and for my unfortunately analytic dumb brain, this is the
 only resource that yielded any measurable results whatsoever.
-
-![The Mind Illuminated - Conscious Mind](/images/TMI_diagram.png)
 
 ### Houseplants
 
 I love plants!!! Plants everywhere, there is no such thing as "*enough plants*"
-😌
+:green_heart:
 
 ![Mandarinka 🟠](/images/mandarinka.jpg)
 

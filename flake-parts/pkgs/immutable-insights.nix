@@ -43,7 +43,7 @@ let
       runHook postInstall
     '';
 
-    outputHash = if stdenv.isLinux then "sha256-Jxkm2NK0MqVbTJX1bps9pvCspqUeD4kihgDZ4Ou8J/U=" else "";
+    outputHash = if stdenv.isLinux then "sha256-tsaxuiD+whFyG/LhHz/tZI3N657DaiQ5hKxn9qr/VW4=" else "";
     outputHashAlgo = "sha256";
     outputHashMode = "recursive";
   };

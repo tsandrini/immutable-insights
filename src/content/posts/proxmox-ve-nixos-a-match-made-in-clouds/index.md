@@ -4,7 +4,7 @@ published: 2025-07-19
 cover: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
-draft: true
+draft: false
 numberedHeadings: true
 columns: "50vw-25vw"
 description: |

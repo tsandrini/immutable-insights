@@ -1,14 +1,16 @@
 ---
-title: Speedcubing scrambles
+title: Speedcubing scrambles (TODO)
 published: 2025-03-25
-description: Lorem ipsum dolor sit atmet.
+description: TODO Lorem ipsum dolor sit atmet.
 cover: "./cover.png"
 tags: [Speedcubing, Misc]
 category: Speedcubing
-draft: true
+draft: false
 ---
 
 ## Intro
+
+TODO
 
 Kdyžtak pardon za unorganized ramble + rovněž disclaimer, že nejsem nějakej
 ultra expert a tudíž přebírej informace s nějakou úrovní tolerance, ale zde

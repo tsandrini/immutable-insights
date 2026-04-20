@@ -1,11 +1,11 @@
 ---
-title: "Shared `/nix/store` in Proxmox VE"
+title: "Shared `/nix/store` in Proxmox VE (TODO)"
 published: 2025-03-25
 description: Lorem ipsum dolor sit atmet.
 cover: "./cover.png"
 tags: [DevOps, Programming, Nix, Proxmox]
 category: DevOps
-draft: true
+draft: false
 ---
 
 # Introduction

@@ -479,11 +479,10 @@ pre {
   margin-top: 0;
 }
 
-/* Asides themselves shouldn't add vertical gaps in the main flow */
-.prose > .margin-note + * {
-  margin-top: 0;
-}
-
+/* Asides are floated out of flow on dual-column — zero their own top margin
+   so the float anchor sits flush with the preceding element. Do NOT zero the
+   margin on the element *following* an aside: that would collapse spacing
+   before headings. The .continues class handles the split-paragraph case. */
 .prose > * + .margin-note {
   margin-top: 0;
 }

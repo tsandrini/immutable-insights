@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { LICENSE, SITE } from "../../consts";
 
 export async function getStaticPaths() {
   const posts = await getCollection("posts", ({ data }) => {
@@ -15,7 +16,11 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
+const { words, minutes } = remarkPluginFrontmatter as {
+  words?: number;
+  minutes?: number;
+};
 
 /**
  * Parse the `columns` frontmatter field.
@@ -92,6 +97,13 @@ function formatDate(date: Date): string {
 						</a>
 					)
 				}
+				{
+					typeof words === "number" && typeof minutes === "number" && (
+						<span class="post-reading">
+							{words.toLocaleString()} words · {minutes} min read
+						</span>
+					)
+				}
 			</div>
 			{
 				post.data.tags.length > 0 && (
@@ -112,6 +124,43 @@ function formatDate(date: Date): string {
 		<div class="post-content prose" data-numbered-headings={post.data.numberedHeadings || undefined}>
 			<Content />
 		</div>
+
+		<aside class="post-colophon">
+			<dl>
+				<div>
+					<dt>Author</dt>
+					<dd>{SITE.author}</dd>
+				</div>
+				<div>
+					<dt>Published</dt>
+					<dd>
+						<time datetime={post.data.published.toISOString()}>
+							{formatDate(post.data.published)}
+						</time>
+					</dd>
+				</div>
+				{
+					post.data.updated && (
+						<div>
+							<dt>Updated</dt>
+							<dd>
+								<time datetime={post.data.updated.toISOString()}>
+									{formatDate(post.data.updated)}
+								</time>
+							</dd>
+						</div>
+					)
+				}
+				<div>
+					<dt>License</dt>
+					<dd>
+						<a href={LICENSE.href} rel="license noopener noreferrer" target="_blank">
+							{LICENSE.name}
+						</a>
+					</dd>
+				</div>
+			</dl>
+		</aside>
 
 		<footer class="post-footer">
 			<a href="/blog/">&larr; Back to all posts</a>
@@ -178,7 +227,8 @@ function formatDate(date: Date): string {
 		color: var(--color-text-faint);
 	}
 
-	.post-category {
+	.post-category,
+	.post-reading {
 		border-left: 1px solid var(--color-border);
 		padding-left: var(--space-sm);
 	}
@@ -232,7 +282,54 @@ function formatDate(date: Date): string {
 		margin-bottom: var(--space-3xl);
 	}
 
+	.post-colophon {
+		margin-top: var(--space-2xl);
+		padding-top: var(--space-lg);
+		border-top: 1px solid var(--color-border);
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--color-text-faint);
+	}
+
+	.post-colophon dl {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		gap: var(--space-xs) var(--space-lg);
+		margin: 0;
+	}
+
+	.post-colophon dl > div {
+		display: contents;
+	}
+
+	.post-colophon dt {
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--color-text-faint);
+	}
+
+	.post-colophon dd {
+		margin: 0;
+		color: var(--color-text-muted);
+	}
+
+	.post-colophon a {
+		color: var(--color-text-muted);
+		text-decoration: underline;
+		text-decoration-color: var(--color-border);
+		text-underline-offset: 0.2em;
+		transition:
+			color var(--transition-base),
+			text-decoration-color var(--transition-base);
+	}
+
+	.post-colophon a:hover {
+		color: var(--color-accent);
+		text-decoration-color: var(--color-accent);
+	}
+
 	.post-footer {
+		margin-top: var(--space-xl);
 		padding-top: var(--space-xl);
 		border-top: 1px solid var(--color-border);
 	}

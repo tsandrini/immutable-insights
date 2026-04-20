@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const allPosts = await getCollection("posts", ({ data }) => {
@@ -11,6 +11,20 @@ const posts = allPosts.sort(
 );
 
 type Post = (typeof posts)[number];
+
+const readingStats = new Map<string, { words: number; minutes: number }>();
+await Promise.all(
+  posts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await render(post);
+    const { words, minutes } = remarkPluginFrontmatter as {
+      words?: number;
+      minutes?: number;
+    };
+    if (typeof words === "number" && typeof minutes === "number") {
+      readingStats.set(post.id, { words, minutes });
+    }
+  }),
+);
 
 const byYear = new Map<number, Post[]>();
 for (const post of posts) {
@@ -158,16 +172,30 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 													)}
 												</span>
 												<span class="post-facets">
-													{post.data.category && (
-														<span class="post-category">
-															{post.data.category}
+													{readingStats.has(post.id) && (
+														<span class="post-reading">
+															{readingStats
+																.get(post.id)!
+																.words.toLocaleString()}{" "}
+															words ·{" "}
+															{readingStats.get(post.id)!.minutes} min read
 														</span>
 													)}
-													{post.data.tags.length > 0 && (
-														<span class="post-tags">
-															{post.data.tags.map((tag) => (
-																<span class="post-tag">{tag}</span>
-															))}
+													{(post.data.category ||
+														post.data.tags.length > 0) && (
+														<span class="post-taxonomy">
+															{post.data.category && (
+																<span class="post-category">
+																	{post.data.category}
+																</span>
+															)}
+															{post.data.tags.length > 0 && (
+																<span class="post-tags">
+																	{post.data.tags.map((tag) => (
+																		<span class="post-tag">{tag}</span>
+																	))}
+																</span>
+															)}
 														</span>
 													)}
 												</span>
@@ -546,13 +574,26 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 		color: var(--color-text-faint);
 		margin-top: var(--space-xs);
 		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-sm);
+		flex-direction: column;
+		gap: 0.25em;
 		grid-column: 2;
+	}
+
+	.post-taxonomy {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: var(--space-sm);
 	}
 
 	.post-category {
 		color: var(--color-text-muted);
+	}
+
+	.post-taxonomy .post-category:not(:last-child)::after {
+		content: ":";
+		color: var(--color-text-faint);
+		margin-left: 0.05em;
 	}
 
 	.post-tags {
@@ -626,6 +667,7 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 		grid-column: auto;
 		margin-top: 0;
 		padding-top: 0.2em;
+		flex-direction: row;
 		justify-content: flex-end;
 		gap: var(--space-sm);
 	}
@@ -633,6 +675,7 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 	.year-groups[data-density="index"] .post-tags {
 		display: none;
 	}
+
 
 	/* --- Filter rail --- */
 

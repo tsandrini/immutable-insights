@@ -2,6 +2,8 @@
 // to hide the dev control without removing the underlying plumbing.
 export const SHOW_ACCENT_SLIDER = true;
 
+export const READING_WPM = 200;
+
 export const SITE = {
   title: "/immutable-insights/",
   subtitle: "tsandrini",
@@ -9,6 +11,11 @@ export const SITE = {
     "Nix, algorithms, speedcubing, and the occasional existential tangent. A personal blog by tsandrini.",
   author: "tsandrini",
   url: "https://tsandrini.sh",
+};
+
+export const LICENSE = {
+  name: "CC BY-NC-SA 4.0",
+  href: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
 };
 
 export const NAV_LINKS: { text: string; href: string; external?: boolean }[] = [

@@ -1,0 +1,89 @@
+<style is:global>
+  .prose :is(h1, h2, h3, h4, h5, h6) {
+    position: relative;
+  }
+
+  .heading-anchor {
+    position: absolute;
+    left: -1.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.25em;
+    height: 1.25em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-accent);
+    font-family: var(--font-mono, monospace);
+    font-size: 0.9em;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition:
+      opacity 0.15s ease,
+      color 0.15s ease;
+    user-select: none;
+  }
+
+  .prose :is(h1, h2, h3, h4, h5, h6):hover .heading-anchor,
+  .heading-anchor:focus-visible {
+    opacity: 0.6;
+  }
+
+  .heading-anchor:hover {
+    opacity: 1 !important;
+  }
+
+  .heading-anchor.copied {
+    opacity: 1 !important;
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 48rem) {
+    .heading-anchor {
+      position: static;
+      transform: none;
+      opacity: 0.5;
+      margin-right: 0.35em;
+    }
+  }
+</style>
+
+<script>
+  function setupHeadingAnchors() {
+    const headings = document.querySelectorAll<HTMLElement>(
+      ".prose :is(h1, h2, h3, h4, h5, h6)[id]",
+    );
+
+    headings.forEach((heading) => {
+      if (heading.querySelector(".heading-anchor")) return;
+
+      const btn = document.createElement("button");
+      btn.className = "heading-anchor";
+      btn.type = "button";
+      btn.textContent = "#";
+      btn.setAttribute("aria-label", `Copy link to ${heading.textContent}`);
+
+      btn.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const url = `${window.location.origin}${window.location.pathname}#${heading.id}`;
+        history.replaceState(null, "", `#${heading.id}`);
+        try {
+          await navigator.clipboard.writeText(url);
+          btn.classList.add("copied");
+          setTimeout(() => btn.classList.remove("copied"), 1500);
+        } catch {}
+      });
+
+      heading.appendChild(btn);
+    });
+  }
+
+  setupHeadingAnchors();
+  document.addEventListener("astro:after-swap", setupHeadingAnchors);
+</script>

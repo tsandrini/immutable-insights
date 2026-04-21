@@ -26,11 +26,9 @@ you can find at the bottom of the posts.
 
 My primary ssh-ed25519 pubkey is
 
-:::note
 ```txt
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWrK27cm+rAVKuwDjlJgCuy8Rftg2YOALwtnu7z3Ox1 tsandrini
 ```
-:::
 
 You can append it to your machine via
 
@@ -46,11 +44,9 @@ All my commits, communication and some of my files are signed by a
 GnuPG key with an ascii pubkey counterpart [tsandrini.gpg](/tsandrini.gpg),
 if a different key is being used then it's probably not me.
 
-:::note
 ```
 1926 AF50 F0B9 96F2 BDD1  6827 3E83 AD69 0FA4 F657
 ```
-:::
 
 You can append it to your machine via
 

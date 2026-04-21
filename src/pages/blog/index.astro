@@ -428,7 +428,7 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 		margin-inline: auto;
 	}
 
-	@media (min-width: 72rem) {
+	@media (--dual-col) {
 		.blog-page[data-columns="dual"] {
 			display: grid;
 			grid-template-columns: var(--col-left) var(--col-right);
@@ -686,7 +686,7 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 		gap: var(--space-xl);
 	}
 
-	@media (min-width: 72rem) {
+	@media (--dual-col) {
 		.filter-rail {
 			position: sticky;
 			top: calc(var(--header-height, 4rem) + var(--space-lg));
@@ -798,7 +798,7 @@ if (fYear) filterBits.push({ label: "from", value: fYear, key: "year" });
 
 	/* --- Narrow viewport: dense post cards, inline rail --- */
 
-	@media (max-width: 71.99rem) {
+	@media (--single-col) {
 		.post-link {
 			grid-template-columns: 5rem 1fr;
 			gap: var(--space-sm);

@@ -64,7 +64,7 @@ function formatDate(date: Date): string {
 						src={post.data.cover}
 						alt={`Cover image for ${post.data.title}`}
 						widths={[600, 900, 1200]}
-						sizes="(max-width: 71.99rem) 100vw, 50vw"
+						sizes="(max-width: 83.99rem) 100vw, 50vw"
 					/>
 				</figure>
 			)
@@ -177,7 +177,7 @@ function formatDate(date: Date): string {
 		padding-inline: var(--space-lg);
 	}
 
-	@media (max-width: 71.99rem) {
+	@media (--single-col) {
 		.post-page {
 			max-width: 100%;
 		}
@@ -191,7 +191,7 @@ function formatDate(date: Date): string {
 		max-width: 100%;
 	}
 
-	@media (min-width: 72rem) {
+	@media (--dual-col) {
 		.post-page[data-columns="dual"] {
 			max-width: var(--col-left);
 			margin-left: calc(

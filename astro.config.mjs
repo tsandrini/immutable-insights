@@ -1,5 +1,8 @@
+import { fileURLToPath } from "node:url";
 import mdx from "@astrojs/mdx";
+import postcssGlobalData from "@csstools/postcss-global-data";
 import { defineConfig } from "astro/config";
+import postcssCustomMedia from "postcss-custom-media";
 import rehypeKatex from "rehype-katex";
 import remarkDirective from "remark-directive";
 import remarkGfm from "remark-gfm";
@@ -34,6 +37,20 @@ export default defineConfig({
     },
   },
   vite: {
+    css: {
+      postcss: {
+        plugins: [
+          postcssGlobalData({
+            files: [
+              fileURLToPath(
+                new URL("./src/styles/custom-media.css", import.meta.url),
+              ),
+            ],
+          }),
+          postcssCustomMedia(),
+        ],
+      },
+    },
     server: {
       watch: {
         ignored: ["**/.direnv/**", "**/_old/**", "**/node_modules/**"],

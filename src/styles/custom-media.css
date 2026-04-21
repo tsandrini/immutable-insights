@@ -1,0 +1,8 @@
+/* Global @custom-media declarations — injected into every CSS pass by
+   @csstools/postcss-global-data (see astro.config.mjs). Keep this file as
+   declarations only; no rules. */
+
+/* Dual-column layout activation. At this width, 50vw main + 25vw aside
+   leaves the aside (bubbles, pawprints) with enough room to breathe. */
+@custom-media --dual-col (min-width: 84rem);
+@custom-media --single-col (max-width: 83.99rem);

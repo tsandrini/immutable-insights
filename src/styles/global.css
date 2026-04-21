@@ -346,7 +346,7 @@ pre {
   margin-inline: auto;
 }
 
-@media (max-width: 71.99rem) {
+@media (--single-col) {
   .page-column {
     max-width: 100%;
   }
@@ -356,7 +356,7 @@ pre {
   max-width: 100%;
 }
 
-@media (min-width: 72rem) {
+@media (--dual-col) {
   [data-columns="dual"] .page-column {
     max-width: var(--col-left);
     margin-left: calc(
@@ -368,7 +368,7 @@ pre {
   }
 }
 
-@media (min-width: 72rem) {
+@media (--dual-col) {
   [data-columns="dual"] .prose > .margin-note {
     float: right;
     clear: right;
@@ -444,7 +444,7 @@ pre {
   user-select: none;
 }
 
-@media (min-width: 72rem) {
+@media (--dual-col) {
   [data-columns="dual"] .margin-note > .mascot {
     position: absolute;
     top: -0.99em;
@@ -460,7 +460,7 @@ pre {
 }
 
 /* Inline mascot on narrow viewports — sits before first line of content */
-@media (max-width: 71.99rem) {
+@media (--single-col) {
   .margin-note > .mascot {
     display: inline;
     margin-right: 0.4em;
@@ -488,7 +488,7 @@ pre {
 }
 
 /* On narrow viewports, margin notes appear inline with subtle styling */
-@media (max-width: 71.99rem) {
+@media (--single-col) {
   .prose > .margin-note {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
